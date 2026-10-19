@@ -1,0 +1,156 @@
+{
+  "versao": "1.0",
+  "campos": [
+    "emissor", "cnpj", "isin", "ticker", "classe_acao",
+    "data_aprovacao", "data_com", "data_ex", "data_pagamento", "data_credito_ativos",
+    "valor_bruto", "aliquota_irrf", "valor_liquido", "custo_atribuido", "moeda",
+    "proporcao", "observacao_tributaria"
+  ],
+  "rotulos": {
+    "emissor": "Emissor",
+    "cnpj": "CNPJ",
+    "isin": "ISIN",
+    "ticker": "Ticker",
+    "classe_acao": "Classe da ação",
+    "data_aprovacao": "Data de aprovação",
+    "data_com": "Data com (data-base)",
+    "data_ex": "Data ex (ou início da negociação ajustada, em grupamento/desdobramento)",
+    "data_pagamento": "Data de pagamento",
+    "data_credito_ativos": "Data de crédito das ações",
+    "valor_bruto": "Valor bruto por ação",
+    "aliquota_irrf": "Alíquota de IRRF informada no aviso",
+    "valor_liquido": "Valor líquido por ação",
+    "custo_atribuido": "Custo atribuído às ações bonificadas (base fiscal; não é provento)",
+    "moeda": "Moeda",
+    "proporcao": "Proporção",
+    "observacao_tributaria": "Observação tributária (literal)"
+  },
+  "identidade": {
+    "emissor": "obrigatorio", "isin": "obrigatorio", "ticker": "obrigatorio", "cnpj": "opcional"
+  },
+  "tipos_evento": {
+    "DIVIDENDO": {
+      "rotulo": "Dividendo",
+      "aplicabilidade": {
+        "data_aprovacao": "obrigatorio", "data_com": "obrigatorio", "data_ex": "obrigatorio",
+        "data_pagamento": "obrigatorio", "data_credito_ativos": "nao_aplicavel",
+        "valor_bruto": "obrigatorio", "moeda": "obrigatorio",
+        "aliquota_irrf": "opcional", "valor_liquido": "opcional", "custo_atribuido": "nao_aplicavel",
+        "proporcao": "nao_aplicavel", "classe_acao": "obrigatorio", "observacao_tributaria": "opcional"
+      },
+      "criticos": ["emissor", "isin", "ticker", "data_com", "data_ex", "data_pagamento", "valor_bruto"],
+      "tratamento_tributario": "Sem retenção de IRRF por ação no valor divulgado; eventual retenção condicional (por beneficiário/limite) é reproduzida do aviso em observacao_tributaria e não gera valor líquido por ação."
+    },
+    "JCP": {
+      "rotulo": "Juros sobre o Capital Próprio",
+      "aplicabilidade": {
+        "data_aprovacao": "obrigatorio", "data_com": "obrigatorio", "data_ex": "obrigatorio",
+        "data_pagamento": "obrigatorio", "data_credito_ativos": "nao_aplicavel",
+        "valor_bruto": "obrigatorio", "moeda": "obrigatorio",
+        "aliquota_irrf": "obrigatorio", "valor_liquido": "opcional", "custo_atribuido": "nao_aplicavel",
+        "proporcao": "nao_aplicavel", "classe_acao": "obrigatorio", "observacao_tributaria": "opcional"
+      },
+      "criticos": ["emissor", "isin", "ticker", "data_com", "data_ex", "data_pagamento", "valor_bruto", "aliquota_irrf"],
+      "tratamento_tributario": "IRRF retido na fonte sobre o valor bruto, com a alíquota informada no aviso (ressalvados imunes/isentos); líquido por ação = bruto × (1 − alíquota). Descritivo, não é parecer tributário."
+    },
+    "GRUPAMENTO": {
+      "rotulo": "Grupamento de ações",
+      "aplicabilidade": {
+        "data_aprovacao": "obrigatorio", "data_com": "obrigatorio", "data_ex": "obrigatorio",
+        "data_pagamento": "nao_aplicavel", "data_credito_ativos": "opcional",
+        "valor_bruto": "nao_aplicavel", "moeda": "nao_aplicavel",
+        "aliquota_irrf": "nao_aplicavel", "valor_liquido": "nao_aplicavel", "custo_atribuido": "nao_aplicavel",
+        "proporcao": "obrigatorio", "classe_acao": "opcional", "observacao_tributaria": "opcional"
+      },
+      "criticos": ["emissor", "isin", "ticker", "data_com", "data_ex", "proporcao"],
+      "tratamento_tributario": "Sem provento em dinheiro; altera a quantidade de ações. Frações são apuradas e alienadas conforme o aviso."
+    },
+    "DESDOBRAMENTO": {
+      "rotulo": "Desdobramento de ações",
+      "aplicabilidade": {
+        "data_aprovacao": "obrigatorio", "data_com": "obrigatorio", "data_ex": "obrigatorio",
+        "data_pagamento": "nao_aplicavel", "data_credito_ativos": "opcional",
+        "valor_bruto": "nao_aplicavel", "moeda": "nao_aplicavel",
+        "aliquota_irrf": "nao_aplicavel", "valor_liquido": "nao_aplicavel", "custo_atribuido": "nao_aplicavel",
+        "proporcao": "obrigatorio", "classe_acao": "opcional", "observacao_tributaria": "opcional"
+      },
+      "criticos": ["emissor", "isin", "ticker", "data_com", "data_ex", "proporcao"],
+      "tratamento_tributario": "Sem provento em dinheiro; altera a quantidade de ações."
+    },
+    "BONIFICACAO": {
+      "rotulo": "Bonificação em ações",
+      "aplicabilidade": {
+        "data_aprovacao": "obrigatorio", "data_com": "obrigatorio", "data_ex": "obrigatorio",
+        "data_pagamento": "nao_aplicavel", "data_credito_ativos": "obrigatorio",
+        "valor_bruto": "nao_aplicavel", "moeda": "opcional",
+        "aliquota_irrf": "nao_aplicavel", "valor_liquido": "nao_aplicavel", "custo_atribuido": "opcional",
+        "proporcao": "obrigatorio", "classe_acao": "opcional", "observacao_tributaria": "opcional"
+      },
+      "criticos": ["emissor", "isin", "ticker", "data_com", "data_ex", "proporcao", "data_credito_ativos"],
+      "tratamento_tributario": "Sem provento em dinheiro; ações novas recebem o custo unitário atribuído informado no aviso para fins fiscais. O custo atribuído não é valor de provento."
+    },
+    "OUTRO": {
+      "rotulo": "Tipo não suportado",
+      "aplicabilidade": {
+        "data_aprovacao": "opcional", "data_com": "opcional", "data_ex": "opcional",
+        "data_pagamento": "opcional", "data_credito_ativos": "opcional",
+        "valor_bruto": "opcional", "moeda": "opcional",
+        "aliquota_irrf": "opcional", "valor_liquido": "opcional", "custo_atribuido": "opcional",
+        "proporcao": "opcional", "classe_acao": "opcional", "observacao_tributaria": "opcional"
+      },
+      "criticos": ["emissor", "isin", "ticker"],
+      "tratamento_tributario": "Indeterminado: tipo de evento não reconhecido; exige análise humana."
+    }
+  },
+  "regras": {
+    "FORMATO_ISIN": {"severidade": "ERRO", "descricao": "ISIN fora do formato (2 letras + 9 alfanuméricos + 1 dígito)."},
+    "FORMATO_TICKER": {"severidade": "ERRO", "descricao": "Ticker fora do formato (4 letras + 1 ou 2 dígitos)."},
+    "FORMATO_CNPJ": {"severidade": "ERRO", "descricao": "CNPJ fora do formato 00.000.000/0000-00. Dígitos verificadores não são validados (base sintética)."},
+    "GOLDEN_NAO_ENCONTRADO": {"severidade": "ERRO", "descricao": "Nenhum identificador do aviso consta na base de referência."},
+    "GOLDEN_DIVERGENTE": {"severidade": "ERRO", "descricao": "Identificadores casam com a base, mas algum campo diverge."},
+    "GOLDEN_AMBIGUO": {"severidade": "ERRO", "descricao": "Identificadores do aviso apontam para registros diferentes da base."},
+    "GOLDEN_INATIVO": {"severidade": "ERRO", "descricao": "Registro da base não está com status ativo."},
+    "DATAS_EX_NAO_POSTERIOR_A_COM": {"severidade": "ERRO", "descricao": "Data ex deve ser posterior à data com."},
+    "DATAS_PAGAMENTO_ANTES_DA_COM": {"severidade": "ERRO", "descricao": "Pagamento anterior à data com."},
+    "DATAS_PAGAMENTO_ANTES_DA_EX": {"severidade": "ERRO", "descricao": "Pagamento anterior à data ex."},
+    "DATAS_CREDITO_ANTES_DA_COM": {"severidade": "ERRO", "descricao": "Crédito das ações anterior à data com."},
+    "DATAS_APROVACAO_APOS_COM": {"severidade": "AVISO", "descricao": "Aprovação posterior à data com (possível, mas incomum)."},
+    "DATAS_EX_NAO_E_DIA_UTIL_SEGUINTE": {"severidade": "AVISO", "descricao": "Data ex difere do dia útil seguinte à data com (calendário de feriados da B3)."},
+    "DATA_FIM_DE_SEMANA": {"severidade": "AVISO", "descricao": "Data com/ex/pagamento em fim de semana."},
+    "DATA_APROVACAO_FIM_DE_SEMANA": {"severidade": "INFO", "descricao": "Aprovação em fim de semana (assembleias podem ocorrer)."},
+    "DATAS_FORA_DA_FAIXA": {"severidade": "AVISO", "descricao": "Data distante demais da data de aprovação (possível erro de leitura de ano)."},
+    "VALOR_NAO_POSITIVO": {"severidade": "ERRO", "descricao": "Valor monetário deve ser maior que zero."},
+    "TRIB_LIQUIDO_DIVERGE": {"severidade": "ERRO", "descricao": "Líquido difere de bruto × (1 − alíquota do aviso)."},
+    "TRIB_LIQUIDO_SEM_ALIQUOTA": {"severidade": "AVISO", "descricao": "Líquido informado sem alíquota: não é possível verificá-lo."},
+    "TRIB_DIVIDENDO_COM_RETENCAO": {"severidade": "ERRO", "descricao": "Evento classificado como dividendo apresenta retenção por ação (substância típica de JCP)."},
+    "PROP_INVALIDA": {"severidade": "ERRO", "descricao": "Proporção ilegível ou com termos não positivos."},
+    "PROP_SENTIDO_INCOMPATIVEL": {"severidade": "ERRO", "descricao": "Sentido da proporção incompatível com o tipo (ex.: grupamento que aumenta ações)."},
+    "PROP_PERCENTUAL_DIVERGE": {"severidade": "ERRO", "descricao": "Percentual declarado difere da razão entre os termos da proporção."},
+    "CLASSIFICACAO_DIVERGENTE": {"severidade": "ERRO", "descricao": "Classificação do modelo diverge da classificação por sinais do documento."},
+    "TITULO_DIVERGE_CORPO": {"severidade": "AVISO", "descricao": "Título sugere um tipo e o corpo/natureza do provento indica outro; prevalece o corpo."},
+    "TIPO_NAO_SUPORTADO": {"severidade": "ERRO", "descricao": "Tipo de evento fora do escopo suportado."},
+    "CAMPO_OBRIGATORIO_AUSENTE": {"severidade": "ERRO", "descricao": "Campo obrigatório para o tipo de evento não foi encontrado."},
+    "CAMPO_PENDENTE_NO_AVISO": {"severidade": "INFO", "descricao": "O aviso declara que a informação será divulgada depois."},
+    "EVIDENCIA_NAO_ENCONTRADA": {"severidade": "ERRO", "descricao": "Trecho citado não existe no texto-fonte."},
+    "VALOR_NAO_INTERPRETAVEL": {"severidade": "ERRO", "descricao": "Trecho citado existe, mas não pôde ser normalizado para o tipo do campo."},
+    "IDENTIFICADOR_NAO_EXTRAIDO": {"severidade": "AVISO", "descricao": "ISIN/ticker/CNPJ presente no texto e ausente da extração."},
+    "INJECAO_SUSPEITA": {"severidade": "AVISO", "descricao": "Texto do documento contém padrão típico de instrução dirigida a modelo."},
+    "TEXTO_OCULTO": {"severidade": "AVISO", "descricao": "Texto invisível (branco, minúsculo ou fora da página)."},
+    "CONTEUDO_ATIVO_PDF": {"severidade": "AVISO", "descricao": "PDF contém ação/JavaScript/arquivo embutido; nada foi executado."},
+    "SCAN_LEITURAS_DIVERGEM": {"severidade": "ERRO", "descricao": "As duas leituras independentes do scan discordam."},
+    "OCR_NAO_CORROBORA": {"severidade": "ERRO", "descricao": "O OCR local (leitor independente do modelo) não confirmou o valor lido pelo modelo."},
+    "OCR_INDISPONIVEL": {"severidade": "INFO", "descricao": "Scan sem leitor independente do modelo (OCR local indisponível): as duas leituras vêm do mesmo modelo de visão e seus erros são correlacionados; confiança limitada a MÉDIA e, pela política, revisão humana."},
+    "DUPLICATA_POSSIVEL": {"severidade": "ERRO", "descricao": "Outro documento do lote descreve o mesmo evento (ISIN + tipo + data com): aprovar os dois lançaria o evento em dobro."},
+    "MODELO_NAO_AVALIADO": {"severidade": "ERRO", "descricao": "Alguma chamada foi respondida pelo fallback do provedor, por um modelo que as gravações e a avaliação não mediram."}
+  },
+  "politica": {
+    "confianca_minima_campo_critico": "MEDIA",
+    "teto_confianca_scan": "MEDIA",
+    "revisao_scan_sem_ocr_independente": true,
+    "revisao_por_titulo_diverge_corpo": true,
+    "revisao_por_sinais_de_seguranca": ["INJECAO_SUSPEITA", "TEXTO_OCULTO", "CONTEUDO_ATIVO_PDF"],
+    "tolerancia_liquido_ulp": 0.5,
+    "faixa_plausivel_dias": 550,
+    "limiar_nome_sugestao": 0.6
+  }
+}
