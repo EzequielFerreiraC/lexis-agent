@@ -1,0 +1,35 @@
+.venv/
+.env
+__pycache__/
+*.pyc
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+*.egg-info/
+.cache/
+
+# Interface web: dependências, build e execuções geradas pela tela
+node_modules/
+a_src/a_frontend/dist/
+a_src/a_frontend/coverage/
+a_src/a_frontend/playwright-report/
+# Execuções da tela (f_data/b_output/report_*/): só o lote da CLI é versionado
+f_data/b_output/_*/
+f_data/b_output/*/entrada/
+f_data/b_output/*/saida/
+f_data/b_output/*/execucao.json
+f_data/b_output/*/gravacoes/
+
+# Estado local antigo (pid e log do servidor fora do Docker; os scripts de d_scripts/ agora usam o docker compose)
+.run/
+
+# Material de referência de terceiros, fora do escopo deste repositório
+e_exemplos/
+
+# Resultados de testes
+g_test_results/
+
+# Anotações Temporárias
+z_tmp
