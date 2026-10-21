@@ -1,0 +1,115 @@
+{
+  "formato": 1,
+  "etapa": "extracao",
+  "documento": "01_energetica_vale_tiete_dividendo.pdf",
+  "pdf_sha256": "e49afdf81d2a1e4a74985e78fa0ea3639633cfa19f5dba633a2b545d115153cb",
+  "origem": "API",
+  "modelo": "claude-sonnet-5-5",
+  "prompt_sha": "14318d8cf7827097",
+  "conteudo": {
+    "titulo": {
+      "texto": "AVISO AOS ACIONISTAS — Pagamento de Dividendos",
+      "pagina": 1,
+      "situacao": "PRESENTE"
+    },
+    "tipo_evento_texto": {
+      "texto": "Dividendo",
+      "pagina": 1,
+      "situacao": "PRESENTE"
+    },
+    "tipo_evento": "DIVIDENDO",
+    "campos": {
+      "emissor": {
+        "texto": "ENERGÉTICA VALE DO TIETÊ S.A.",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "cnpj": {
+        "texto": "12.345.678/0001-90",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "isin": {
+        "texto": "BRTIETACNOR3",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "ticker": {
+        "texto": "TIET3",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "classe_acao": {
+        "texto": "ação ordinária",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "data_aprovacao": {
+        "texto": "28/05/2026",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "data_com": {
+        "texto": "12/06/2026",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "data_ex": {
+        "texto": "15/06/2026",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "data_pagamento": {
+        "texto": "03/07/2026",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "data_credito_ativos": {
+        "texto": null,
+        "pagina": null,
+        "situacao": "AUSENTE"
+      },
+      "valor_bruto": {
+        "texto": "R$ 0,4275000000",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "aliquota_irrf": {
+        "texto": null,
+        "pagina": null,
+        "situacao": "AUSENTE"
+      },
+      "valor_liquido": {
+        "texto": null,
+        "pagina": null,
+        "situacao": "AUSENTE"
+      },
+      "custo_atribuido": {
+        "texto": null,
+        "pagina": null,
+        "situacao": "AUSENTE"
+      },
+      "moeda": {
+        "texto": "R$",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "proporcao": {
+        "texto": null,
+        "pagina": null,
+        "situacao": "AUSENTE"
+      },
+      "observacao_tributaria": {
+        "texto": "os dividendos estarão\nsujeitos à retenção de Imposto de Renda na Fonte (IRRF) à alíquota de 10% sobre a parcela que exceder\nR$ 50.000,00 mensais por beneficiário pagos por esta Companhia.",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      }
+    }
+  },
+  "uso": {
+    "tokens_entrada": 771,
+    "tokens_saida": 988,
+    "latencia_ms": 5556,
+    "reparos": 0
+  }
+}

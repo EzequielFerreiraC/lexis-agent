@@ -1,0 +1,160 @@
+{
+  "formato": 1,
+  "etapa": "validacao_tools",
+  "documento": "05_aurora_saneamento_dividendo_datas.pdf",
+  "pdf_sha256": "925b6eb09fbcaecf81d3c1d125e041edd1460fed23d6a67bf10f8a6b170e9567",
+  "origem": "API",
+  "modelo": "claude-sonnet-5-5",
+  "prompt_sha": "14318d8cf7827097",
+  "pedido_sha": "f907583ee2f0b2bd2d91aeb2e329f3773d14e2ab3712202fddf6929dfd42b6d6",
+  "conteudo": {
+    "turnos": [
+      {
+        "chamadas": [
+          {
+            "tool": "consultar_golden",
+            "argumentos": {
+              "isin": "BRAURSACNOR4",
+              "ticker": "AURS3",
+              "cnpj": "22.333.444/0001-77",
+              "emissor": "AURORA SANEAMENTO S.A.",
+              "classe_acao": "ON"
+            },
+            "resultado": {
+              "regras": [
+                {
+                  "id": "GOLDEN_NAO_ENCONTRADO",
+                  "resultado": "OK",
+                  "severidade": "ERRO",
+                  "esperado": null,
+                  "observado": null
+                },
+                {
+                  "id": "GOLDEN_DIVERGENTE",
+                  "resultado": "OK",
+                  "severidade": "ERRO",
+                  "esperado": null,
+                  "observado": null
+                },
+                {
+                  "id": "GOLDEN_AMBIGUO",
+                  "resultado": "OK",
+                  "severidade": "ERRO",
+                  "esperado": null,
+                  "observado": null
+                },
+                {
+                  "id": "GOLDEN_INATIVO",
+                  "resultado": "OK",
+                  "severidade": "ERRO",
+                  "esperado": null,
+                  "observado": "ativo"
+                }
+              ],
+              "golden": "MATCH"
+            },
+            "erro": false
+          },
+          {
+            "tool": "checar_datas",
+            "argumentos": {
+              "tipo_evento": "DIVIDENDO",
+              "data_aprovacao": "2026-06-01",
+              "data_com": "2026-07-15",
+              "data_ex": "2026-07-16",
+              "data_pagamento": "2026-07-10"
+            },
+            "resultado": {
+              "regras": [
+                {
+                  "id": "DATAS_EX_NAO_POSTERIOR_A_COM",
+                  "resultado": "OK",
+                  "severidade": "ERRO",
+                  "esperado": "data_ex > data_com",
+                  "observado": "data_com=2026-07-15, data_ex=2026-07-16"
+                },
+                {
+                  "id": "DATAS_PAGAMENTO_ANTES_DA_COM",
+                  "resultado": "FALHA",
+                  "severidade": "ERRO",
+                  "esperado": "data_pagamento >= data_com",
+                  "observado": "data_pagamento=2026-07-10, data_com=2026-07-15"
+                },
+                {
+                  "id": "DATAS_PAGAMENTO_ANTES_DA_EX",
+                  "resultado": "FALHA",
+                  "severidade": "ERRO",
+                  "esperado": "data_pagamento >= data_ex",
+                  "observado": "data_pagamento=2026-07-10, data_ex=2026-07-16"
+                },
+                {
+                  "id": "DATAS_APROVACAO_APOS_COM",
+                  "resultado": "OK",
+                  "severidade": "AVISO",
+                  "esperado": "data_aprovacao <= data_com",
+                  "observado": "data_aprovacao=2026-06-01, data_com=2026-07-15"
+                },
+                {
+                  "id": "DATAS_EX_NAO_E_DIA_UTIL_SEGUINTE",
+                  "resultado": "OK",
+                  "severidade": "AVISO",
+                  "esperado": "data_ex=2026-07-16",
+                  "observado": "data_ex=2026-07-16"
+                },
+                {
+                  "id": "DATA_FIM_DE_SEMANA",
+                  "resultado": "OK",
+                  "severidade": "AVISO",
+                  "esperado": null,
+                  "observado": null
+                },
+                {
+                  "id": "DATA_APROVACAO_FIM_DE_SEMANA",
+                  "resultado": "OK",
+                  "severidade": "INFO",
+                  "esperado": null,
+                  "observado": "2026-06-01"
+                },
+                {
+                  "id": "DATAS_FORA_DA_FAIXA",
+                  "resultado": "OK",
+                  "severidade": "AVISO",
+                  "esperado": null,
+                  "observado": null
+                }
+              ]
+            },
+            "erro": false
+          },
+          {
+            "tool": "checar_tributacao",
+            "argumentos": {
+              "tipo_evento": "DIVIDENDO",
+              "valor_bruto": "0.3100000000"
+            },
+            "resultado": {
+              "regras": [
+                {
+                  "id": "VALOR_NAO_POSITIVO",
+                  "resultado": "OK",
+                  "severidade": "ERRO",
+                  "esperado": null,
+                  "observado": null
+                }
+              ]
+            },
+            "erro": false
+          }
+        ]
+      }
+    ],
+    "parecer": "Duas regras falharam: DATAS_PAGAMENTO_ANTES_DA_COM e DATAS_PAGAMENTO_ANTES_DA_EX. A data de pagamento (2026-07-10) é anterior à data-com (2026-07-15) e à data-ex (2026-07-16). A consulta à base de referência e a checagem de tributação não tiveram nenhuma falha.",
+    "encerramento": "end_turn"
+  },
+  "uso": {
+    "tokens_entrada": 2294,
+    "tokens_saida": 589,
+    "latencia_ms": 5144,
+    "reparos": 0
+  }
+}

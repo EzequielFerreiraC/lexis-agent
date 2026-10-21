@@ -1,0 +1,115 @@
+{
+  "formato": 1,
+  "etapa": "extracao",
+  "documento": "02_banco_meridional_jcp.pdf",
+  "pdf_sha256": "64e0787afd32c0d99e5407a5fbc6f5048245ba70826563d0b14205074b970668",
+  "origem": "API",
+  "modelo": "claude-sonnet-5-5",
+  "prompt_sha": "14318d8cf7827097",
+  "conteudo": {
+    "titulo": {
+      "texto": "AVISO AOS ACIONISTAS — Juros sobre o Capital Próprio (JCP)",
+      "pagina": 1,
+      "situacao": "PRESENTE"
+    },
+    "tipo_evento_texto": {
+      "texto": "Juros sobre o Capital Próprio (JCP)",
+      "pagina": 1,
+      "situacao": "PRESENTE"
+    },
+    "tipo_evento": "JCP",
+    "campos": {
+      "emissor": {
+        "texto": "BANCO MERIDIONAL DO BRASIL S.A.",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "cnpj": {
+        "texto": "60.111.222/0001-55",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "isin": {
+        "texto": "BRBMRDACNPR7",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "ticker": {
+        "texto": "BMRD4",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "classe_acao": {
+        "texto": "preferencial",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "data_aprovacao": {
+        "texto": "02 de junho de 2026",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "data_com": {
+        "texto": "16/06/2026",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "data_ex": {
+        "texto": "17/06/2026",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "data_pagamento": {
+        "texto": "14/08/2026",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "data_credito_ativos": {
+        "texto": null,
+        "pagina": null,
+        "situacao": "AUSENTE"
+      },
+      "valor_bruto": {
+        "texto": "R$ 0,1738420000",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "aliquota_irrf": {
+        "texto": "17,5%",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "valor_liquido": {
+        "texto": "R$ 0,1434196500",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "custo_atribuido": {
+        "texto": null,
+        "pagina": null,
+        "situacao": "AUSENTE"
+      },
+      "moeda": {
+        "texto": "R$",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "proporcao": {
+        "texto": null,
+        "pagina": null,
+        "situacao": "AUSENTE"
+      },
+      "observacao_tributaria": {
+        "texto": "Sobre o valor bruto incidirá\nImposto de Renda Retido na Fonte (IRRF) à alíquota de 17,5%, conforme legislação vigente a partir de 1º\nde janeiro de 2026, ressalvados os acionistas comprovadamente imunes ou isentos.",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      }
+    }
+  },
+  "uso": {
+    "tokens_entrada": 815,
+    "tokens_saida": 1030,
+    "latencia_ms": 5310,
+    "reparos": 0
+  }
+}

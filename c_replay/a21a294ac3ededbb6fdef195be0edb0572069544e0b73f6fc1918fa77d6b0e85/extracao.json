@@ -1,0 +1,115 @@
+{
+  "formato": 1,
+  "etapa": "extracao",
+  "documento": "03_siderurgica_paranaense_proventos.pdf",
+  "pdf_sha256": "a21a294ac3ededbb6fdef195be0edb0572069544e0b73f6fc1918fa77d6b0e85",
+  "origem": "API",
+  "modelo": "claude-sonnet-5-5",
+  "prompt_sha": "14318d8cf7827097",
+  "conteudo": {
+    "titulo": {
+      "texto": "AVISO AOS ACIONISTAS — Distribuição de Dividendos",
+      "pagina": 1,
+      "situacao": "PRESENTE"
+    },
+    "tipo_evento_texto": {
+      "texto": "Remuneração do capital próprio",
+      "pagina": 1,
+      "situacao": "PRESENTE"
+    },
+    "tipo_evento": "JCP",
+    "campos": {
+      "emissor": {
+        "texto": "COMPANHIA SIDERÚRGICA PARANAENSE S.A.",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "cnpj": {
+        "texto": "76.543.210/0001-12",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "isin": {
+        "texto": "BRCSPRACNOR1",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "ticker": {
+        "texto": "CSPR3",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "classe_acao": {
+        "texto": "ON",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "data_aprovacao": {
+        "texto": "05 de junho de 2026",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "data_com": {
+        "texto": "19/06/2026",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "data_ex": {
+        "texto": "22/06/2026",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "data_pagamento": {
+        "texto": "11/09/2026",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "data_credito_ativos": {
+        "texto": null,
+        "pagina": null,
+        "situacao": "AUSENTE"
+      },
+      "valor_bruto": {
+        "texto": "R$ 0,0921500000",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "aliquota_irrf": {
+        "texto": "17,5%",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "valor_liquido": {
+        "texto": "R$ 0,0760237500",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "custo_atribuido": {
+        "texto": null,
+        "pagina": null,
+        "situacao": "AUSENTE"
+      },
+      "moeda": {
+        "texto": "R$",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "proporcao": {
+        "texto": null,
+        "pagina": null,
+        "situacao": "AUSENTE"
+      },
+      "observacao_tributaria": {
+        "texto": "O valor ora deliberado será objeto de retenção de Imposto de Renda na Fonte à alíquota de 17,5% no\nmomento do pagamento ou crédito, o que ocorrer primeiro",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      }
+    }
+  },
+  "uso": {
+    "tokens_entrada": 785,
+    "tokens_saida": 985,
+    "latencia_ms": 5199,
+    "reparos": 0
+  }
+}

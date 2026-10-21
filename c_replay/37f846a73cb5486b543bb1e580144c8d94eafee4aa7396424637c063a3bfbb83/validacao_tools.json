@@ -1,0 +1,168 @@
+{
+  "formato": 1,
+  "etapa": "validacao_tools",
+  "documento": "04_rede_varejo_jcp_sem_data.pdf",
+  "pdf_sha256": "37f846a73cb5486b543bb1e580144c8d94eafee4aa7396424637c063a3bfbb83",
+  "origem": "API",
+  "modelo": "claude-sonnet-5-5",
+  "prompt_sha": "14318d8cf7827097",
+  "pedido_sha": "af52aaa5de2a6154442c0c6f5cbca6ee2d7be1a021cd90d1d10771125ca74a77",
+  "conteudo": {
+    "turnos": [
+      {
+        "chamadas": [
+          {
+            "tool": "consultar_golden",
+            "argumentos": {
+              "isin": "BRRVBRACNOR9",
+              "ticker": "RVBR3",
+              "cnpj": "08.777.666/0001-33",
+              "emissor": "REDE VAREJO BRASIL S.A.",
+              "classe_acao": "ON"
+            },
+            "resultado": {
+              "regras": [
+                {
+                  "id": "GOLDEN_NAO_ENCONTRADO",
+                  "resultado": "OK",
+                  "severidade": "ERRO",
+                  "esperado": null,
+                  "observado": null
+                },
+                {
+                  "id": "GOLDEN_DIVERGENTE",
+                  "resultado": "OK",
+                  "severidade": "ERRO",
+                  "esperado": null,
+                  "observado": null
+                },
+                {
+                  "id": "GOLDEN_AMBIGUO",
+                  "resultado": "OK",
+                  "severidade": "ERRO",
+                  "esperado": null,
+                  "observado": null
+                },
+                {
+                  "id": "GOLDEN_INATIVO",
+                  "resultado": "OK",
+                  "severidade": "ERRO",
+                  "esperado": null,
+                  "observado": "ativo"
+                }
+              ],
+              "golden": "MATCH"
+            },
+            "erro": false
+          },
+          {
+            "tool": "checar_datas",
+            "argumentos": {
+              "tipo_evento": "JCP",
+              "data_aprovacao": "2026-06-09",
+              "data_com": "2026-06-23",
+              "data_ex": "2026-06-24"
+            },
+            "resultado": {
+              "regras": [
+                {
+                  "id": "DATAS_EX_NAO_POSTERIOR_A_COM",
+                  "resultado": "OK",
+                  "severidade": "ERRO",
+                  "esperado": "data_ex > data_com",
+                  "observado": "data_com=2026-06-23, data_ex=2026-06-24"
+                },
+                {
+                  "id": "DATAS_PAGAMENTO_ANTES_DA_COM",
+                  "resultado": "NAO_APLICAVEL",
+                  "severidade": "ERRO",
+                  "esperado": "data_pagamento >= data_com",
+                  "observado": "data_pagamento=None, data_com=2026-06-23"
+                },
+                {
+                  "id": "DATAS_PAGAMENTO_ANTES_DA_EX",
+                  "resultado": "NAO_APLICAVEL",
+                  "severidade": "ERRO",
+                  "esperado": "data_pagamento >= data_ex",
+                  "observado": "data_pagamento=None, data_ex=2026-06-24"
+                },
+                {
+                  "id": "DATAS_APROVACAO_APOS_COM",
+                  "resultado": "OK",
+                  "severidade": "AVISO",
+                  "esperado": "data_aprovacao <= data_com",
+                  "observado": "data_aprovacao=2026-06-09, data_com=2026-06-23"
+                },
+                {
+                  "id": "DATAS_EX_NAO_E_DIA_UTIL_SEGUINTE",
+                  "resultado": "OK",
+                  "severidade": "AVISO",
+                  "esperado": "data_ex=2026-06-24",
+                  "observado": "data_ex=2026-06-24"
+                },
+                {
+                  "id": "DATA_FIM_DE_SEMANA",
+                  "resultado": "OK",
+                  "severidade": "AVISO",
+                  "esperado": null,
+                  "observado": null
+                },
+                {
+                  "id": "DATA_APROVACAO_FIM_DE_SEMANA",
+                  "resultado": "OK",
+                  "severidade": "INFO",
+                  "esperado": null,
+                  "observado": "2026-06-09"
+                },
+                {
+                  "id": "DATAS_FORA_DA_FAIXA",
+                  "resultado": "OK",
+                  "severidade": "AVISO",
+                  "esperado": null,
+                  "observado": null
+                }
+              ]
+            },
+            "erro": false
+          },
+          {
+            "tool": "checar_tributacao",
+            "argumentos": {
+              "tipo_evento": "JCP",
+              "valor_bruto": "0.2050000000",
+              "aliquota_irrf": "0.175",
+              "valor_liquido": "0.1691250000"
+            },
+            "resultado": {
+              "regras": [
+                {
+                  "id": "VALOR_NAO_POSITIVO",
+                  "resultado": "OK",
+                  "severidade": "ERRO",
+                  "esperado": null,
+                  "observado": null
+                },
+                {
+                  "id": "TRIB_LIQUIDO_DIVERGE",
+                  "resultado": "OK",
+                  "severidade": "ERRO",
+                  "esperado": "0.1691250000000",
+                  "observado": "0.1691250000"
+                }
+              ]
+            },
+            "erro": false
+          }
+        ]
+      }
+    ],
+    "parecer": "Nenhuma regra retornou FALHA. A consulta à base de referência deu MATCH. As verificações de datas e de tributação também ficaram todas em OK ou NAO_APLICAVEL.",
+    "encerramento": "end_turn"
+  },
+  "uso": {
+    "tokens_entrada": 2402,
+    "tokens_saida": 545,
+    "latencia_ms": 4924,
+    "reparos": 0
+  }
+}

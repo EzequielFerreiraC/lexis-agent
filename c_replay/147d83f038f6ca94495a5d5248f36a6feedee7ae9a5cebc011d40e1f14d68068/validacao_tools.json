@@ -1,0 +1,160 @@
+{
+  "formato": 1,
+  "etapa": "validacao_tools",
+  "documento": "06_petroquimica_litoral_grupamento.pdf",
+  "pdf_sha256": "147d83f038f6ca94495a5d5248f36a6feedee7ae9a5cebc011d40e1f14d68068",
+  "origem": "API",
+  "modelo": "claude-sonnet-5-5",
+  "prompt_sha": "14318d8cf7827097",
+  "pedido_sha": "0d9a482b84c8ce760b075f6e76b27e1102e7367f041086828329ac2e11a5eec1",
+  "conteudo": {
+    "turnos": [
+      {
+        "chamadas": [
+          {
+            "tool": "consultar_golden",
+            "argumentos": {
+              "isin": "BRPQLTACNOR8",
+              "ticker": "PQLT3",
+              "cnpj": "55.666.777/0001-08",
+              "emissor": "PETROQUÍMICA LITORAL S.A."
+            },
+            "resultado": {
+              "regras": [
+                {
+                  "id": "GOLDEN_NAO_ENCONTRADO",
+                  "resultado": "OK",
+                  "severidade": "ERRO",
+                  "esperado": null,
+                  "observado": null
+                },
+                {
+                  "id": "GOLDEN_DIVERGENTE",
+                  "resultado": "OK",
+                  "severidade": "ERRO",
+                  "esperado": null,
+                  "observado": null
+                },
+                {
+                  "id": "GOLDEN_AMBIGUO",
+                  "resultado": "OK",
+                  "severidade": "ERRO",
+                  "esperado": null,
+                  "observado": null
+                },
+                {
+                  "id": "GOLDEN_INATIVO",
+                  "resultado": "OK",
+                  "severidade": "ERRO",
+                  "esperado": null,
+                  "observado": "ativo"
+                }
+              ],
+              "golden": "MATCH"
+            },
+            "erro": false
+          },
+          {
+            "tool": "checar_datas",
+            "argumentos": {
+              "tipo_evento": "GRUPAMENTO",
+              "data_aprovacao": "2026-05-30",
+              "data_com": "2026-06-26",
+              "data_ex": "2026-06-29"
+            },
+            "resultado": {
+              "regras": [
+                {
+                  "id": "DATAS_EX_NAO_POSTERIOR_A_COM",
+                  "resultado": "OK",
+                  "severidade": "ERRO",
+                  "esperado": "data_ex > data_com",
+                  "observado": "data_com=2026-06-26, data_ex=2026-06-29"
+                },
+                {
+                  "id": "DATAS_CREDITO_ANTES_DA_COM",
+                  "resultado": "NAO_APLICAVEL",
+                  "severidade": "ERRO",
+                  "esperado": "data_credito_ativos >= data_com",
+                  "observado": "data_credito_ativos=None, data_com=2026-06-26"
+                },
+                {
+                  "id": "DATAS_APROVACAO_APOS_COM",
+                  "resultado": "OK",
+                  "severidade": "AVISO",
+                  "esperado": "data_aprovacao <= data_com",
+                  "observado": "data_aprovacao=2026-05-30, data_com=2026-06-26"
+                },
+                {
+                  "id": "DATAS_EX_NAO_E_DIA_UTIL_SEGUINTE",
+                  "resultado": "OK",
+                  "severidade": "AVISO",
+                  "esperado": "data_ex=2026-06-29",
+                  "observado": "data_ex=2026-06-29"
+                },
+                {
+                  "id": "DATA_FIM_DE_SEMANA",
+                  "resultado": "OK",
+                  "severidade": "AVISO",
+                  "esperado": null,
+                  "observado": null
+                },
+                {
+                  "id": "DATA_APROVACAO_FIM_DE_SEMANA",
+                  "resultado": "FALHA",
+                  "severidade": "INFO",
+                  "esperado": null,
+                  "observado": "2026-05-30"
+                },
+                {
+                  "id": "DATAS_FORA_DA_FAIXA",
+                  "resultado": "OK",
+                  "severidade": "AVISO",
+                  "esperado": null,
+                  "observado": null
+                }
+              ]
+            },
+            "erro": false
+          },
+          {
+            "tool": "checar_proporcao",
+            "argumentos": {
+              "tipo_evento": "GRUPAMENTO",
+              "termo_a": "10",
+              "termo_b": "1",
+              "forma": "EXISTENTES_PARA"
+            },
+            "resultado": {
+              "regras": [
+                {
+                  "id": "PROP_INVALIDA",
+                  "resultado": "OK",
+                  "severidade": "ERRO",
+                  "esperado": null,
+                  "observado": "10:1"
+                },
+                {
+                  "id": "PROP_SENTIDO_INCOMPATIVEL",
+                  "resultado": "OK",
+                  "severidade": "ERRO",
+                  "esperado": "antes > depois",
+                  "observado": "10:1 (EXISTENTES_PARA)"
+                }
+              ]
+            },
+            "erro": false
+          }
+        ]
+      }
+    ],
+    "parecer": "Só uma regra falhou: DATA_APROVACAO_FIM_DE_SEMANA, com severidade INFO. A data de aprovação, 2026-05-30, cai em um fim de semana. Nenhuma outra regra de referência (golden), datas ou proporção falhou.",
+    "encerramento": "end_turn"
+  },
+  "uso": {
+    "tokens_entrada": 2255,
+    "tokens_saida": 549,
+    "latencia_ms": 4589,
+    "reparos": 0
+  }
+}

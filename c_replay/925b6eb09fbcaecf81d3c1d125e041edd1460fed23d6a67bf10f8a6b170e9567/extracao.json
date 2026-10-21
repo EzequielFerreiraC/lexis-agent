@@ -1,0 +1,115 @@
+{
+  "formato": 1,
+  "etapa": "extracao",
+  "documento": "05_aurora_saneamento_dividendo_datas.pdf",
+  "pdf_sha256": "925b6eb09fbcaecf81d3c1d125e041edd1460fed23d6a67bf10f8a6b170e9567",
+  "origem": "API",
+  "modelo": "claude-sonnet-5-5",
+  "prompt_sha": "14318d8cf7827097",
+  "conteudo": {
+    "titulo": {
+      "texto": "AVISO AOS ACIONISTAS — Pagamento de Dividendos Intercalares",
+      "pagina": 1,
+      "situacao": "PRESENTE"
+    },
+    "tipo_evento_texto": {
+      "texto": "Dividendo intercalar",
+      "pagina": 1,
+      "situacao": "PRESENTE"
+    },
+    "tipo_evento": "DIVIDENDO",
+    "campos": {
+      "emissor": {
+        "texto": "AURORA SANEAMENTO S.A.",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "cnpj": {
+        "texto": "22.333.444/0001-77",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "isin": {
+        "texto": "BRAURSACNOR4",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "ticker": {
+        "texto": "AURS3",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "classe_acao": {
+        "texto": "ON",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "data_aprovacao": {
+        "texto": "01/06/2026",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "data_com": {
+        "texto": "15/07/2026",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "data_ex": {
+        "texto": "16/07/2026",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "data_pagamento": {
+        "texto": "10/07/2026",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "data_credito_ativos": {
+        "texto": null,
+        "pagina": null,
+        "situacao": "AUSENTE"
+      },
+      "valor_bruto": {
+        "texto": "R$ 0,3100000000",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "aliquota_irrf": {
+        "texto": null,
+        "pagina": null,
+        "situacao": "AUSENTE"
+      },
+      "valor_liquido": {
+        "texto": null,
+        "pagina": null,
+        "situacao": "AUSENTE"
+      },
+      "custo_atribuido": {
+        "texto": null,
+        "pagina": null,
+        "situacao": "AUSENTE"
+      },
+      "moeda": {
+        "texto": "R$",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "proporcao": {
+        "texto": null,
+        "pagina": null,
+        "situacao": "AUSENTE"
+      },
+      "observacao_tributaria": {
+        "texto": null,
+        "pagina": null,
+        "situacao": "AUSENTE"
+      }
+    }
+  },
+  "uso": {
+    "tokens_entrada": 614,
+    "tokens_saida": 895,
+    "latencia_ms": 5384,
+    "reparos": 0
+  }
+}

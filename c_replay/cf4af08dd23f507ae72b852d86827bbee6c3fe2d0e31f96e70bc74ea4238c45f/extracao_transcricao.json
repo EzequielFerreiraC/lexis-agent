@@ -1,0 +1,115 @@
+{
+  "formato": 1,
+  "etapa": "extracao_transcricao",
+  "documento": "07_telecom_norte_jcp_SCAN.pdf",
+  "pdf_sha256": "cf4af08dd23f507ae72b852d86827bbee6c3fe2d0e31f96e70bc74ea4238c45f",
+  "origem": "API",
+  "modelo": "claude-sonnet-5-5",
+  "prompt_sha": "14318d8cf7827097",
+  "conteudo": {
+    "titulo": {
+      "texto": "Juros sobre o Capital Próprio (JCP)",
+      "pagina": 1,
+      "situacao": "PRESENTE"
+    },
+    "tipo_evento_texto": {
+      "texto": "Juros sobre o Capital Próprio (JCP)",
+      "pagina": 1,
+      "situacao": "PRESENTE"
+    },
+    "tipo_evento": "JCP",
+    "campos": {
+      "emissor": {
+        "texto": "TELECOM NORTE PARTICIPAÇÕES S.A.",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "cnpj": {
+        "texto": "33.222.111/0001-44",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "isin": {
+        "texto": "BRTLNRACNPR2",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "ticker": {
+        "texto": "TLNR4",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "classe_acao": {
+        "texto": "PN",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "data_aprovacao": {
+        "texto": "06 de junho de 2026",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "data_com": {
+        "texto": "22/06/2026",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "data_ex": {
+        "texto": "23/06/2026",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "data_pagamento": {
+        "texto": "21/08/2026",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "data_credito_ativos": {
+        "texto": null,
+        "pagina": null,
+        "situacao": "AUSENTE"
+      },
+      "valor_bruto": {
+        "texto": "R$ 0,1124300000",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "aliquota_irrf": {
+        "texto": "17,5%",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "valor_liquido": {
+        "texto": "R$ 0,0927547500",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "custo_atribuido": {
+        "texto": null,
+        "pagina": null,
+        "situacao": "AUSENTE"
+      },
+      "moeda": {
+        "texto": "R$",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "proporcao": {
+        "texto": null,
+        "pagina": null,
+        "situacao": "AUSENTE"
+      },
+      "observacao_tributaria": {
+        "texto": "com retenção de Imposto de Renda na Fonte (IRRF) à alíquota de 17,5% sobre o valor bruto",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      }
+    }
+  },
+  "uso": {
+    "tokens_entrada": 707,
+    "tokens_saida": 956,
+    "latencia_ms": 4934,
+    "reparos": 0
+  }
+}

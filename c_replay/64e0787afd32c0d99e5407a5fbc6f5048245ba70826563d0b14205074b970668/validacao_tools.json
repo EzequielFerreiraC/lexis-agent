@@ -1,0 +1,169 @@
+{
+  "formato": 1,
+  "etapa": "validacao_tools",
+  "documento": "02_banco_meridional_jcp.pdf",
+  "pdf_sha256": "64e0787afd32c0d99e5407a5fbc6f5048245ba70826563d0b14205074b970668",
+  "origem": "API",
+  "modelo": "claude-sonnet-5-5",
+  "prompt_sha": "14318d8cf7827097",
+  "pedido_sha": "844cb97ee4b9d07b390f065dd4de394e63549e70517d828f056fef0afd3ceef3",
+  "conteudo": {
+    "turnos": [
+      {
+        "chamadas": [
+          {
+            "tool": "consultar_golden",
+            "argumentos": {
+              "isin": "BRBMRDACNPR7",
+              "ticker": "BMRD4",
+              "cnpj": "60.111.222/0001-55",
+              "emissor": "BANCO MERIDIONAL DO BRASIL S.A.",
+              "classe_acao": "PN"
+            },
+            "resultado": {
+              "regras": [
+                {
+                  "id": "GOLDEN_NAO_ENCONTRADO",
+                  "resultado": "OK",
+                  "severidade": "ERRO",
+                  "esperado": null,
+                  "observado": null
+                },
+                {
+                  "id": "GOLDEN_DIVERGENTE",
+                  "resultado": "OK",
+                  "severidade": "ERRO",
+                  "esperado": null,
+                  "observado": null
+                },
+                {
+                  "id": "GOLDEN_AMBIGUO",
+                  "resultado": "OK",
+                  "severidade": "ERRO",
+                  "esperado": null,
+                  "observado": null
+                },
+                {
+                  "id": "GOLDEN_INATIVO",
+                  "resultado": "OK",
+                  "severidade": "ERRO",
+                  "esperado": null,
+                  "observado": "ativo"
+                }
+              ],
+              "golden": "MATCH"
+            },
+            "erro": false
+          },
+          {
+            "tool": "checar_datas",
+            "argumentos": {
+              "tipo_evento": "JCP",
+              "data_aprovacao": "2026-06-02",
+              "data_com": "2026-06-16",
+              "data_ex": "2026-06-17",
+              "data_pagamento": "2026-08-14"
+            },
+            "resultado": {
+              "regras": [
+                {
+                  "id": "DATAS_EX_NAO_POSTERIOR_A_COM",
+                  "resultado": "OK",
+                  "severidade": "ERRO",
+                  "esperado": "data_ex > data_com",
+                  "observado": "data_com=2026-06-16, data_ex=2026-06-17"
+                },
+                {
+                  "id": "DATAS_PAGAMENTO_ANTES_DA_COM",
+                  "resultado": "OK",
+                  "severidade": "ERRO",
+                  "esperado": "data_pagamento >= data_com",
+                  "observado": "data_pagamento=2026-08-14, data_com=2026-06-16"
+                },
+                {
+                  "id": "DATAS_PAGAMENTO_ANTES_DA_EX",
+                  "resultado": "OK",
+                  "severidade": "ERRO",
+                  "esperado": "data_pagamento >= data_ex",
+                  "observado": "data_pagamento=2026-08-14, data_ex=2026-06-17"
+                },
+                {
+                  "id": "DATAS_APROVACAO_APOS_COM",
+                  "resultado": "OK",
+                  "severidade": "AVISO",
+                  "esperado": "data_aprovacao <= data_com",
+                  "observado": "data_aprovacao=2026-06-02, data_com=2026-06-16"
+                },
+                {
+                  "id": "DATAS_EX_NAO_E_DIA_UTIL_SEGUINTE",
+                  "resultado": "OK",
+                  "severidade": "AVISO",
+                  "esperado": "data_ex=2026-06-17",
+                  "observado": "data_ex=2026-06-17"
+                },
+                {
+                  "id": "DATA_FIM_DE_SEMANA",
+                  "resultado": "OK",
+                  "severidade": "AVISO",
+                  "esperado": null,
+                  "observado": null
+                },
+                {
+                  "id": "DATA_APROVACAO_FIM_DE_SEMANA",
+                  "resultado": "OK",
+                  "severidade": "INFO",
+                  "esperado": null,
+                  "observado": "2026-06-02"
+                },
+                {
+                  "id": "DATAS_FORA_DA_FAIXA",
+                  "resultado": "OK",
+                  "severidade": "AVISO",
+                  "esperado": null,
+                  "observado": null
+                }
+              ]
+            },
+            "erro": false
+          },
+          {
+            "tool": "checar_tributacao",
+            "argumentos": {
+              "tipo_evento": "JCP",
+              "valor_bruto": "0.1738420000",
+              "aliquota_irrf": "0.175",
+              "valor_liquido": "0.1434196500"
+            },
+            "resultado": {
+              "regras": [
+                {
+                  "id": "VALOR_NAO_POSITIVO",
+                  "resultado": "OK",
+                  "severidade": "ERRO",
+                  "esperado": null,
+                  "observado": null
+                },
+                {
+                  "id": "TRIB_LIQUIDO_DIVERGE",
+                  "resultado": "OK",
+                  "severidade": "ERRO",
+                  "esperado": "0.1434196500000",
+                  "observado": "0.1434196500"
+                }
+              ]
+            },
+            "erro": false
+          }
+        ]
+      }
+    ],
+    "parecer": "Nenhuma regra falhou. A consulta à base de referência deu MATCH, as datas estão coerentes e a relação bruto × (1 − alíquota) = líquido confere.",
+    "encerramento": "end_turn"
+  },
+  "uso": {
+    "tokens_entrada": 2495,
+    "tokens_saida": 575,
+    "latencia_ms": 6448,
+    "reparos": 0
+  }
+}

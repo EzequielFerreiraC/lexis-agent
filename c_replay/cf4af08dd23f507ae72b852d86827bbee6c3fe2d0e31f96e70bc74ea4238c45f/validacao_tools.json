@@ -1,0 +1,169 @@
+{
+  "formato": 1,
+  "etapa": "validacao_tools",
+  "documento": "07_telecom_norte_jcp_SCAN.pdf",
+  "pdf_sha256": "cf4af08dd23f507ae72b852d86827bbee6c3fe2d0e31f96e70bc74ea4238c45f",
+  "origem": "API",
+  "modelo": "claude-sonnet-5-5",
+  "prompt_sha": "14318d8cf7827097",
+  "pedido_sha": "bd7759329709cbc261b42f8ec7de76aa0f925aa5b10484aa727f2b2b0bbea373",
+  "conteudo": {
+    "turnos": [
+      {
+        "chamadas": [
+          {
+            "tool": "consultar_golden",
+            "argumentos": {
+              "isin": "BRTLNRACNPR2",
+              "ticker": "TLNR4",
+              "cnpj": "33.222.111/0001-44",
+              "emissor": "TELECOM NORTE PARTICIPAÇÕES S.A.",
+              "classe_acao": "PN"
+            },
+            "resultado": {
+              "regras": [
+                {
+                  "id": "GOLDEN_NAO_ENCONTRADO",
+                  "resultado": "OK",
+                  "severidade": "ERRO",
+                  "esperado": null,
+                  "observado": null
+                },
+                {
+                  "id": "GOLDEN_DIVERGENTE",
+                  "resultado": "OK",
+                  "severidade": "ERRO",
+                  "esperado": null,
+                  "observado": null
+                },
+                {
+                  "id": "GOLDEN_AMBIGUO",
+                  "resultado": "OK",
+                  "severidade": "ERRO",
+                  "esperado": null,
+                  "observado": null
+                },
+                {
+                  "id": "GOLDEN_INATIVO",
+                  "resultado": "OK",
+                  "severidade": "ERRO",
+                  "esperado": null,
+                  "observado": "ativo"
+                }
+              ],
+              "golden": "MATCH"
+            },
+            "erro": false
+          },
+          {
+            "tool": "checar_datas",
+            "argumentos": {
+              "tipo_evento": "JCP",
+              "data_aprovacao": "2026-06-06",
+              "data_com": "2026-06-22",
+              "data_ex": "2026-06-23",
+              "data_pagamento": "2026-08-21"
+            },
+            "resultado": {
+              "regras": [
+                {
+                  "id": "DATAS_EX_NAO_POSTERIOR_A_COM",
+                  "resultado": "OK",
+                  "severidade": "ERRO",
+                  "esperado": "data_ex > data_com",
+                  "observado": "data_com=2026-06-22, data_ex=2026-06-23"
+                },
+                {
+                  "id": "DATAS_PAGAMENTO_ANTES_DA_COM",
+                  "resultado": "OK",
+                  "severidade": "ERRO",
+                  "esperado": "data_pagamento >= data_com",
+                  "observado": "data_pagamento=2026-08-21, data_com=2026-06-22"
+                },
+                {
+                  "id": "DATAS_PAGAMENTO_ANTES_DA_EX",
+                  "resultado": "OK",
+                  "severidade": "ERRO",
+                  "esperado": "data_pagamento >= data_ex",
+                  "observado": "data_pagamento=2026-08-21, data_ex=2026-06-23"
+                },
+                {
+                  "id": "DATAS_APROVACAO_APOS_COM",
+                  "resultado": "OK",
+                  "severidade": "AVISO",
+                  "esperado": "data_aprovacao <= data_com",
+                  "observado": "data_aprovacao=2026-06-06, data_com=2026-06-22"
+                },
+                {
+                  "id": "DATAS_EX_NAO_E_DIA_UTIL_SEGUINTE",
+                  "resultado": "OK",
+                  "severidade": "AVISO",
+                  "esperado": "data_ex=2026-06-23",
+                  "observado": "data_ex=2026-06-23"
+                },
+                {
+                  "id": "DATA_FIM_DE_SEMANA",
+                  "resultado": "OK",
+                  "severidade": "AVISO",
+                  "esperado": null,
+                  "observado": null
+                },
+                {
+                  "id": "DATA_APROVACAO_FIM_DE_SEMANA",
+                  "resultado": "FALHA",
+                  "severidade": "INFO",
+                  "esperado": null,
+                  "observado": "2026-06-06"
+                },
+                {
+                  "id": "DATAS_FORA_DA_FAIXA",
+                  "resultado": "OK",
+                  "severidade": "AVISO",
+                  "esperado": null,
+                  "observado": null
+                }
+              ]
+            },
+            "erro": false
+          },
+          {
+            "tool": "checar_tributacao",
+            "argumentos": {
+              "tipo_evento": "JCP",
+              "valor_bruto": "0.1124300000",
+              "aliquota_irrf": "0.175",
+              "valor_liquido": "0.0927547500"
+            },
+            "resultado": {
+              "regras": [
+                {
+                  "id": "VALOR_NAO_POSITIVO",
+                  "resultado": "OK",
+                  "severidade": "ERRO",
+                  "esperado": null,
+                  "observado": null
+                },
+                {
+                  "id": "TRIB_LIQUIDO_DIVERGE",
+                  "resultado": "OK",
+                  "severidade": "ERRO",
+                  "esperado": "0.0927547500000",
+                  "observado": "0.0927547500"
+                }
+              ]
+            },
+            "erro": false
+          }
+        ]
+      }
+    ],
+    "parecer": "Apenas uma regra falhou: DATA_APROVACAO_FIM_DE_SEMANA, de severidade INFO. A data de aprovação, 2026-06-06, cai em fim de semana. As demais regras de referência, datas e tributação deram OK.",
+    "encerramento": "end_turn"
+  },
+  "uso": {
+    "tokens_entrada": 2495,
+    "tokens_saida": 605,
+    "latencia_ms": 4945,
+    "reparos": 0
+  }
+}

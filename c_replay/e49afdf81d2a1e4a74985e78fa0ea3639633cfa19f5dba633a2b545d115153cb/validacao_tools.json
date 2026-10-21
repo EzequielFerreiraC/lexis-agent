@@ -1,0 +1,160 @@
+{
+  "formato": 1,
+  "etapa": "validacao_tools",
+  "documento": "01_energetica_vale_tiete_dividendo.pdf",
+  "pdf_sha256": "e49afdf81d2a1e4a74985e78fa0ea3639633cfa19f5dba633a2b545d115153cb",
+  "origem": "API",
+  "modelo": "claude-sonnet-5-5",
+  "prompt_sha": "14318d8cf7827097",
+  "pedido_sha": "d57067dfacfea1a2136b1a0a3f7c7d0275e8e305b23b1b5e0a847315b6465ab3",
+  "conteudo": {
+    "turnos": [
+      {
+        "chamadas": [
+          {
+            "tool": "consultar_golden",
+            "argumentos": {
+              "isin": "BRTIETACNOR3",
+              "ticker": "TIET3",
+              "cnpj": "12.345.678/0001-90",
+              "emissor": "ENERGÉTICA VALE DO TIETÊ S.A.",
+              "classe_acao": "ON"
+            },
+            "resultado": {
+              "regras": [
+                {
+                  "id": "GOLDEN_NAO_ENCONTRADO",
+                  "resultado": "OK",
+                  "severidade": "ERRO",
+                  "esperado": null,
+                  "observado": null
+                },
+                {
+                  "id": "GOLDEN_DIVERGENTE",
+                  "resultado": "OK",
+                  "severidade": "ERRO",
+                  "esperado": null,
+                  "observado": null
+                },
+                {
+                  "id": "GOLDEN_AMBIGUO",
+                  "resultado": "OK",
+                  "severidade": "ERRO",
+                  "esperado": null,
+                  "observado": null
+                },
+                {
+                  "id": "GOLDEN_INATIVO",
+                  "resultado": "OK",
+                  "severidade": "ERRO",
+                  "esperado": null,
+                  "observado": "ativo"
+                }
+              ],
+              "golden": "MATCH"
+            },
+            "erro": false
+          },
+          {
+            "tool": "checar_datas",
+            "argumentos": {
+              "tipo_evento": "DIVIDENDO",
+              "data_aprovacao": "2026-05-28",
+              "data_com": "2026-06-12",
+              "data_ex": "2026-06-15",
+              "data_pagamento": "2026-07-03"
+            },
+            "resultado": {
+              "regras": [
+                {
+                  "id": "DATAS_EX_NAO_POSTERIOR_A_COM",
+                  "resultado": "OK",
+                  "severidade": "ERRO",
+                  "esperado": "data_ex > data_com",
+                  "observado": "data_com=2026-06-12, data_ex=2026-06-15"
+                },
+                {
+                  "id": "DATAS_PAGAMENTO_ANTES_DA_COM",
+                  "resultado": "OK",
+                  "severidade": "ERRO",
+                  "esperado": "data_pagamento >= data_com",
+                  "observado": "data_pagamento=2026-07-03, data_com=2026-06-12"
+                },
+                {
+                  "id": "DATAS_PAGAMENTO_ANTES_DA_EX",
+                  "resultado": "OK",
+                  "severidade": "ERRO",
+                  "esperado": "data_pagamento >= data_ex",
+                  "observado": "data_pagamento=2026-07-03, data_ex=2026-06-15"
+                },
+                {
+                  "id": "DATAS_APROVACAO_APOS_COM",
+                  "resultado": "OK",
+                  "severidade": "AVISO",
+                  "esperado": "data_aprovacao <= data_com",
+                  "observado": "data_aprovacao=2026-05-28, data_com=2026-06-12"
+                },
+                {
+                  "id": "DATAS_EX_NAO_E_DIA_UTIL_SEGUINTE",
+                  "resultado": "OK",
+                  "severidade": "AVISO",
+                  "esperado": "data_ex=2026-06-15",
+                  "observado": "data_ex=2026-06-15"
+                },
+                {
+                  "id": "DATA_FIM_DE_SEMANA",
+                  "resultado": "OK",
+                  "severidade": "AVISO",
+                  "esperado": null,
+                  "observado": null
+                },
+                {
+                  "id": "DATA_APROVACAO_FIM_DE_SEMANA",
+                  "resultado": "OK",
+                  "severidade": "INFO",
+                  "esperado": null,
+                  "observado": "2026-05-28"
+                },
+                {
+                  "id": "DATAS_FORA_DA_FAIXA",
+                  "resultado": "OK",
+                  "severidade": "AVISO",
+                  "esperado": null,
+                  "observado": null
+                }
+              ]
+            },
+            "erro": false
+          },
+          {
+            "tool": "checar_tributacao",
+            "argumentos": {
+              "tipo_evento": "DIVIDENDO",
+              "valor_bruto": "0.4275000000"
+            },
+            "resultado": {
+              "regras": [
+                {
+                  "id": "VALOR_NAO_POSITIVO",
+                  "resultado": "OK",
+                  "severidade": "ERRO",
+                  "esperado": null,
+                  "observado": null
+                }
+              ]
+            },
+            "erro": false
+          }
+        ]
+      }
+    ],
+    "parecer": "Nenhuma regra retornou FALHA. A consulta à base de referência deu MATCH. As três ferramentas (golden, datas e tributação) devolveram OK em todas as regras.",
+    "encerramento": "end_turn"
+  },
+  "uso": {
+    "tokens_entrada": 2306,
+    "tokens_saida": 525,
+    "latencia_ms": 5773,
+    "reparos": 0
+  }
+}

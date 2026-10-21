@@ -1,0 +1,115 @@
+{
+  "formato": 1,
+  "etapa": "extracao",
+  "documento": "04_rede_varejo_jcp_sem_data.pdf",
+  "pdf_sha256": "37f846a73cb5486b543bb1e580144c8d94eafee4aa7396424637c063a3bfbb83",
+  "origem": "API",
+  "modelo": "claude-sonnet-5-5",
+  "prompt_sha": "14318d8cf7827097",
+  "conteudo": {
+    "titulo": {
+      "texto": "AVISO AOS ACIONISTAS — Juros sobre o Capital Próprio",
+      "pagina": 1,
+      "situacao": "PRESENTE"
+    },
+    "tipo_evento_texto": {
+      "texto": "Juros sobre o Capital Próprio (JCP)",
+      "pagina": 1,
+      "situacao": "PRESENTE"
+    },
+    "tipo_evento": "JCP",
+    "campos": {
+      "emissor": {
+        "texto": "REDE VAREJO BRASIL S.A.",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "cnpj": {
+        "texto": "08.777.666/0001-33",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "isin": {
+        "texto": "BRRVBRACNOR9",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "ticker": {
+        "texto": "RVBR3",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "classe_acao": {
+        "texto": "ON",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "data_aprovacao": {
+        "texto": "09 de\njunho de 2026",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "data_com": {
+        "texto": "23/06/2026",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "data_ex": {
+        "texto": "24/06/2026",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "data_pagamento": {
+        "texto": "A definir (vide aviso complementar)",
+        "pagina": 1,
+        "situacao": "A_DEFINIR"
+      },
+      "data_credito_ativos": {
+        "texto": null,
+        "pagina": null,
+        "situacao": "AUSENTE"
+      },
+      "valor_bruto": {
+        "texto": "R$ 0,2050000000",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "aliquota_irrf": {
+        "texto": "17,5%",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "valor_liquido": {
+        "texto": "R$ 0,1691250000",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "custo_atribuido": {
+        "texto": null,
+        "pagina": null,
+        "situacao": "AUSENTE"
+      },
+      "moeda": {
+        "texto": "R$",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "proporcao": {
+        "texto": null,
+        "pagina": null,
+        "situacao": "AUSENTE"
+      },
+      "observacao_tributaria": {
+        "texto": null,
+        "pagina": null,
+        "situacao": "AUSENTE"
+      }
+    }
+  },
+  "uso": {
+    "tokens_entrada": 727,
+    "tokens_saida": 927,
+    "latencia_ms": 5430,
+    "reparos": 0
+  }
+}

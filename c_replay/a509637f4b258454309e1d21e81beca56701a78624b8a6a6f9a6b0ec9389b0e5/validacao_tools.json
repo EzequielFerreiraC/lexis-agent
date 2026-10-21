@@ -1,0 +1,166 @@
+{
+  "formato": 1,
+  "etapa": "validacao_tools",
+  "documento": "08_construtora_horizonte_bonificacao.pdf",
+  "pdf_sha256": "a509637f4b258454309e1d21e81beca56701a78624b8a6a6f9a6b0ec9389b0e5",
+  "origem": "API",
+  "modelo": "claude-sonnet-5-5",
+  "prompt_sha": "14318d8cf7827097",
+  "pedido_sha": "08040c6294021b75e8286b367667ca1d43f05583d2514811f4b2be89f06bcdcd",
+  "conteudo": {
+    "turnos": [
+      {
+        "chamadas": [
+          {
+            "tool": "consultar_golden",
+            "argumentos": {
+              "isin": "BRCNHZACNOR5",
+              "ticker": "CNHZ3",
+              "cnpj": "09.888.999/0001-21",
+              "emissor": "CONSTRUTORA HORIZONTE S.A."
+            },
+            "resultado": {
+              "regras": [
+                {
+                  "id": "GOLDEN_NAO_ENCONTRADO",
+                  "resultado": "FALHA",
+                  "severidade": "ERRO",
+                  "esperado": null,
+                  "observado": "não constam na base de referência: isin BRCNHZACNOR5, ticker CNHZ3, cnpj 09.888.999/0001-21"
+                },
+                {
+                  "id": "GOLDEN_DIVERGENTE",
+                  "resultado": "OK",
+                  "severidade": "ERRO",
+                  "esperado": null,
+                  "observado": null
+                },
+                {
+                  "id": "GOLDEN_AMBIGUO",
+                  "resultado": "OK",
+                  "severidade": "ERRO",
+                  "esperado": null,
+                  "observado": null
+                }
+              ],
+              "golden": "NOT_FOUND"
+            },
+            "erro": false
+          },
+          {
+            "tool": "checar_datas",
+            "argumentos": {
+              "tipo_evento": "BONIFICACAO",
+              "data_aprovacao": "2026-06-04",
+              "data_com": "2026-06-18",
+              "data_ex": "2026-06-19",
+              "data_credito_ativos": "2026-06-26"
+            },
+            "resultado": {
+              "regras": [
+                {
+                  "id": "DATAS_EX_NAO_POSTERIOR_A_COM",
+                  "resultado": "OK",
+                  "severidade": "ERRO",
+                  "esperado": "data_ex > data_com",
+                  "observado": "data_com=2026-06-18, data_ex=2026-06-19"
+                },
+                {
+                  "id": "DATAS_CREDITO_ANTES_DA_COM",
+                  "resultado": "OK",
+                  "severidade": "ERRO",
+                  "esperado": "data_credito_ativos >= data_com",
+                  "observado": "data_credito_ativos=2026-06-26, data_com=2026-06-18"
+                },
+                {
+                  "id": "DATAS_APROVACAO_APOS_COM",
+                  "resultado": "OK",
+                  "severidade": "AVISO",
+                  "esperado": "data_aprovacao <= data_com",
+                  "observado": "data_aprovacao=2026-06-04, data_com=2026-06-18"
+                },
+                {
+                  "id": "DATAS_EX_NAO_E_DIA_UTIL_SEGUINTE",
+                  "resultado": "OK",
+                  "severidade": "AVISO",
+                  "esperado": "data_ex=2026-06-19",
+                  "observado": "data_ex=2026-06-19"
+                },
+                {
+                  "id": "DATA_FIM_DE_SEMANA",
+                  "resultado": "OK",
+                  "severidade": "AVISO",
+                  "esperado": null,
+                  "observado": null
+                },
+                {
+                  "id": "DATA_APROVACAO_FIM_DE_SEMANA",
+                  "resultado": "OK",
+                  "severidade": "INFO",
+                  "esperado": null,
+                  "observado": "2026-06-04"
+                },
+                {
+                  "id": "DATAS_FORA_DA_FAIXA",
+                  "resultado": "OK",
+                  "severidade": "AVISO",
+                  "esperado": null,
+                  "observado": null
+                }
+              ]
+            },
+            "erro": false
+          },
+          {
+            "tool": "checar_tributacao",
+            "argumentos": {
+              "tipo_evento": "BONIFICACAO",
+              "custo_atribuido": "7.820000"
+            },
+            "resultado": {
+              "regras": [
+                {
+                  "id": "VALOR_NAO_POSITIVO",
+                  "resultado": "OK",
+                  "severidade": "ERRO",
+                  "esperado": null,
+                  "observado": null
+                }
+              ]
+            },
+            "erro": false
+          },
+          {
+            "tool": "checar_proporcao",
+            "argumentos": {
+              "tipo_evento": "BONIFICACAO",
+              "termo_a": "1",
+              "termo_b": "20",
+              "forma": "NOVAS_PARA_CADA"
+            },
+            "resultado": {
+              "regras": [
+                {
+                  "id": "PROP_INVALIDA",
+                  "resultado": "OK",
+                  "severidade": "ERRO",
+                  "esperado": null,
+                  "observado": "1:20"
+                }
+              ]
+            },
+            "erro": false
+          }
+        ]
+      }
+    ],
+    "parecer": "Uma regra falhou: GOLDEN_NAO_ENCONTRADO. O ISIN, o ticker e o CNPJ informados não constam na base de referência. As demais regras de datas, tributação e proporção deram OK.",
+    "encerramento": "end_turn"
+  },
+  "uso": {
+    "tokens_entrada": 2504,
+    "tokens_saida": 656,
+    "latencia_ms": 5531,
+    "reparos": 0
+  }
+}

@@ -1,0 +1,115 @@
+{
+  "formato": 1,
+  "etapa": "extracao",
+  "documento": "08_construtora_horizonte_bonificacao.pdf",
+  "pdf_sha256": "a509637f4b258454309e1d21e81beca56701a78624b8a6a6f9a6b0ec9389b0e5",
+  "origem": "API",
+  "modelo": "claude-sonnet-5-5",
+  "prompt_sha": "14318d8cf7827097",
+  "conteudo": {
+    "titulo": {
+      "texto": "AVISO AOS ACIONISTAS — Bonificação em Ações",
+      "pagina": 1,
+      "situacao": "PRESENTE"
+    },
+    "tipo_evento_texto": {
+      "texto": "Bonificação em ações",
+      "pagina": 1,
+      "situacao": "PRESENTE"
+    },
+    "tipo_evento": "BONIFICACAO",
+    "campos": {
+      "emissor": {
+        "texto": "CONSTRUTORA HORIZONTE S.A.",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "cnpj": {
+        "texto": "09.888.999/0001-21",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "isin": {
+        "texto": "BRCNHZACNOR5",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "ticker": {
+        "texto": "CNHZ3",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "classe_acao": {
+        "texto": null,
+        "pagina": null,
+        "situacao": "AUSENTE"
+      },
+      "data_aprovacao": {
+        "texto": "04 de junho de 2026",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "data_com": {
+        "texto": "18/06/2026",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "data_ex": {
+        "texto": "19/06/2026",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "data_pagamento": {
+        "texto": null,
+        "pagina": null,
+        "situacao": "AUSENTE"
+      },
+      "data_credito_ativos": {
+        "texto": "26/06/2026",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "valor_bruto": {
+        "texto": null,
+        "pagina": null,
+        "situacao": "AUSENTE"
+      },
+      "aliquota_irrf": {
+        "texto": null,
+        "pagina": null,
+        "situacao": "AUSENTE"
+      },
+      "valor_liquido": {
+        "texto": null,
+        "pagina": null,
+        "situacao": "AUSENTE"
+      },
+      "custo_atribuido": {
+        "texto": "R$ 7,820000 por ação",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "moeda": {
+        "texto": null,
+        "pagina": null,
+        "situacao": "AUSENTE"
+      },
+      "proporcao": {
+        "texto": "1 (uma) ação nova para cada 20 (vinte) ações",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "observacao_tributaria": {
+        "texto": null,
+        "pagina": null,
+        "situacao": "AUSENTE"
+      }
+    }
+  },
+  "uso": {
+    "tokens_entrada": 698,
+    "tokens_saida": 919,
+    "latencia_ms": 4773,
+    "reparos": 0
+  }
+}

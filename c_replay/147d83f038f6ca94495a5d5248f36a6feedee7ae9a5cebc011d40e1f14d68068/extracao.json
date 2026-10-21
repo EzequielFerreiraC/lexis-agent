@@ -1,0 +1,115 @@
+{
+  "formato": 1,
+  "etapa": "extracao",
+  "documento": "06_petroquimica_litoral_grupamento.pdf",
+  "pdf_sha256": "147d83f038f6ca94495a5d5248f36a6feedee7ae9a5cebc011d40e1f14d68068",
+  "origem": "API",
+  "modelo": "claude-sonnet-5-5",
+  "prompt_sha": "14318d8cf7827097",
+  "conteudo": {
+    "titulo": {
+      "texto": "AVISO AOS ACIONISTAS — Grupamento de Ações (Inplit)",
+      "pagina": 1,
+      "situacao": "PRESENTE"
+    },
+    "tipo_evento_texto": {
+      "texto": "Grupamento de ações (inplit)",
+      "pagina": 1,
+      "situacao": "PRESENTE"
+    },
+    "tipo_evento": "GRUPAMENTO",
+    "campos": {
+      "emissor": {
+        "texto": "PETROQUÍMICA LITORAL S.A.",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "cnpj": {
+        "texto": "55.666.777/0001-08",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "isin": {
+        "texto": "BRPQLTACNOR8",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "ticker": {
+        "texto": "PQLT3",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "classe_acao": {
+        "texto": null,
+        "pagina": null,
+        "situacao": "AUSENTE"
+      },
+      "data_aprovacao": {
+        "texto": "30 de maio de 2026",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "data_com": {
+        "texto": "26 de junho de 2026",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "data_ex": {
+        "texto": "29 de junho de 2026",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "data_pagamento": {
+        "texto": null,
+        "pagina": null,
+        "situacao": "AUSENTE"
+      },
+      "data_credito_ativos": {
+        "texto": null,
+        "pagina": null,
+        "situacao": "AUSENTE"
+      },
+      "valor_bruto": {
+        "texto": null,
+        "pagina": null,
+        "situacao": "AUSENTE"
+      },
+      "aliquota_irrf": {
+        "texto": null,
+        "pagina": null,
+        "situacao": "AUSENTE"
+      },
+      "valor_liquido": {
+        "texto": null,
+        "pagina": null,
+        "situacao": "AUSENTE"
+      },
+      "custo_atribuido": {
+        "texto": null,
+        "pagina": null,
+        "situacao": "AUSENTE"
+      },
+      "moeda": {
+        "texto": null,
+        "pagina": null,
+        "situacao": "AUSENTE"
+      },
+      "proporcao": {
+        "texto": "10 (dez) ações existentes para 1 (uma) ação",
+        "pagina": 1,
+        "situacao": "PRESENTE"
+      },
+      "observacao_tributaria": {
+        "texto": null,
+        "pagina": null,
+        "situacao": "AUSENTE"
+      }
+    }
+  },
+  "uso": {
+    "tokens_entrada": 782,
+    "tokens_saida": 917,
+    "latencia_ms": 5304,
+    "reparos": 0
+  }
+}
