@@ -1,0 +1,8 @@
+dist
+node_modules
+coverage
+playwright-report
+test-results
+src/api/schema.d.ts
+src/test/fixtures
+package-lock.json

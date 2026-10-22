@@ -1,0 +1,174 @@
+/*
+ * TOKENS DE DESIGN — único lugar com cores, tipografia, espaçamento e raios.
+ *
+ * ATENÇÃO: o guia de estilo oficial do BTG não foi fornecido. Estes valores são uma linguagem sóbria própria de
+ * aplicação financeira (neutros frios + azul de ação, alto contraste), NÃO a identidade do BTG. Não há logotipo nem
+ * marca de terceiros. Para aplicar o guia oficial, troque apenas os valores deste arquivo.
+ *
+ * Temas: o claro é o padrão (:root); o escuro redefine as mesmas variáveis em [data-tema='escuro'] (atributo posto em
+ * <html> por src/preferencias). Os componentes só usam variáveis, nunca cores fixas.
+ *
+ * Contraste (WCAG 2.1 AA): texto normal >= 4.5:1 nos dois temas. Os pares abaixo foram escolhidos para isso.
+ */
+/* Escala: espaçamento em múltiplos de 4px (--esp-*), raios 8/12/16, sombras em duas camadas, movimento 120–200ms. */
+:root {
+  color-scheme: light;
+
+  /* marca / ação */
+  --cor-marca-900: #0c1b36; /* texto forte (títulos) */
+  --cor-marca-800: #12295a;
+  --cor-marca-700: #1a3b86;
+  --cor-marca-600: #1d4ed8; /* links, ícones e bordas de destaque */
+  --cor-marca-200: #c7d7f8;
+  --cor-marca-100: #e3ebfc;
+  --cor-marca-50: #f1f5fe;
+  --cor-acao: #1d4ed8; /* fundo do botão principal */
+  --cor-acao-hover: #1a40b0;
+  --cor-acao-ativo: #163590;
+  --cor-sobre-acao: #ffffff; /* texto sobre o botão principal */
+  --cor-perigo: #b42318;
+  --cor-perigo-hover: #912018;
+  --cor-sobre-perigo: #ffffff;
+
+  /* neutros */
+  --cor-texto: #101828;
+  --cor-texto-suave: #4a5568;
+  --cor-fundo: #f3f5f9;
+  --cor-superficie: #ffffff;
+  --cor-superficie-2: #f8f9fc;
+  --cor-superficie-3: #eef1f6;
+  --cor-borda: #e3e7ee;
+  --cor-borda-forte: #8793a6;
+  --cor-zebra: #fafbfd;
+  --cor-esqueleto: #e8ecf3;
+  --cor-esqueleto-brilho: #f4f6fa;
+
+  /* semânticas (sempre com rótulo textual, nunca só cor) */
+  --cor-sucesso-texto: #0a6a41;
+  --cor-sucesso-fundo: #e6f6ee;
+  --cor-sucesso-borda: #b4e0c8;
+  --cor-sucesso-forte: #12a15f; /* só em barras e marcadores (decorativo) */
+  --cor-atencao-texto: #7a4a00;
+  --cor-atencao-fundo: #fdf3d9;
+  --cor-atencao-borda: #efd08a;
+  --cor-atencao-forte: #e0a100;
+  --cor-erro-texto: #a3211a;
+  --cor-erro-fundo: #fdecea;
+  --cor-erro-borda: #f3b5af;
+  --cor-erro-forte: #dc3a2f;
+  --cor-info-texto: #174a9c;
+  --cor-info-fundo: #e8f0fd;
+  --cor-info-borda: #b3cbf3;
+  --cor-neutro-texto: #3b4658;
+  --cor-neutro-fundo: #eceff4;
+  --cor-neutro-borda: #d3d9e3;
+
+  --cor-foco: #2563eb;
+  --cor-anel: rgb(37 99 235 / 22%);
+  --cor-destaque-bbox: #ff3d71;
+  --cor-destaque-bbox-fundo: rgb(255 61 113 / 18%);
+  --cor-destaque-bbox-anel: rgb(255 61 113 / 25%);
+  --cor-fundo-pagina: #ffffff; /* a página do PDF renderizada é sempre clara, como o papel */
+
+  /* tipografia (pilha do sistema: a CSP não permite fontes externas). Tudo em rem: acompanha o tamanho do texto */
+  --fonte: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --fonte-mono: ui-monospace, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+  --texto-xs: 0.8125rem;
+  --texto-sm: 0.9375rem;
+  --texto-md: 1rem;
+  --texto-lg: 1.1875rem;
+  --texto-xl: 1.5rem;
+  --texto-2xl: 1.875rem;
+  --peso-medio: 500;
+  --peso-forte: 600;
+  --peso-titulo: 700;
+  --entrelinha-titulo: 1.2;
+  --entrelinha-texto: 1.6;
+  --tracking-titulo: -0.02em;
+  --tracking-rotulo: 0.06em;
+
+  /* espaçamento e forma */
+  --esp-1: 0.25rem;
+  --esp-2: 0.5rem;
+  --esp-3: 0.75rem;
+  --esp-4: 1rem;
+  --esp-5: 1.5rem;
+  --esp-6: 2rem;
+  --esp-7: 3rem;
+  --esp-8: 4rem;
+  --raio-sm: 8px;
+  --raio: 12px;
+  --raio-lg: 16px;
+  --raio-pilula: 999px;
+  --alvo-min: 2.5rem; /* alvo de toque/clique mínimo (40px) */
+  --sombra: 0 1px 2px rgb(16 24 40 / 5%), 0 1px 3px rgb(16 24 40 / 4%);
+  --sombra-media: 0 2px 4px rgb(16 24 40 / 5%), 0 8px 20px rgb(16 24 40 / 7%);
+  --sombra-barra: 0 4px 8px rgb(16 24 40 / 6%), 0 16px 40px rgb(16 24 40 / 14%);
+  --sombra-forte: 0 8px 16px rgb(16 24 40 / 8%), 0 24px 56px rgb(16 24 40 / 20%);
+  --sombra-botao: 0 1px 2px rgb(16 24 40 / 14%), inset 0 1px 0 rgb(255 255 255 / 14%);
+  --cobertura: rgb(12 27 54 / 55%);
+  --transicao: 150ms ease;
+  --transicao-rapida: 120ms ease;
+  --largura-max: 1360px;
+  --altura-topo: 4rem;
+}
+
+:root[data-tema='escuro'] {
+  color-scheme: dark;
+
+  --cor-marca-900: #eef3fd;
+  --cor-marca-800: #d3e0f8;
+  --cor-marca-700: #b3cbf5;
+  --cor-marca-600: #8db4fb;
+  --cor-marca-200: #35508a;
+  --cor-marca-100: #1c2f57;
+  --cor-marca-50: #152340;
+  --cor-acao: #7aa5fa;
+  --cor-acao-hover: #9dbefc;
+  --cor-acao-ativo: #b5cffd;
+  --cor-sobre-acao: #07122a;
+  --cor-perigo: #ff8f86;
+  --cor-perigo-hover: #ffb1aa;
+  --cor-sobre-perigo: #2a0805;
+
+  --cor-texto: #e9eef7;
+  --cor-texto-suave: #a7b3c7;
+  --cor-fundo: #0a101b;
+  --cor-superficie: #121a29;
+  --cor-superficie-2: #172133;
+  --cor-superficie-3: #1d283d;
+  --cor-borda: #25314a;
+  --cor-borda-forte: #66768f;
+  --cor-zebra: #141d2d;
+  --cor-esqueleto: #1d283d;
+  --cor-esqueleto-brilho: #26334d;
+
+  --cor-sucesso-texto: #86e0b2;
+  --cor-sucesso-fundo: #0f2e1f;
+  --cor-sucesso-borda: #226b47;
+  --cor-sucesso-forte: #3ccf8a;
+  --cor-atencao-texto: #f5d37f;
+  --cor-atencao-fundo: #31240a;
+  --cor-atencao-borda: #7d5c15;
+  --cor-atencao-forte: #f0b429;
+  --cor-erro-texto: #ffa49c;
+  --cor-erro-fundo: #381411;
+  --cor-erro-borda: #8f2f28;
+  --cor-erro-forte: #ff6b5e;
+  --cor-info-texto: #a4c8f7;
+  --cor-info-fundo: #132748;
+  --cor-info-borda: #2f5798;
+  --cor-neutro-texto: #c5cddb;
+  --cor-neutro-fundo: #212b40;
+  --cor-neutro-borda: #38455f;
+
+  --cor-foco: #8ebcff;
+  --cor-anel: rgb(142 188 255 / 28%);
+
+  --sombra: 0 1px 2px rgb(0 0 0 / 40%), 0 1px 3px rgb(0 0 0 / 30%);
+  --sombra-media: 0 2px 4px rgb(0 0 0 / 35%), 0 8px 20px rgb(0 0 0 / 35%);
+  --sombra-barra: 0 4px 8px rgb(0 0 0 / 40%), 0 16px 40px rgb(0 0 0 / 50%);
+  --sombra-forte: 0 8px 16px rgb(0 0 0 / 45%), 0 24px 56px rgb(0 0 0 / 60%);
+  --sombra-botao: 0 1px 2px rgb(0 0 0 / 40%), inset 0 1px 0 rgb(255 255 255 / 30%);
+  --cobertura: rgb(2 6 14 / 70%);
+}
