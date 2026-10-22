@@ -1,0 +1,2592 @@
+{
+  "components": {
+    "schemas": {
+      "Amostra": {
+        "additionalProperties": false,
+        "properties": {
+          "nome": {
+            "title": "Nome",
+            "type": "string"
+          },
+          "sha256": {
+            "title": "Sha256",
+            "type": "string"
+          },
+          "tamanho": {
+            "title": "Tamanho",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "nome",
+          "tamanho",
+          "sha256"
+        ],
+        "title": "Amostra",
+        "type": "object"
+      },
+      "ArquivoEnviado": {
+        "additionalProperties": false,
+        "properties": {
+          "nome": {
+            "title": "Nome",
+            "type": "string"
+          },
+          "sha256": {
+            "title": "Sha256",
+            "type": "string"
+          },
+          "tamanho": {
+            "title": "Tamanho",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "nome",
+          "tamanho",
+          "sha256"
+        ],
+        "title": "ArquivoEnviado",
+        "type": "object"
+      },
+      "Body_enviar_api_uploads_post": {
+        "properties": {
+          "arquivos": {
+            "items": {
+              "contentMediaType": "application/octet-stream",
+              "type": "string"
+            },
+            "title": "Arquivos",
+            "type": "array"
+          }
+        },
+        "required": [
+          "arquivos"
+        ],
+        "title": "Body_enviar_api_uploads_post",
+        "type": "object"
+      },
+      "CadastroNovo": {
+        "additionalProperties": false,
+        "properties": {
+          "login": {
+            "description": "e-mail",
+            "maxLength": 254,
+            "title": "Login",
+            "type": "string"
+          },
+          "nome": {
+            "description": "apelido: como a pessoa aparece no console e nas revisões",
+            "maxLength": 80,
+            "title": "Nome",
+            "type": "string"
+          },
+          "senha": {
+            "format": "password",
+            "title": "Senha",
+            "type": "string",
+            "writeOnly": true
+          }
+        },
+        "required": [
+          "login",
+          "nome",
+          "senha"
+        ],
+        "title": "CadastroNovo",
+        "type": "object"
+      },
+      "CampoSaida": {
+        "additionalProperties": false,
+        "properties": {
+          "confianca": {
+            "$ref": "#/components/schemas/Confianca"
+          },
+          "detalhe_valor": {
+            "anyOf": [
+              {
+                "additionalProperties": {
+                  "type": "string"
+                },
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Detalhe Valor"
+          },
+          "estado": {
+            "$ref": "#/components/schemas/EstadoCampo"
+          },
+          "evidencia": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Evidencia"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "natureza": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Natureza"
+          },
+          "texto_literal": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Texto Literal"
+          },
+          "valor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Valor"
+          }
+        },
+        "required": [
+          "estado",
+          "confianca"
+        ],
+        "title": "CampoSaida",
+        "type": "object"
+      },
+      "Catalogo": {
+        "additionalProperties": false,
+        "properties": {
+          "campos": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Campos",
+            "type": "array"
+          },
+          "regras": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/RegraCatalogo"
+            },
+            "title": "Regras",
+            "type": "object"
+          },
+          "rotulos": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "title": "Rotulos",
+            "type": "object"
+          },
+          "tipos": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/TipoCatalogo"
+            },
+            "title": "Tipos",
+            "type": "object"
+          },
+          "versao": {
+            "title": "Versao",
+            "type": "string"
+          }
+        },
+        "required": [
+          "versao",
+          "campos",
+          "rotulos",
+          "regras",
+          "tipos"
+        ],
+        "title": "Catalogo",
+        "type": "object"
+      },
+      "ChaveInfo": {
+        "additionalProperties": false,
+        "description": "Estado da chave de API. A chave em si nunca sai do servidor: só se existe, de onde veio e os 4 últimos caracteres.",
+        "properties": {
+          "configurada": {
+            "title": "Configurada",
+            "type": "boolean"
+          },
+          "final": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Final"
+          },
+          "origem": {
+            "anyOf": [
+              {
+                "enum": [
+                  "tela",
+                  "ambiente"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "tela = digitada no console (só em memória)",
+            "title": "Origem"
+          }
+        },
+        "required": [
+          "configurada",
+          "origem"
+        ],
+        "title": "ChaveInfo",
+        "type": "object"
+      },
+      "ChaveNova": {
+        "additionalProperties": false,
+        "properties": {
+          "chave": {
+            "format": "password",
+            "title": "Chave",
+            "type": "string",
+            "writeOnly": true
+          }
+        },
+        "required": [
+          "chave"
+        ],
+        "title": "ChaveNova",
+        "type": "object"
+      },
+      "Confianca": {
+        "additionalProperties": false,
+        "properties": {
+          "justificativa": {
+            "title": "Justificativa",
+            "type": "string"
+          },
+          "motivos": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Motivos",
+            "type": "array"
+          },
+          "nivel": {
+            "$ref": "#/components/schemas/Nivel"
+          }
+        },
+        "required": [
+          "nivel",
+          "motivos",
+          "justificativa"
+        ],
+        "title": "Confianca",
+        "type": "object"
+      },
+      "Configuracao": {
+        "additionalProperties": false,
+        "description": "O modelo é configuração de deploy (LEXIS_MODEL), não escolha do operador: o console só o mostra.",
+        "properties": {
+          "chave": {
+            "$ref": "#/components/schemas/ChaveInfo"
+          },
+          "modelo": {
+            "title": "Modelo",
+            "type": "string"
+          },
+          "preco_entrada_usd_mtok": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "preço de lista por milhão de tokens; None = desconhecido",
+            "title": "Preco Entrada Usd Mtok"
+          },
+          "preco_saida_usd_mtok": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Preco Saida Usd Mtok"
+          },
+          "provedor": {
+            "title": "Provedor",
+            "type": "string"
+          }
+        },
+        "required": [
+          "provedor",
+          "modelo",
+          "preco_entrada_usd_mtok",
+          "preco_saida_usd_mtok",
+          "chave"
+        ],
+        "title": "Configuracao",
+        "type": "object"
+      },
+      "Decisao": {
+        "enum": [
+          "APROVADO_AUTO",
+          "AGUARDA_EMISSOR",
+          "REVISAO_HUMANA",
+          "FALHA_PROCESSAMENTO"
+        ],
+        "title": "Decisao",
+        "type": "string"
+      },
+      "DecisaoSaida": {
+        "additionalProperties": false,
+        "properties": {
+          "estado": {
+            "$ref": "#/components/schemas/Decisao"
+          },
+          "linha_da_tabela": {
+            "title": "Linha Da Tabela",
+            "type": "string"
+          },
+          "motivos": {
+            "items": {
+              "$ref": "#/components/schemas/Motivo"
+            },
+            "title": "Motivos",
+            "type": "array"
+          },
+          "para_aprovar": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ParaAprovar"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "resumo": {
+            "title": "Resumo",
+            "type": "string"
+          }
+        },
+        "required": [
+          "estado",
+          "resumo",
+          "motivos",
+          "linha_da_tabela"
+        ],
+        "title": "DecisaoSaida",
+        "type": "object"
+      },
+      "DocumentoResumo": {
+        "additionalProperties": false,
+        "properties": {
+          "arquivo": {
+            "title": "Arquivo",
+            "type": "string"
+          },
+          "confianca_minima": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Confianca Minima"
+          },
+          "custo_estimado_usd": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Custo Estimado Usd"
+          },
+          "disposicao": {
+            "title": "Disposicao",
+            "type": "string"
+          },
+          "estado": {
+            "enum": [
+              "APROVADO_AUTO",
+              "AGUARDA_EMISSOR",
+              "REVISAO_HUMANA",
+              "FALHA_PROCESSAMENTO"
+            ],
+            "title": "Estado",
+            "type": "string"
+          },
+          "fonte": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fonte"
+          },
+          "golden": {
+            "title": "Golden",
+            "type": "string"
+          },
+          "motivos": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Motivos",
+            "type": "array"
+          },
+          "revisao": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/RevisaoHumana"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "tempo_ms": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Tempo Ms"
+          },
+          "tipo": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Tipo"
+          },
+          "tokens": {
+            "title": "Tokens",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "arquivo",
+          "disposicao",
+          "estado",
+          "tipo",
+          "fonte",
+          "golden",
+          "confianca_minima",
+          "motivos",
+          "tokens",
+          "custo_estimado_usd",
+          "tempo_ms"
+        ],
+        "title": "DocumentoResumo",
+        "type": "object"
+      },
+      "Erro": {
+        "additionalProperties": false,
+        "properties": {
+          "detail": {
+            "title": "Detail",
+            "type": "string"
+          }
+        },
+        "required": [
+          "detail"
+        ],
+        "title": "Erro",
+        "type": "object"
+      },
+      "EstadoCampo": {
+        "enum": [
+          "EXTRAIDO",
+          "NAO_APLICAVEL",
+          "AUSENTE",
+          "PENDENTE",
+          "INCERTO"
+        ],
+        "title": "EstadoCampo",
+        "type": "string"
+      },
+      "Evidencia": {
+        "additionalProperties": false,
+        "properties": {
+          "bbox": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "number"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Bbox"
+          },
+          "fonte": {
+            "default": "TEXTO_NATIVO",
+            "title": "Fonte",
+            "type": "string"
+          },
+          "pagina": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Pagina"
+          },
+          "trecho": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Trecho"
+          }
+        },
+        "title": "Evidencia",
+        "type": "object"
+      },
+      "ExecucaoItem": {
+        "additionalProperties": false,
+        "properties": {
+          "concluidos": {
+            "title": "Concluidos",
+            "type": "integer"
+          },
+          "contagem": {
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "title": "Contagem",
+            "type": "object"
+          },
+          "criada_em": {
+            "title": "Criada Em",
+            "type": "string"
+          },
+          "estado": {
+            "enum": [
+              "NA_FILA",
+              "EM_ANDAMENTO",
+              "CONCLUIDA",
+              "FALHOU"
+            ],
+            "title": "Estado",
+            "type": "string"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "modo": {
+            "enum": [
+              "replay",
+              "auto",
+              "live"
+            ],
+            "title": "Modo",
+            "type": "string"
+          },
+          "origem": {
+            "enum": [
+              "amostras",
+              "upload"
+            ],
+            "title": "Origem",
+            "type": "string"
+          },
+          "total": {
+            "title": "Total",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "id",
+          "criada_em",
+          "estado",
+          "modo",
+          "origem",
+          "total",
+          "concluidos",
+          "contagem"
+        ],
+        "title": "ExecucaoItem",
+        "type": "object"
+      },
+      "ExecucaoNova": {
+        "additionalProperties": false,
+        "properties": {
+          "arquivos": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "maxItems": 50,
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "nomes; omitido = todos",
+            "title": "Arquivos"
+          },
+          "confirmar_live": {
+            "default": false,
+            "description": "obrigatório no modo live (gera custo)",
+            "title": "Confirmar Live",
+            "type": "boolean"
+          },
+          "modo": {
+            "default": "replay",
+            "enum": [
+              "replay",
+              "auto",
+              "live"
+            ],
+            "title": "Modo",
+            "type": "string"
+          },
+          "origem": {
+            "enum": [
+              "amostras",
+              "upload"
+            ],
+            "title": "Origem",
+            "type": "string"
+          },
+          "sem_ocr": {
+            "default": false,
+            "title": "Sem Ocr",
+            "type": "boolean"
+          },
+          "upload_id": {
+            "anyOf": [
+              {
+                "pattern": "^[0-9a-f]{12}$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Upload Id"
+          }
+        },
+        "required": [
+          "origem"
+        ],
+        "title": "ExecucaoNova",
+        "type": "object"
+      },
+      "ExecucaoResumo": {
+        "additionalProperties": false,
+        "properties": {
+          "concluida_em": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Concluida Em"
+          },
+          "concluidos": {
+            "title": "Concluidos",
+            "type": "integer"
+          },
+          "contagem": {
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "title": "Contagem",
+            "type": "object"
+          },
+          "criada_em": {
+            "title": "Criada Em",
+            "type": "string"
+          },
+          "documentos": {
+            "items": {
+              "$ref": "#/components/schemas/DocumentoResumo"
+            },
+            "title": "Documentos",
+            "type": "array"
+          },
+          "erro": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Erro"
+          },
+          "estado": {
+            "enum": [
+              "NA_FILA",
+              "EM_ANDAMENTO",
+              "CONCLUIDA",
+              "FALHOU"
+            ],
+            "title": "Estado",
+            "type": "string"
+          },
+          "extracoes_simuladas": {
+            "default": false,
+            "title": "Extracoes Simuladas",
+            "type": "boolean"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "modo": {
+            "enum": [
+              "replay",
+              "auto",
+              "live"
+            ],
+            "title": "Modo",
+            "type": "string"
+          },
+          "origem": {
+            "enum": [
+              "amostras",
+              "upload"
+            ],
+            "title": "Origem",
+            "type": "string"
+          },
+          "sem_ocr": {
+            "title": "Sem Ocr",
+            "type": "boolean"
+          },
+          "total": {
+            "title": "Total",
+            "type": "integer"
+          },
+          "versoes": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "title": "Versoes",
+            "type": "object"
+          }
+        },
+        "required": [
+          "id",
+          "criada_em",
+          "estado",
+          "modo",
+          "origem",
+          "total",
+          "concluidos",
+          "contagem",
+          "sem_ocr"
+        ],
+        "title": "ExecucaoResumo",
+        "type": "object"
+      },
+      "Ficha": {
+        "additionalProperties": false,
+        "description": "Ficha de conferência: o que o operador precisa checar, sem reabrir o PDF inteiro.",
+        "properties": {
+          "acao_sugerida": {
+            "title": "Acao Sugerida",
+            "type": "string"
+          },
+          "campo": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Campo"
+          },
+          "codigo": {
+            "title": "Codigo",
+            "type": "string"
+          },
+          "esperado": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Esperado"
+          },
+          "observado": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Observado"
+          },
+          "onde_conferir": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Evidencia"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "tipo_acao": {
+            "$ref": "#/components/schemas/TipoAcao"
+          }
+        },
+        "required": [
+          "campo",
+          "codigo",
+          "tipo_acao",
+          "acao_sugerida"
+        ],
+        "title": "Ficha",
+        "type": "object"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "title": "Detail",
+            "type": "array"
+          }
+        },
+        "title": "HTTPValidationError",
+        "type": "object"
+      },
+      "Limites": {
+        "additionalProperties": false,
+        "properties": {
+          "max_arquivos": {
+            "title": "Max Arquivos",
+            "type": "integer"
+          },
+          "max_bytes_por_arquivo": {
+            "title": "Max Bytes Por Arquivo",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "max_bytes_por_arquivo",
+          "max_arquivos"
+        ],
+        "title": "Limites",
+        "type": "object"
+      },
+      "LoginNovo": {
+        "additionalProperties": false,
+        "properties": {
+          "login": {
+            "description": "e-mail",
+            "maxLength": 254,
+            "title": "Login",
+            "type": "string"
+          },
+          "senha": {
+            "format": "password",
+            "title": "Senha",
+            "type": "string",
+            "writeOnly": true
+          }
+        },
+        "required": [
+          "login",
+          "senha"
+        ],
+        "title": "LoginNovo",
+        "type": "object"
+      },
+      "ModoInfo": {
+        "additionalProperties": false,
+        "properties": {
+          "descricao": {
+            "title": "Descricao",
+            "type": "string"
+          },
+          "disponivel": {
+            "title": "Disponivel",
+            "type": "boolean"
+          },
+          "id": {
+            "enum": [
+              "replay",
+              "auto",
+              "live"
+            ],
+            "title": "Id",
+            "type": "string"
+          },
+          "motivo_indisponivel": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Motivo Indisponivel"
+          }
+        },
+        "required": [
+          "id",
+          "disponivel",
+          "descricao"
+        ],
+        "title": "ModoInfo",
+        "type": "object"
+      },
+      "Motivo": {
+        "additionalProperties": false,
+        "properties": {
+          "campo": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Campo"
+          },
+          "codigo": {
+            "title": "Codigo",
+            "type": "string"
+          },
+          "mensagem": {
+            "title": "Mensagem",
+            "type": "string"
+          }
+        },
+        "required": [
+          "codigo",
+          "mensagem"
+        ],
+        "title": "Motivo",
+        "type": "object"
+      },
+      "Nivel": {
+        "enum": [
+          "ALTA",
+          "MEDIA",
+          "BAIXA"
+        ],
+        "title": "Nivel",
+        "type": "string"
+      },
+      "PaginaExecucoes": {
+        "additionalProperties": false,
+        "properties": {
+          "deslocamento": {
+            "title": "Deslocamento",
+            "type": "integer"
+          },
+          "itens": {
+            "items": {
+              "$ref": "#/components/schemas/ExecucaoItem"
+            },
+            "title": "Itens",
+            "type": "array"
+          },
+          "limite": {
+            "title": "Limite",
+            "type": "integer"
+          },
+          "total": {
+            "description": "quantas execuções existem ao todo, para o front montar a paginação",
+            "title": "Total",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "itens",
+          "total",
+          "limite",
+          "deslocamento"
+        ],
+        "title": "PaginaExecucoes",
+        "type": "object"
+      },
+      "PaginaMeta": {
+        "additionalProperties": false,
+        "properties": {
+          "altura_pt": {
+            "title": "Altura Pt",
+            "type": "number"
+          },
+          "largura_pt": {
+            "title": "Largura Pt",
+            "type": "number"
+          },
+          "numero": {
+            "title": "Numero",
+            "type": "integer"
+          },
+          "total_paginas": {
+            "title": "Total Paginas",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "numero",
+          "total_paginas",
+          "largura_pt",
+          "altura_pt"
+        ],
+        "title": "PaginaMeta",
+        "type": "object"
+      },
+      "ParaAprovar": {
+        "additionalProperties": false,
+        "description": "O que falta para APROVADO_AUTO: cada bloqueio sozinho e todos juntos. Não reprocessa o documento: reavalia a\ntabela de decisão com o bloqueio resolvido, então efeitos indiretos (ex.: a confiança de outro campo) não entram.",
+        "properties": {
+          "decisao_com_todos_resolvidos": {
+            "$ref": "#/components/schemas/Decisao"
+          },
+          "linha_com_todos_resolvidos": {
+            "title": "Linha Com Todos Resolvidos",
+            "type": "string"
+          },
+          "passos": {
+            "items": {
+              "$ref": "#/components/schemas/PassoParaAprovar"
+            },
+            "title": "Passos",
+            "type": "array"
+          }
+        },
+        "required": [
+          "passos",
+          "decisao_com_todos_resolvidos",
+          "linha_com_todos_resolvidos"
+        ],
+        "title": "ParaAprovar",
+        "type": "object"
+      },
+      "PassoParaAprovar": {
+        "additionalProperties": false,
+        "description": "Um bloqueio da decisão e o que aconteceria se só ele fosse resolvido (simulação sobre a tabela de decisão).",
+        "properties": {
+          "campo": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Campo"
+          },
+          "codigo": {
+            "title": "Codigo",
+            "type": "string"
+          },
+          "condicao": {
+            "title": "Condicao",
+            "type": "string"
+          },
+          "decisao_se_so_este_resolver": {
+            "$ref": "#/components/schemas/Decisao"
+          },
+          "linha_que_aciona": {
+            "title": "Linha Que Aciona",
+            "type": "string"
+          },
+          "linha_se_so_este_resolver": {
+            "title": "Linha Se So Este Resolver",
+            "type": "string"
+          }
+        },
+        "required": [
+          "codigo",
+          "linha_que_aciona",
+          "condicao",
+          "decisao_se_so_este_resolver",
+          "linha_se_so_este_resolver"
+        ],
+        "title": "PassoParaAprovar",
+        "type": "object"
+      },
+      "RegistroSaida": {
+        "additionalProperties": false,
+        "properties": {
+          "auditoria": {
+            "additionalProperties": true,
+            "title": "Auditoria",
+            "type": "object"
+          },
+          "campos": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/CampoSaida"
+            },
+            "title": "Campos",
+            "type": "object"
+          },
+          "decisao": {
+            "$ref": "#/components/schemas/DecisaoSaida"
+          },
+          "documento": {
+            "additionalProperties": true,
+            "title": "Documento",
+            "type": "object"
+          },
+          "evento": {
+            "additionalProperties": true,
+            "title": "Evento",
+            "type": "object"
+          },
+          "fichas_conferencia": {
+            "items": {
+              "$ref": "#/components/schemas/Ficha"
+            },
+            "title": "Fichas Conferencia",
+            "type": "array"
+          },
+          "regras": {
+            "items": {
+              "$ref": "#/components/schemas/RegraResultado"
+            },
+            "title": "Regras",
+            "type": "array"
+          },
+          "run_id": {
+            "title": "Run Id",
+            "type": "string"
+          },
+          "schema_version": {
+            "default": "1.1",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "validacao_golden": {
+            "$ref": "#/components/schemas/ValidacaoGolden"
+          },
+          "versoes": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "title": "Versoes",
+            "type": "object"
+          }
+        },
+        "required": [
+          "run_id",
+          "documento",
+          "versoes",
+          "decisao",
+          "evento",
+          "campos",
+          "validacao_golden",
+          "regras",
+          "fichas_conferencia",
+          "auditoria"
+        ],
+        "title": "RegistroSaida",
+        "type": "object"
+      },
+      "RegraCatalogo": {
+        "additionalProperties": false,
+        "properties": {
+          "descricao": {
+            "title": "Descricao",
+            "type": "string"
+          },
+          "severidade": {
+            "enum": [
+              "ERRO",
+              "AVISO",
+              "INFO"
+            ],
+            "title": "Severidade",
+            "type": "string"
+          }
+        },
+        "required": [
+          "severidade",
+          "descricao"
+        ],
+        "title": "RegraCatalogo",
+        "type": "object"
+      },
+      "RegraResultado": {
+        "additionalProperties": false,
+        "properties": {
+          "campos": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Campos",
+            "type": "array"
+          },
+          "detalhe": {
+            "title": "Detalhe",
+            "type": "string"
+          },
+          "esperado": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Esperado"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "observado": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Observado"
+          },
+          "resultado": {
+            "title": "Resultado",
+            "type": "string"
+          },
+          "severidade": {
+            "$ref": "#/components/schemas/Severidade"
+          }
+        },
+        "required": [
+          "id",
+          "severidade",
+          "resultado",
+          "detalhe"
+        ],
+        "title": "RegraResultado",
+        "type": "object"
+      },
+      "RevisaoHumana": {
+        "additionalProperties": false,
+        "description": "Registro da decisão humana. Fica ao lado do registro do pipeline, que nunca é alterado.",
+        "properties": {
+          "decisao": {
+            "enum": [
+              "APROVADO_NA_REVISAO",
+              "REJEITADO_NA_REVISAO"
+            ],
+            "title": "Decisao",
+            "type": "string"
+          },
+          "decisao_automatica": {
+            "title": "Decisao Automatica",
+            "type": "string"
+          },
+          "justificativa": {
+            "title": "Justificativa",
+            "type": "string"
+          },
+          "motivos_reconhecidos": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Motivos Reconhecidos",
+            "type": "array"
+          },
+          "operador": {
+            "title": "Operador",
+            "type": "string"
+          },
+          "revisada_em": {
+            "title": "Revisada Em",
+            "type": "string"
+          },
+          "sha256_registro": {
+            "description": "sha256 do JSON do registro revisado: a decisão vale para esse conteúdo",
+            "title": "Sha256 Registro",
+            "type": "string"
+          },
+          "usuario": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "login autenticado; None = nome declarado (sem login)",
+            "title": "Usuario"
+          }
+        },
+        "required": [
+          "decisao",
+          "operador",
+          "justificativa",
+          "motivos_reconhecidos",
+          "decisao_automatica",
+          "sha256_registro",
+          "revisada_em"
+        ],
+        "title": "RevisaoHumana",
+        "type": "object"
+      },
+      "RevisaoNova": {
+        "additionalProperties": false,
+        "description": "Decisão do operador sobre um documento em REVISAO_HUMANA. Aprovar exige reconhecer cada motivo da decisão.",
+        "properties": {
+          "decisao": {
+            "enum": [
+              "APROVADO_NA_REVISAO",
+              "REJEITADO_NA_REVISAO"
+            ],
+            "title": "Decisao",
+            "type": "string"
+          },
+          "justificativa": {
+            "maxLength": 1000,
+            "title": "Justificativa",
+            "type": "string"
+          },
+          "motivos_reconhecidos": {
+            "description": "códigos de motivo conferidos; na aprovação, todos",
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 50,
+            "title": "Motivos Reconhecidos",
+            "type": "array"
+          },
+          "operador": {
+            "anyOf": [
+              {
+                "maxLength": 80,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "sem login (sem banco): nome declarado; com login, vem da sessão e é ignorado",
+            "title": "Operador"
+          }
+        },
+        "required": [
+          "decisao",
+          "justificativa"
+        ],
+        "title": "RevisaoNova",
+        "type": "object"
+      },
+      "Saude": {
+        "additionalProperties": false,
+        "properties": {
+          "gravacoes_simuladas": {
+            "title": "Gravacoes Simuladas",
+            "type": "boolean"
+          },
+          "limites": {
+            "$ref": "#/components/schemas/Limites"
+          },
+          "modelo": {
+            "title": "Modelo",
+            "type": "string"
+          },
+          "modos": {
+            "items": {
+              "$ref": "#/components/schemas/ModoInfo"
+            },
+            "title": "Modos",
+            "type": "array"
+          },
+          "ocr_disponivel": {
+            "title": "Ocr Disponivel",
+            "type": "boolean"
+          },
+          "orcamento_tokens": {
+            "title": "Orcamento Tokens",
+            "type": "integer"
+          },
+          "versao_pipeline": {
+            "title": "Versao Pipeline",
+            "type": "string"
+          },
+          "versoes": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "title": "Versoes",
+            "type": "object"
+          }
+        },
+        "required": [
+          "versao_pipeline",
+          "versoes",
+          "modelo",
+          "modos",
+          "ocr_disponivel",
+          "orcamento_tokens",
+          "gravacoes_simuladas",
+          "limites"
+        ],
+        "title": "Saude",
+        "type": "object"
+      },
+      "SessaoInfo": {
+        "additionalProperties": false,
+        "description": "Com banco configurado, o console exige login; sem banco, não há onde guardar usuários e o login não existe.",
+        "properties": {
+          "dominios_email": {
+            "default": [],
+            "description": "domínios aceitos no cadastro; vazio = qualquer um",
+            "items": {
+              "type": "string"
+            },
+            "title": "Dominios Email",
+            "type": "array"
+          },
+          "login_exigido": {
+            "title": "Login Exigido",
+            "type": "boolean"
+          },
+          "usuario": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/UsuarioInfo"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "login_exigido"
+        ],
+        "title": "SessaoInfo",
+        "type": "object"
+      },
+      "Severidade": {
+        "enum": [
+          "ERRO",
+          "AVISO",
+          "INFO"
+        ],
+        "title": "Severidade",
+        "type": "string"
+      },
+      "TipoAcao": {
+        "enum": [
+          "CORRIGIR_EXTRACAO",
+          "RESOLVER_INCONSISTENCIA",
+          "CADASTRAR_EMISSOR",
+          "AGUARDAR_AVISO_COMPLEMENTAR",
+          "CONFERIR_CLASSIFICACAO",
+          "VERIFICAR_SEGURANCA",
+          "REPROCESSAR"
+        ],
+        "title": "TipoAcao",
+        "type": "string"
+      },
+      "TipoCatalogo": {
+        "additionalProperties": false,
+        "properties": {
+          "aplicabilidade": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "title": "Aplicabilidade",
+            "type": "object"
+          },
+          "criticos": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Criticos",
+            "type": "array"
+          },
+          "rotulo": {
+            "title": "Rotulo",
+            "type": "string"
+          },
+          "tratamento_tributario": {
+            "title": "Tratamento Tributario",
+            "type": "string"
+          }
+        },
+        "required": [
+          "rotulo",
+          "tratamento_tributario",
+          "criticos",
+          "aplicabilidade"
+        ],
+        "title": "TipoCatalogo",
+        "type": "object"
+      },
+      "UploadResposta": {
+        "additionalProperties": false,
+        "properties": {
+          "arquivos": {
+            "items": {
+              "$ref": "#/components/schemas/ArquivoEnviado"
+            },
+            "title": "Arquivos",
+            "type": "array"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "arquivos"
+        ],
+        "title": "UploadResposta",
+        "type": "object"
+      },
+      "UsuarioInfo": {
+        "additionalProperties": false,
+        "properties": {
+          "login": {
+            "title": "Login",
+            "type": "string"
+          },
+          "nome": {
+            "title": "Nome",
+            "type": "string"
+          }
+        },
+        "required": [
+          "login",
+          "nome"
+        ],
+        "title": "UsuarioInfo",
+        "type": "object"
+      },
+      "ValidacaoGolden": {
+        "additionalProperties": false,
+        "properties": {
+          "comparacoes": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "title": "Comparacoes",
+            "type": "array"
+          },
+          "registro_golden": {
+            "anyOf": [
+              {
+                "additionalProperties": {
+                  "type": "string"
+                },
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Registro Golden"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          },
+          "sugestao_por_nome": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Sugestao Por Nome"
+          }
+        },
+        "required": [
+          "status"
+        ],
+        "title": "ValidacaoGolden",
+        "type": "object"
+      },
+      "ValidationError": {
+        "properties": {
+          "ctx": {
+            "title": "Context",
+            "type": "object"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "title": "Location",
+            "type": "array"
+          },
+          "msg": {
+            "title": "Message",
+            "type": "string"
+          },
+          "type": {
+            "title": "Error Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError",
+        "type": "object"
+      }
+    }
+  },
+  "info": {
+    "title": "Lexis API",
+    "version": "1.0.0"
+  },
+  "openapi": "3.1.0",
+  "paths": {
+    "/api/amostras": {
+      "get": {
+        "operationId": "amostras_api_amostras_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/Amostra"
+                  },
+                  "title": "Response Amostras Api Amostras Get",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Amostras"
+      }
+    },
+    "/api/catalogo": {
+      "get": {
+        "description": "Rótulos, regras e matriz de aplicabilidade: a mesma fonte de verdade (`rules.json`) que o pipeline usa.",
+        "operationId": "catalogo_api_catalogo_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Catalogo"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Catalogo"
+      }
+    },
+    "/api/configuracao": {
+      "get": {
+        "description": "Modelo em uso (do ambiente) e estado da chave de API (nunca a chave).",
+        "operationId": "configuracao_api_configuracao_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Configuracao"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Configuracao"
+      }
+    },
+    "/api/configuracao/chave": {
+      "delete": {
+        "operationId": "remover_chave_api_configuracao_chave_delete",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Configuracao"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Remover Chave"
+      },
+      "put": {
+        "description": "Guarda a chave só na memória do servidor, até ele reiniciar.",
+        "operationId": "guardar_chave_api_configuracao_chave_put",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChaveNova"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Configuracao"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Guardar Chave"
+      }
+    },
+    "/api/execucoes": {
+      "get": {
+        "operationId": "execucoes_api_execucoes_get",
+        "parameters": [
+          {
+            "description": "itens por página",
+            "in": "query",
+            "name": "limite",
+            "required": false,
+            "schema": {
+              "default": 20,
+              "description": "itens por página",
+              "maximum": 100,
+              "minimum": 1,
+              "title": "Limite",
+              "type": "integer"
+            }
+          },
+          {
+            "description": "quantos itens pular (mais recentes primeiro)",
+            "in": "query",
+            "name": "deslocamento",
+            "required": false,
+            "schema": {
+              "default": 0,
+              "description": "quantos itens pular (mais recentes primeiro)",
+              "minimum": 0,
+              "title": "Deslocamento",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginaExecucoes"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Execucoes"
+      },
+      "post": {
+        "operationId": "iniciar_api_execucoes_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExecucaoNova"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "202": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExecucaoResumo"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Iniciar"
+      }
+    },
+    "/api/execucoes/{run_id}": {
+      "get": {
+        "operationId": "execucao_api_execucoes__run_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "run_id",
+            "required": true,
+            "schema": {
+              "title": "Run Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExecucaoResumo"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Execucao"
+      }
+    },
+    "/api/execucoes/{run_id}/documentos/{nome}": {
+      "get": {
+        "operationId": "documento_api_execucoes__run_id__documentos__nome__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "run_id",
+            "required": true,
+            "schema": {
+              "title": "Run Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "nome",
+            "required": true,
+            "schema": {
+              "title": "Nome",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegistroSaida"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Documento"
+      }
+    },
+    "/api/execucoes/{run_id}/documentos/{nome}/paginas/{numero}": {
+      "get": {
+        "operationId": "pagina_api_execucoes__run_id__documentos__nome__paginas__numero__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "run_id",
+            "required": true,
+            "schema": {
+              "title": "Run Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "nome",
+            "required": true,
+            "schema": {
+              "title": "Nome",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "numero",
+            "required": true,
+            "schema": {
+              "title": "Numero",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginaMeta"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Pagina"
+      }
+    },
+    "/api/execucoes/{run_id}/documentos/{nome}/paginas/{numero}/imagem": {
+      "get": {
+        "description": "Página renderizada no servidor. O navegador NUNCA recebe nem abre o PDF original (entrada não confiável).",
+        "operationId": "imagem_api_execucoes__run_id__documentos__nome__paginas__numero__imagem_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "run_id",
+            "required": true,
+            "schema": {
+              "title": "Run Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "nome",
+            "required": true,
+            "schema": {
+              "title": "Nome",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "numero",
+            "required": true,
+            "schema": {
+              "title": "Numero",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              },
+              "image/png": {}
+            },
+            "description": "Successful Response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Imagem"
+      }
+    },
+    "/api/execucoes/{run_id}/documentos/{nome}/revisao": {
+      "post": {
+        "description": "Decisão do operador sobre um documento em revisão humana. O registro do pipeline não é alterado.\nCom login, o operador é o usuário da sessão.",
+        "operationId": "revisar_api_execucoes__run_id__documentos__nome__revisao_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "run_id",
+            "required": true,
+            "schema": {
+              "title": "Run Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "nome",
+            "required": true,
+            "schema": {
+              "title": "Nome",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RevisaoNova"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RevisaoHumana"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Revisar"
+      }
+    },
+    "/api/execucoes/{run_id}/relatorios/{arquivo}": {
+      "get": {
+        "operationId": "relatorio_api_execucoes__run_id__relatorios__arquivo__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "run_id",
+            "required": true,
+            "schema": {
+              "title": "Run Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "arquivo",
+            "required": true,
+            "schema": {
+              "title": "Arquivo",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              },
+              "application/octet-stream": {}
+            },
+            "description": "Successful Response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Relatorio"
+      }
+    },
+    "/api/saude": {
+      "get": {
+        "operationId": "saude_api_saude_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Saude"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Saude"
+      }
+    },
+    "/api/sessao": {
+      "delete": {
+        "operationId": "sair_api_sessao_delete",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SessaoInfo"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Sair"
+      },
+      "get": {
+        "description": "Se o console exige login e quem está logado (nunca o token da sessão).",
+        "operationId": "sessao_api_sessao_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SessaoInfo"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Sessao"
+      },
+      "post": {
+        "operationId": "entrar_api_sessao_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginNovo"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SessaoInfo"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          }
+        },
+        "summary": "Entrar"
+      }
+    },
+    "/api/uploads": {
+      "post": {
+        "operationId": "enviar_api_uploads_post",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_enviar_api_uploads_post"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UploadResposta"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "413": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            },
+            "description": "Request Entity Too Large"
+          },
+          "415": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            },
+            "description": "Unsupported Media Type"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Enviar"
+      }
+    },
+    "/api/usuarios": {
+      "post": {
+        "description": "Cria a conta e já entra com ela.",
+        "operationId": "cadastrar_api_usuarios_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CadastroNovo"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SessaoInfo"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Cadastrar"
+      }
+    }
+  }
+}
