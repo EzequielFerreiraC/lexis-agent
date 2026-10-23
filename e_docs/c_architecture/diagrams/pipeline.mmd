@@ -1,0 +1,82 @@
+%%{init: {"theme":"base","themeVariables":{"fontFamily":"Liberation Sans, Arial, sans-serif","fontSize":"16px","primaryColor":"#EEF2FF","primaryBorderColor":"#6366F1","primaryTextColor":"#1E1B4B","lineColor":"#475569","clusterBkg":"#F8FAFC","clusterBorder":"#CBD5E1"},"flowchart":{"nodeSpacing":16,"rankSpacing":34,"curve":"basis","htmlLabels":true}}}%%
+flowchart LR
+  IN(["PDF<br/>(bytes)"]):::io
+
+  subgraph S1["① INGESTÃO — batch.py e b_ingestion"]
+    direction TB
+    a0["<b>SHA-256</b> do conteúdo<br/>mesmo conteúdo + mesmas versões → <b>REUTILIZADO</b><br/>mesmo PDF no lote → <b>DUPLICADO_NO_LOTE</b>"] --> a1["Limites: ≤ 20 MB · ≤ 20 págs<br/>assinatura <b>%PDF-</b>"]
+    a1 --> a3["Texto <b>visível</b> × oculto<br/>branco/CMYK · &lt; 2 pt · fora da página · <b>3 Tr</b>"]
+    a3 --> a4["Conteúdo ativo só sinalizado<br/>/JavaScript · /OpenAction · /Launch<br/><i>nada é executado</i>"]
+    a4 --> a5["Fonte: <b>NATIVO</b> · <b>SCAN</b> · MISTO<br/><i>&lt; 30 caracteres e há imagem = scan</i>"]
+  end
+
+  subgraph S2["② LEITURA PELO MODELO — porta Extrator"]
+    direction TB
+    b0{"Fonte?"}
+    b1["<b>Nativo</b>: 1 chamada<br/>texto entre &lt;doc_nonce&gt;<br/><i>adaptador anthropic_api</i>"]
+    b2["<b>Scan</b> (1 página)<br/>leitura A: transcrição → extração<br/>leitura B: extração direta da imagem"]
+    b3["OCR local · porta LeitorOCR<br/><i>3º leitor, independente do modelo</i><br/>usado em ③ para corroborar"]
+    b4["Saída: <b>só trechos literais</b><br/>+ página + situação<br/>schema estrito · 1 reparo"]
+    b5[("Gravações por SHA-256 · c_extraction<br/>replay sem rede nem chave")]:::store
+    b0 -- nativo --> b1
+    b0 -- scan --> b2
+    b0 -- scan --> b3
+    b1 --> b4
+    b2 --> b4
+    b4 <-.-> b5
+  end
+
+  subgraph S3["③ VERIFICAÇÃO NO CÓDIGO — f_application/analysis"]
+    direction TB
+    c1["<b>Classificação por sinais</b><br/>campo × título × corpo<br/>vs. tipo do modelo"] --> c2["<b>Evidência</b>: o trecho existe<br/>na página? (NFKC, sem acento)"]
+    c2 --> c3["<b>Normalização</b> pelo código<br/>Decimal · data ISO · % · proporção"]
+    c3 --> c4["Scan: leituras A = B<br/>campo a campo"]
+    c4 --> c5["Aplicabilidade por tipo<br/>EXTRAIDO · NAO_APLICAVEL<br/>AUSENTE · PENDENTE · INCERTO"]
+    c5 --> c6["Scan: OCR corrobora<br/>cada valor?"]
+  end
+
+  subgraph S4["④ VALIDAÇÃO — function calling · d_validation"]
+    direction TB
+    d1["Modelo recebe o registro normalizado<br/>+ <b>só as tools do tipo</b><br/><i>porta ChamadorDeTools</i><br/><i>(em replay: reexecuta o gravado)</i>"] --> d2["Pede: consultar_golden · checar_datas<br/>checar_tributacao · checar_proporcao"]
+    d2 --> d3{"Código confere:<br/>allow-list +<br/>args = extraído"}
+    d3 -- sim --> d4["Executa a tool<br/>(somente leitura)"]
+    d3 -- não --> d5["tool_result de erro<br/>(nome do campo, nunca o valor)"]
+    d5 --> d2
+    d4 --> d6["Tool que faltou:<br/>o orquestrador executa"]
+    d6 --> d7["Regras: formato · base de referência<br/>datas + calendário B3 · bruto×líquido<br/>proporção"]
+    d7 --> d8["Alertas: identificador omitido<br/>injeção · texto oculto · conteúdo ativo"]
+  end
+
+  subgraph S5["⑤ DECISÃO — e_decision"]
+    direction TB
+    e1["<b>Confiança por campo</b><br/>ALTA · MÉDIA · BAIXA + motivos"] --> e2["<b>Tabela de decisão</b><br/>a 1ª linha verdadeira vence<br/>L1 segurança · L2 regra ERRO · L3 título≠corpo<br/>L4 campo crítico fraco · L5 scan sem OCR<br/>L6 pendente · L7 nenhuma"]
+    e2 --> e3["Fichas de conferência<br/>+ <b>para_aprovar</b>"]
+  end
+
+  subgraph S6["⑥ SAÍDA — f_data/b_output/report_…"]
+    direction TB
+    f1["JSON por documento<br/>schema 1.1 · evidência · versões"]
+    f2["Relatório de exceções<br/>(.md e .json) · resumo"]
+    f3["auditoria.jsonl<br/><b>cadeia de hashes</b>"]
+    f4[("Banco SQL<br/>projeção opcional")]:::store
+    f1 --> f4
+  end
+
+  IN --> S1
+  S1 --> S2
+  S2 --> S3
+  S3 --> S4
+  S4 --> S5
+  S5 --> S6
+
+  S6 -- "decisão no registro" --> OK(["APROVADO_AUTO"]):::ok
+  S6 --> WAIT(["AGUARDA_EMISSOR"]):::wait
+  S6 --> REV(["REVISAO_HUMANA<br/>→ operador decide no console"]):::rev
+  S1 -. "falha do documento" .-> FAIL["<b>FALHA_PROCESSAMENTO</b><br/>registro explícito<br/>PDF inválido ou não suportado<br/>modelo fora do contrato<br/>provedor fora"]:::fail
+
+  classDef io fill:#0F172A,stroke:#0F172A,color:#fff
+  classDef store fill:#FEF9C3,stroke:#CA8A04,color:#422006
+  classDef ok fill:#DCFCE7,stroke:#16A34A,color:#052E16
+  classDef wait fill:#E0F2FE,stroke:#0284C7,color:#082F49
+  classDef rev fill:#FEF3C7,stroke:#D97706,color:#451A03
+  classDef fail fill:#FEE2E2,stroke:#DC2626,color:#450A0A

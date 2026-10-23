@@ -1,0 +1,71 @@
+%%{init: {"theme":"base","themeVariables":{"fontFamily":"Liberation Sans, Arial, sans-serif","fontSize":"16px","primaryColor":"#EEF2FF","primaryBorderColor":"#6366F1","primaryTextColor":"#1E1B4B","lineColor":"#475569","clusterBkg":"#F8FAFC","clusterBorder":"#CBD5E1"},"flowchart":{"nodeSpacing":16,"rankSpacing":44,"curve":"basis","htmlLabels":true}}}%%
+flowchart LR
+  subgraph USER["QUEM USA"]
+    direction TB
+    OP(["Operador<br/>no navegador"]):::actor
+    DEV(["Terminal / CI"]):::actor
+    S3IN(["Upload no S3<br/><i>AWS · não implantado</i>"]):::actor
+  end
+
+  subgraph H["ENTRADAS — h_interfaces e i_assessment"]
+    direction TB
+    WEB["<b>Console web</b><br/>React + TypeScript · API FastAPI<br/>token + login + CSP"]
+    CLI["<b>CLI lexis</b><br/>run · avaliar · auditar · serve<br/>db · auditoria · usuario · contratos"]
+    LAM["<b>Handler AWS Lambda</b><br/>1 documento por evento"]
+    I["<b>i_assessment</b><br/>avaliação por mutação<br/>(lexis avaliar · CI)"]:::aux
+    WEB ~~~ CLI ~~~ LAM ~~~ I
+  end
+
+  subgraph CORE["NÚCLEO — a_ … f_ · sem I/O, verificado por teste"]
+    direction TB
+    F["<b>f_application</b><br/>pipeline por documento (Contexto) · lote<br/>análise · relatórios · integridade"]
+    E["<b>e_decision</b><br/>confiança · tabela de decisão · fichas"]
+    D["<b>d_validation</b><br/>evidência · classificação · base de referência<br/>regras de coerência · tools e orquestrador"]
+    C["<b>c_extraction</b><br/>prompts e schema · gravações (replay) · custo"]
+    B["<b>b_ingestion</b><br/>PDF seguro, sobre bytes (pdfplumber)"]
+    A["<b>a_domain</b><br/>modelos · rules.json · normalização<br/>cadeia de hashes · portas"]
+    F ~~~ E ~~~ D ~~~ C ~~~ B ~~~ A
+  end
+
+  subgraph P["PORTAS — a_domain/ports.py"]
+    direction TB
+    P1["ArmazenamentoObjetos"]
+    P2["TrilhaAuditoria"]
+    P3["Extrator"]
+    P4["ChamadorDeTools"]
+    P5["LeitorOCR"]
+    P1 ~~~ P2 ~~~ P3 ~~~ P4 ~~~ P5
+  end
+
+  subgraph G["ADAPTADORES — g_adapters"]
+    direction TB
+    G1["Arquivos locais · memória · <b>S3</b>"]
+    G2["Trilha em arquivo <b>encadeada</b><br/>ou logs JSON (CloudWatch)"]
+    G3["<b>anthropic_api</b>: Anthropic ou Bedrock<br/>Extrator + ChamadorDeTools"]
+    G5["<b>tesseract_ocr</b>: LeitorOCR"]
+    G6["<b>ambiente</b> → Config · <b>log</b> do lote<br/><i>montados pelas entradas</i>"]
+    G4["<b>SQL</b>: projeção, usuários, sessões,<br/>auditoria amostral<br/><i>acionado pelas entradas, sem porta</i>"]
+    G1 ~~~ G2 ~~~ G3 ~~~ G5 ~~~ G6 ~~~ G4
+  end
+
+  subgraph X["MUNDO EXTERNO"]
+    direction TB
+    X1[("f_data/b_output<br/><b>fonte da verdade</b>, selada")]:::truth
+    X6[("c_replay/<br/>gravações das respostas reais")]:::truth
+    X2[("S3 · SQS · CloudWatch<br/>Object Lock")]:::ext
+    X3(["API da Anthropic<br/>ou Bedrock"]):::ext
+    X4[("MySQL 8.4<br/><b>projeção</b> reconstruível")]:::store
+    X5(["Tesseract (OCR local)"]):::ext
+    X1 ~~~ X6 ~~~ X2 ~~~ X3 ~~~ X4 ~~~ X5
+  end
+
+  USER --> H --> CORE
+  CORE -- "tudo externo<br/>entra por portas" --> P
+  P -- "implementadas por" --> G
+  G --> X
+
+  classDef actor fill:#0F172A,stroke:#0F172A,color:#fff
+  classDef truth fill:#DCFCE7,stroke:#16A34A,color:#052E16
+  classDef store fill:#FEF9C3,stroke:#CA8A04,color:#422006
+  classDef ext fill:#F1F5F9,stroke:#64748B,color:#0F172A
+  classDef aux fill:#F8FAFC,stroke:#94A3B8,color:#334155,stroke-dasharray: 4 3
