@@ -1,0 +1,226 @@
+{
+  "run_id": "4a942afc426b",
+  "contagem": {
+    "APROVADO_AUTO": 4,
+    "AGUARDA_EMISSOR": 1,
+    "REVISAO_HUMANA": 3,
+    "FALHA_PROCESSAMENTO": 0
+  },
+  "excecoes": [
+    {
+      "arquivo": "03_siderurgica_paranaense_proventos.pdf",
+      "estado": "REVISAO_HUMANA",
+      "linha_da_tabela": "L3: Título diverge do corpo (política: revisão por risco tributário)",
+      "motivos": [
+        {
+          "codigo": "TITULO_DIVERGE_CORPO",
+          "mensagem": "Título sugere um tipo e o corpo/natureza do provento indica outro; prevalece o corpo.",
+          "campo": "tipo_evento"
+        }
+      ],
+      "fichas": [
+        {
+          "campo": "tipo_evento",
+          "codigo": "TITULO_DIVERGE_CORPO",
+          "tipo_acao": "CONFERIR_CLASSIFICACAO",
+          "acao_sugerida": "Conferir no corpo do aviso qual é o tipo real do evento (muda o tratamento tributário).",
+          "esperado": "tipo pelo corpo/natureza: JCP",
+          "observado": "tipo pelo título: DIVIDENDO",
+          "onde_conferir": {
+            "pagina": 1,
+            "trecho": "Remuneração do capital próprio",
+            "bbox": null,
+            "fonte": "TEXTO_NATIVO"
+          }
+        }
+      ],
+      "para_aprovar": {
+        "passos": [
+          {
+            "codigo": "TITULO_DIVERGE_CORPO",
+            "campo": "tipo_evento",
+            "linha_que_aciona": "L3",
+            "condicao": "título e corpo indicarem o mesmo tipo de evento",
+            "decisao_se_so_este_resolver": "APROVADO_AUTO",
+            "linha_se_so_este_resolver": "L7"
+          }
+        ],
+        "decisao_com_todos_resolvidos": "APROVADO_AUTO",
+        "linha_com_todos_resolvidos": "L7"
+      }
+    },
+    {
+      "arquivo": "04_rede_varejo_jcp_sem_data.pdf",
+      "estado": "AGUARDA_EMISSOR",
+      "linha_da_tabela": "L6: Informação obrigatória pendente de aviso complementar",
+      "motivos": [
+        {
+          "codigo": "CAMPO_PENDENTE_NO_AVISO",
+          "mensagem": "O aviso declara que a informação será divulgada depois.",
+          "campo": "data_pagamento"
+        }
+      ],
+      "fichas": [
+        {
+          "campo": "data_pagamento",
+          "codigo": "CAMPO_PENDENTE_NO_AVISO",
+          "tipo_acao": "AGUARDAR_AVISO_COMPLEMENTAR",
+          "acao_sugerida": "Aguardar o aviso complementar do emissor; reprocessar quando divulgado.",
+          "esperado": null,
+          "observado": "A definir (vide aviso complementar)",
+          "onde_conferir": {
+            "pagina": 1,
+            "trecho": "A definir (vide aviso complementar)",
+            "bbox": [
+              238.4,
+              432.1,
+              395.2,
+              442.1
+            ],
+            "fonte": "TEXTO_NATIVO"
+          }
+        }
+      ],
+      "para_aprovar": {
+        "passos": [
+          {
+            "codigo": "CAMPO_PENDENTE_NO_AVISO",
+            "campo": "data_pagamento",
+            "linha_que_aciona": "L6",
+            "condicao": "o emissor informar o valor (aviso complementar)",
+            "decisao_se_so_este_resolver": "APROVADO_AUTO",
+            "linha_se_so_este_resolver": "L7"
+          }
+        ],
+        "decisao_com_todos_resolvidos": "APROVADO_AUTO",
+        "linha_com_todos_resolvidos": "L7"
+      }
+    },
+    {
+      "arquivo": "05_aurora_saneamento_dividendo_datas.pdf",
+      "estado": "REVISAO_HUMANA",
+      "linha_da_tabela": "L2: Alguma regra de severidade ERRO falhou (inclui golden, datas, valores, evidência)",
+      "motivos": [
+        {
+          "codigo": "DATAS_PAGAMENTO_ANTES_DA_COM",
+          "mensagem": "Pagamento não pode anteceder a data com.",
+          "campo": "data_pagamento"
+        },
+        {
+          "codigo": "DATAS_PAGAMENTO_ANTES_DA_EX",
+          "mensagem": "Pagamento não pode anteceder a data ex.",
+          "campo": "data_pagamento"
+        }
+      ],
+      "fichas": [
+        {
+          "campo": "data_pagamento",
+          "codigo": "DATAS_PAGAMENTO_ANTES_DA_COM",
+          "tipo_acao": "RESOLVER_INCONSISTENCIA",
+          "acao_sugerida": "Comparar os valores com o documento original e com o emissor; corrigir o dado errado ou solicitar retificação.",
+          "esperado": "data_pagamento >= data_com",
+          "observado": "data_pagamento=2026-07-10, data_com=2026-07-15",
+          "onde_conferir": {
+            "pagina": 1,
+            "trecho": "10/07/2026",
+            "bbox": [
+              238.4,
+              381.1,
+              288.5,
+              391.1
+            ],
+            "fonte": "TEXTO_NATIVO"
+          }
+        },
+        {
+          "campo": "data_pagamento",
+          "codigo": "DATAS_PAGAMENTO_ANTES_DA_EX",
+          "tipo_acao": "RESOLVER_INCONSISTENCIA",
+          "acao_sugerida": "Comparar os valores com o documento original e com o emissor; corrigir o dado errado ou solicitar retificação.",
+          "esperado": "data_pagamento >= data_ex",
+          "observado": "data_pagamento=2026-07-10, data_ex=2026-07-16",
+          "onde_conferir": {
+            "pagina": 1,
+            "trecho": "10/07/2026",
+            "bbox": [
+              238.4,
+              381.1,
+              288.5,
+              391.1
+            ],
+            "fonte": "TEXTO_NATIVO"
+          }
+        }
+      ],
+      "para_aprovar": {
+        "passos": [
+          {
+            "codigo": "DATAS_PAGAMENTO_ANTES_DA_COM",
+            "campo": "data_pagamento",
+            "linha_que_aciona": "L2",
+            "condicao": "a regra passar",
+            "decisao_se_so_este_resolver": "REVISAO_HUMANA",
+            "linha_se_so_este_resolver": "L2"
+          },
+          {
+            "codigo": "DATAS_PAGAMENTO_ANTES_DA_EX",
+            "campo": "data_pagamento",
+            "linha_que_aciona": "L2",
+            "condicao": "a regra passar",
+            "decisao_se_so_este_resolver": "REVISAO_HUMANA",
+            "linha_se_so_este_resolver": "L2"
+          }
+        ],
+        "decisao_com_todos_resolvidos": "APROVADO_AUTO",
+        "linha_com_todos_resolvidos": "L7"
+      }
+    },
+    {
+      "arquivo": "08_construtora_horizonte_bonificacao.pdf",
+      "estado": "REVISAO_HUMANA",
+      "linha_da_tabela": "L2: Alguma regra de severidade ERRO falhou (inclui golden, datas, valores, evidência)",
+      "motivos": [
+        {
+          "codigo": "GOLDEN_NAO_ENCONTRADO",
+          "mensagem": "Nenhum identificador do aviso consta na base de referência.",
+          "campo": "emissor"
+        }
+      ],
+      "fichas": [
+        {
+          "campo": "emissor",
+          "codigo": "GOLDEN_NAO_ENCONTRADO",
+          "tipo_acao": "CADASTRAR_EMISSOR",
+          "acao_sugerida": "Confirmar o emissor na fonte oficial (CVM/B3) e cadastrá-lo na base de referência antes de processar o evento.",
+          "esperado": null,
+          "observado": "não constam na base de referência: isin BRCNHZACNOR5, ticker CNHZ3, cnpj 09.888.999/0001-21",
+          "onde_conferir": {
+            "pagina": 1,
+            "trecho": "CONSTRUTORA HORIZONTE S.A.",
+            "bbox": [
+              192.6,
+              59.7,
+              402.7,
+              72.7
+            ],
+            "fonte": "TEXTO_NATIVO"
+          }
+        }
+      ],
+      "para_aprovar": {
+        "passos": [
+          {
+            "codigo": "GOLDEN_NAO_ENCONTRADO",
+            "campo": "emissor",
+            "linha_que_aciona": "L2",
+            "condicao": "a regra passar",
+            "decisao_se_so_este_resolver": "APROVADO_AUTO",
+            "linha_se_so_este_resolver": "L7"
+          }
+        ],
+        "decisao_com_todos_resolvidos": "APROVADO_AUTO",
+        "linha_com_todos_resolvidos": "L7"
+      }
+    }
+  ]
+}

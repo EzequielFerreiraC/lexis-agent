@@ -1,0 +1,832 @@
+{
+  "schema_version": "1.1",
+  "run_id": "4a942afc426b",
+  "documento": {
+    "arquivo": "06_petroquimica_litoral_grupamento.pdf",
+    "sha256": "147d83f038f6ca94495a5d5248f36a6feedee7ae9a5cebc011d40e1f14d68068",
+    "paginas": 1,
+    "fonte": "NATIVO",
+    "avisos_ingestao": []
+  },
+  "versoes": {
+    "pipeline": "1.0.0",
+    "regras": "1.0+7709e71789cb",
+    "prompt_sha": "14318d8cf7827097",
+    "modelo": "claude-sonnet-5-5",
+    "extrator": "replay",
+    "golden_sha": "6ce677a6849f",
+    "schema": "1.1"
+  },
+  "decisao": {
+    "estado": "APROVADO_AUTO",
+    "resumo": "Todas as regras passaram, a identidade foi confirmada na base e os campos críticos têm confiança suficiente.",
+    "motivos": [],
+    "linha_da_tabela": "L7: Nenhuma das anteriores",
+    "para_aprovar": null
+  },
+  "evento": {
+    "tipo": "GRUPAMENTO",
+    "rotulo": "Grupamento de ações",
+    "classificacao": {
+      "tipo_final": "GRUPAMENTO",
+      "tipo_modelo": "GRUPAMENTO",
+      "por_zona": {
+        "titulo": "GRUPAMENTO",
+        "campo": "GRUPAMENTO",
+        "corpo": "GRUPAMENTO"
+      },
+      "pontuacao": {
+        "GRUPAMENTO": 33
+      },
+      "sinais": [
+        "titulo:grupamento",
+        "titulo:inplit",
+        "campo:grupamento",
+        "campo:inplit",
+        "corpo:grupamento"
+      ],
+      "conflito_titulo_corpo": false
+    },
+    "tratamento_tributario": {
+      "descricao": "Sem provento em dinheiro; altera a quantidade de ações. Frações são apuradas e alienadas conforme o aviso.",
+      "fonte_da_descricao": "catálogo de regras v1.0",
+      "observacao_literal_do_aviso": null,
+      "aliquota_irrf_informada": null
+    }
+  },
+  "campos": {
+    "tipo_evento": {
+      "estado": "EXTRAIDO",
+      "valor": "GRUPAMENTO",
+      "detalhe_valor": null,
+      "natureza": "DERIVADO",
+      "texto_literal": "Grupamento de ações (inplit)",
+      "evidencia": {
+        "pagina": 1,
+        "trecho": "Grupamento de ações (inplit)",
+        "bbox": null,
+        "fonte": "TEXTO_NATIVO"
+      },
+      "confianca": {
+        "nivel": "ALTA",
+        "motivos": [
+          "tipo inferido por sinais em cada zona do aviso (titulo=GRUPAMENTO; campo=GRUPAMENTO; corpo=GRUPAMENTO)",
+          "modelo e sinais do documento concordam"
+        ],
+        "justificativa": "ALTA: tipo inferido por sinais em cada zona do aviso (titulo=GRUPAMENTO; campo=GRUPAMENTO; corpo=GRUPAMENTO); modelo e sinais do documento concordam."
+      }
+    },
+    "emissor": {
+      "estado": "EXTRAIDO",
+      "valor": "PETROQUÍMICA LITORAL S.A.",
+      "detalhe_valor": null,
+      "natureza": "LITERAL",
+      "texto_literal": "PETROQUÍMICA LITORAL S.A.",
+      "evidencia": {
+        "pagina": 1,
+        "trecho": "PETROQUÍMICA LITORAL S.A.",
+        "bbox": [
+          202.7,
+          59.7,
+          392.6,
+          72.7
+        ],
+        "fonte": "TEXTO_NATIVO"
+      },
+      "confianca": {
+        "nivel": "ALTA",
+        "motivos": [
+          "trecho literal verificado no texto-fonte (página 1)",
+          "valor normalizado pelo código a partir do trecho",
+          "confirmado pela base de referência"
+        ],
+        "justificativa": "ALTA: trecho literal verificado no texto-fonte (página 1); valor normalizado pelo código a partir do trecho; confirmado pela base de referência."
+      }
+    },
+    "cnpj": {
+      "estado": "EXTRAIDO",
+      "valor": "55.666.777/0001-08",
+      "detalhe_valor": null,
+      "natureza": "LITERAL",
+      "texto_literal": "55.666.777/0001-08",
+      "evidencia": {
+        "pagina": 1,
+        "trecho": "55.666.777/0001-08",
+        "bbox": [
+          279.1,
+          82.8,
+          355.2,
+          91.3
+        ],
+        "fonte": "TEXTO_NATIVO"
+      },
+      "confianca": {
+        "nivel": "ALTA",
+        "motivos": [
+          "trecho literal verificado no texto-fonte (página 1)",
+          "valor normalizado pelo código a partir do trecho",
+          "confirmado pela base de referência"
+        ],
+        "justificativa": "ALTA: trecho literal verificado no texto-fonte (página 1); valor normalizado pelo código a partir do trecho; confirmado pela base de referência."
+      }
+    },
+    "isin": {
+      "estado": "EXTRAIDO",
+      "valor": "BRPQLTACNOR8",
+      "detalhe_valor": null,
+      "natureza": "LITERAL",
+      "texto_literal": "BRPQLTACNOR8",
+      "evidencia": {
+        "pagina": 1,
+        "trecho": "BRPQLTACNOR8",
+        "bbox": [
+          298.5,
+          471.1,
+          380.1,
+          481.1
+        ],
+        "fonte": "TEXTO_NATIVO"
+      },
+      "confianca": {
+        "nivel": "ALTA",
+        "motivos": [
+          "trecho literal verificado no texto-fonte (página 1)",
+          "valor normalizado pelo código a partir do trecho",
+          "confirmado pela base de referência"
+        ],
+        "justificativa": "ALTA: trecho literal verificado no texto-fonte (página 1); valor normalizado pelo código a partir do trecho; confirmado pela base de referência."
+      }
+    },
+    "ticker": {
+      "estado": "EXTRAIDO",
+      "valor": "PQLT3",
+      "detalhe_valor": null,
+      "natureza": "LITERAL",
+      "texto_literal": "PQLT3",
+      "evidencia": {
+        "pagina": 1,
+        "trecho": "PQLT3",
+        "bbox": [
+          238.4,
+          471.1,
+          270.1,
+          481.1
+        ],
+        "fonte": "TEXTO_NATIVO"
+      },
+      "confianca": {
+        "nivel": "ALTA",
+        "motivos": [
+          "trecho literal verificado no texto-fonte (página 1)",
+          "valor normalizado pelo código a partir do trecho",
+          "confirmado pela base de referência"
+        ],
+        "justificativa": "ALTA: trecho literal verificado no texto-fonte (página 1); valor normalizado pelo código a partir do trecho; confirmado pela base de referência."
+      }
+    },
+    "classe_acao": {
+      "estado": "AUSENTE",
+      "valor": null,
+      "detalhe_valor": null,
+      "natureza": null,
+      "texto_literal": null,
+      "evidencia": null,
+      "confianca": {
+        "nivel": "MEDIA",
+        "motivos": [
+          "campo opcional não consta no aviso (ausência não é provável apenas pela leitura)"
+        ],
+        "justificativa": "MEDIA: campo opcional não consta no aviso (ausência não é provável apenas pela leitura)."
+      }
+    },
+    "data_aprovacao": {
+      "estado": "EXTRAIDO",
+      "valor": "2026-05-30",
+      "detalhe_valor": null,
+      "natureza": "LITERAL",
+      "texto_literal": "30 de maio de 2026",
+      "evidencia": {
+        "pagina": 1,
+        "trecho": "30 de maio de 2026",
+        "bbox": [
+          124.5,
+          170.1,
+          216.3,
+          180.1
+        ],
+        "fonte": "TEXTO_NATIVO"
+      },
+      "confianca": {
+        "nivel": "ALTA",
+        "motivos": [
+          "trecho literal verificado no texto-fonte (página 1)",
+          "valor normalizado pelo código a partir do trecho"
+        ],
+        "justificativa": "ALTA: trecho literal verificado no texto-fonte (página 1); valor normalizado pelo código a partir do trecho."
+      }
+    },
+    "data_com": {
+      "estado": "EXTRAIDO",
+      "valor": "2026-06-26",
+      "detalhe_valor": null,
+      "natureza": "LITERAL",
+      "texto_literal": "26 de junho de 2026",
+      "evidencia": {
+        "pagina": 1,
+        "trecho": "26 de junho de 2026",
+        "bbox": [
+          62.7,
+          238.1,
+          532.6,
+          263.1
+        ],
+        "fonte": "TEXTO_NATIVO"
+      },
+      "confianca": {
+        "nivel": "ALTA",
+        "motivos": [
+          "trecho literal verificado no texto-fonte (página 1)",
+          "valor normalizado pelo código a partir do trecho",
+          "regra DATAS_EX_NAO_POSTERIOR_A_COM satisfeita"
+        ],
+        "justificativa": "ALTA: trecho literal verificado no texto-fonte (página 1); valor normalizado pelo código a partir do trecho; regra DATAS_EX_NAO_POSTERIOR_A_COM satisfeita."
+      }
+    },
+    "data_ex": {
+      "estado": "EXTRAIDO",
+      "valor": "2026-06-29",
+      "detalhe_valor": null,
+      "natureza": "LITERAL",
+      "texto_literal": "29 de junho de 2026",
+      "evidencia": {
+        "pagina": 1,
+        "trecho": "29 de junho de 2026",
+        "bbox": [
+          322.9,
+          253.1,
+          415.8,
+          263.1
+        ],
+        "fonte": "TEXTO_NATIVO"
+      },
+      "confianca": {
+        "nivel": "ALTA",
+        "motivos": [
+          "trecho literal verificado no texto-fonte (página 1)",
+          "valor normalizado pelo código a partir do trecho",
+          "regra DATAS_EX_NAO_POSTERIOR_A_COM satisfeita"
+        ],
+        "justificativa": "ALTA: trecho literal verificado no texto-fonte (página 1); valor normalizado pelo código a partir do trecho; regra DATAS_EX_NAO_POSTERIOR_A_COM satisfeita."
+      }
+    },
+    "data_pagamento": {
+      "estado": "NAO_APLICAVEL",
+      "valor": null,
+      "detalhe_valor": null,
+      "natureza": null,
+      "texto_literal": null,
+      "evidencia": null,
+      "confianca": {
+        "nivel": "ALTA",
+        "motivos": [
+          "não se aplica ao tipo de evento (matriz de aplicabilidade)"
+        ],
+        "justificativa": "ALTA: não se aplica ao tipo de evento (matriz de aplicabilidade)."
+      }
+    },
+    "data_credito_ativos": {
+      "estado": "AUSENTE",
+      "valor": null,
+      "detalhe_valor": null,
+      "natureza": null,
+      "texto_literal": null,
+      "evidencia": null,
+      "confianca": {
+        "nivel": "MEDIA",
+        "motivos": [
+          "campo opcional não consta no aviso (ausência não é provável apenas pela leitura)"
+        ],
+        "justificativa": "MEDIA: campo opcional não consta no aviso (ausência não é provável apenas pela leitura)."
+      }
+    },
+    "valor_bruto": {
+      "estado": "NAO_APLICAVEL",
+      "valor": null,
+      "detalhe_valor": null,
+      "natureza": null,
+      "texto_literal": null,
+      "evidencia": null,
+      "confianca": {
+        "nivel": "ALTA",
+        "motivos": [
+          "não se aplica ao tipo de evento (matriz de aplicabilidade)"
+        ],
+        "justificativa": "ALTA: não se aplica ao tipo de evento (matriz de aplicabilidade)."
+      }
+    },
+    "aliquota_irrf": {
+      "estado": "NAO_APLICAVEL",
+      "valor": null,
+      "detalhe_valor": null,
+      "natureza": null,
+      "texto_literal": null,
+      "evidencia": null,
+      "confianca": {
+        "nivel": "ALTA",
+        "motivos": [
+          "não se aplica ao tipo de evento (matriz de aplicabilidade)"
+        ],
+        "justificativa": "ALTA: não se aplica ao tipo de evento (matriz de aplicabilidade)."
+      }
+    },
+    "valor_liquido": {
+      "estado": "NAO_APLICAVEL",
+      "valor": null,
+      "detalhe_valor": null,
+      "natureza": null,
+      "texto_literal": null,
+      "evidencia": null,
+      "confianca": {
+        "nivel": "ALTA",
+        "motivos": [
+          "não se aplica ao tipo de evento (matriz de aplicabilidade)"
+        ],
+        "justificativa": "ALTA: não se aplica ao tipo de evento (matriz de aplicabilidade)."
+      }
+    },
+    "custo_atribuido": {
+      "estado": "NAO_APLICAVEL",
+      "valor": null,
+      "detalhe_valor": null,
+      "natureza": null,
+      "texto_literal": null,
+      "evidencia": null,
+      "confianca": {
+        "nivel": "ALTA",
+        "motivos": [
+          "não se aplica ao tipo de evento (matriz de aplicabilidade)"
+        ],
+        "justificativa": "ALTA: não se aplica ao tipo de evento (matriz de aplicabilidade)."
+      }
+    },
+    "moeda": {
+      "estado": "NAO_APLICAVEL",
+      "valor": null,
+      "detalhe_valor": null,
+      "natureza": null,
+      "texto_literal": null,
+      "evidencia": null,
+      "confianca": {
+        "nivel": "ALTA",
+        "motivos": [
+          "não se aplica ao tipo de evento (matriz de aplicabilidade)"
+        ],
+        "justificativa": "ALTA: não se aplica ao tipo de evento (matriz de aplicabilidade)."
+      }
+    },
+    "proporcao": {
+      "estado": "EXTRAIDO",
+      "valor": "10:1",
+      "detalhe_valor": {
+        "termo_a": "10",
+        "termo_b": "1",
+        "forma": "EXISTENTES_PARA"
+      },
+      "natureza": "LITERAL",
+      "texto_literal": "10 (dez) ações existentes para 1 (uma) ação",
+      "evidencia": {
+        "pagina": 1,
+        "trecho": "10 (dez) ações existentes para 1 (uma) ação",
+        "bbox": [
+          202.6,
+          185.1,
+          412.5,
+          195.1
+        ],
+        "fonte": "TEXTO_NATIVO"
+      },
+      "confianca": {
+        "nivel": "ALTA",
+        "motivos": [
+          "trecho literal verificado no texto-fonte (página 1)",
+          "valor normalizado pelo código a partir do trecho",
+          "regra PROP_INVALIDA satisfeita",
+          "regra PROP_SENTIDO_INCOMPATIVEL satisfeita"
+        ],
+        "justificativa": "ALTA: trecho literal verificado no texto-fonte (página 1); valor normalizado pelo código a partir do trecho; regra PROP_INVALIDA satisfeita; regra PROP_SENTIDO_INCOMPATIVEL satisfeita."
+      }
+    },
+    "observacao_tributaria": {
+      "estado": "AUSENTE",
+      "valor": null,
+      "detalhe_valor": null,
+      "natureza": null,
+      "texto_literal": null,
+      "evidencia": null,
+      "confianca": {
+        "nivel": "MEDIA",
+        "motivos": [
+          "campo opcional não consta no aviso (ausência não é provável apenas pela leitura)"
+        ],
+        "justificativa": "MEDIA: campo opcional não consta no aviso (ausência não é provável apenas pela leitura)."
+      }
+    }
+  },
+  "validacao_golden": {
+    "status": "MATCH",
+    "registro_golden": {
+      "emissor": "Petroquímica Litoral S.A.",
+      "cnpj": "55.666.777/0001-08",
+      "isin": "BRPQLTACNOR8",
+      "ticker": "PQLT3",
+      "classe": "ON",
+      "segmento_listagem": "Nível 2",
+      "status": "ativo"
+    },
+    "comparacoes": [
+      {
+        "campo": "isin",
+        "aviso": "BRPQLTACNOR8",
+        "golden": "BRPQLTACNOR8",
+        "resultado": "IGUAL"
+      },
+      {
+        "campo": "ticker",
+        "aviso": "PQLT3",
+        "golden": "PQLT3",
+        "resultado": "IGUAL"
+      },
+      {
+        "campo": "cnpj",
+        "aviso": "55.666.777/0001-08",
+        "golden": "55.666.777/0001-08",
+        "resultado": "IGUAL"
+      },
+      {
+        "campo": "emissor",
+        "aviso": "PETROQUÍMICA LITORAL S.A.",
+        "golden": "Petroquímica Litoral S.A.",
+        "resultado": "IGUAL"
+      },
+      {
+        "campo": "classe_acao",
+        "aviso": null,
+        "golden": "ON",
+        "resultado": "NAO_INFORMADO"
+      },
+      {
+        "campo": "status",
+        "aviso": null,
+        "golden": "ativo",
+        "resultado": "ATIVO"
+      }
+    ],
+    "sugestao_por_nome": null
+  },
+  "regras": [
+    {
+      "id": "CLASSIFICACAO_DIVERGENTE",
+      "severidade": "ERRO",
+      "resultado": "OK",
+      "campos": [
+        "tipo_evento"
+      ],
+      "detalhe": "Classificação do modelo diverge da classificação por sinais do documento.",
+      "esperado": "sinais do documento: GRUPAMENTO",
+      "observado": "modelo: GRUPAMENTO"
+    },
+    {
+      "id": "TITULO_DIVERGE_CORPO",
+      "severidade": "AVISO",
+      "resultado": "OK",
+      "campos": [
+        "tipo_evento"
+      ],
+      "detalhe": "Título sugere um tipo e o corpo/natureza do provento indica outro; prevalece o corpo.",
+      "esperado": "tipo pelo corpo/natureza: GRUPAMENTO",
+      "observado": "tipo pelo título: GRUPAMENTO"
+    },
+    {
+      "id": "TIPO_NAO_SUPORTADO",
+      "severidade": "ERRO",
+      "resultado": "OK",
+      "campos": [
+        "tipo_evento"
+      ],
+      "detalhe": "Tipo de evento fora do escopo suportado.",
+      "esperado": null,
+      "observado": null
+    },
+    {
+      "id": "FORMATO_ISIN",
+      "severidade": "ERRO",
+      "resultado": "OK",
+      "campos": [
+        "isin"
+      ],
+      "detalhe": "ISIN fora do formato (2 letras + 9 alfanuméricos + 1 dígito).",
+      "esperado": null,
+      "observado": "BRPQLTACNOR8"
+    },
+    {
+      "id": "FORMATO_TICKER",
+      "severidade": "ERRO",
+      "resultado": "OK",
+      "campos": [
+        "ticker"
+      ],
+      "detalhe": "Ticker fora do formato (4 letras + 1 ou 2 dígitos).",
+      "esperado": null,
+      "observado": "PQLT3"
+    },
+    {
+      "id": "FORMATO_CNPJ",
+      "severidade": "ERRO",
+      "resultado": "OK",
+      "campos": [
+        "cnpj"
+      ],
+      "detalhe": "CNPJ fora do formato 00.000.000/0000-00. Dígitos verificadores não são validados (base sintética).",
+      "esperado": null,
+      "observado": "55.666.777/0001-08"
+    },
+    {
+      "id": "GOLDEN_NAO_ENCONTRADO",
+      "severidade": "ERRO",
+      "resultado": "OK",
+      "campos": [
+        "emissor",
+        "isin",
+        "ticker",
+        "cnpj"
+      ],
+      "detalhe": "Nenhum identificador do aviso consta na base de referência.",
+      "esperado": null,
+      "observado": null
+    },
+    {
+      "id": "GOLDEN_DIVERGENTE",
+      "severidade": "ERRO",
+      "resultado": "OK",
+      "campos": [
+        "emissor",
+        "isin",
+        "ticker",
+        "cnpj"
+      ],
+      "detalhe": "Identificadores casam com a base, mas algum campo diverge.",
+      "esperado": null,
+      "observado": null
+    },
+    {
+      "id": "GOLDEN_AMBIGUO",
+      "severidade": "ERRO",
+      "resultado": "OK",
+      "campos": [
+        "emissor",
+        "isin",
+        "ticker",
+        "cnpj"
+      ],
+      "detalhe": "Identificadores do aviso apontam para registros diferentes da base.",
+      "esperado": null,
+      "observado": null
+    },
+    {
+      "id": "GOLDEN_INATIVO",
+      "severidade": "ERRO",
+      "resultado": "OK",
+      "campos": [
+        "isin"
+      ],
+      "detalhe": "Registro da base não está com status ativo.",
+      "esperado": null,
+      "observado": "ativo"
+    },
+    {
+      "id": "DATAS_EX_NAO_POSTERIOR_A_COM",
+      "severidade": "ERRO",
+      "resultado": "OK",
+      "campos": [
+        "data_com",
+        "data_ex"
+      ],
+      "detalhe": "Data ex deve ser posterior à data com.",
+      "esperado": "data_ex > data_com",
+      "observado": "data_com=2026-06-26, data_ex=2026-06-29"
+    },
+    {
+      "id": "DATAS_CREDITO_ANTES_DA_COM",
+      "severidade": "ERRO",
+      "resultado": "NAO_APLICAVEL",
+      "campos": [
+        "data_credito_ativos",
+        "data_com"
+      ],
+      "detalhe": "Crédito das ações não pode anteceder a data com.",
+      "esperado": "data_credito_ativos >= data_com",
+      "observado": "data_credito_ativos=None, data_com=2026-06-26"
+    },
+    {
+      "id": "DATAS_APROVACAO_APOS_COM",
+      "severidade": "AVISO",
+      "resultado": "OK",
+      "campos": [
+        "data_aprovacao",
+        "data_com"
+      ],
+      "detalhe": "Aprovação costuma anteceder a data com.",
+      "esperado": "data_aprovacao <= data_com",
+      "observado": "data_aprovacao=2026-05-30, data_com=2026-06-26"
+    },
+    {
+      "id": "DATAS_EX_NAO_E_DIA_UTIL_SEGUINTE",
+      "severidade": "AVISO",
+      "resultado": "OK",
+      "campos": [
+        "data_com",
+        "data_ex"
+      ],
+      "detalhe": "Dia útil pelo calendário de feriados da B3 (fins de semana, feriados nacionais, Carnaval, Sexta-feira Santa, Corpus Christi, 24 e 31/12).",
+      "esperado": "data_ex=2026-06-29",
+      "observado": "data_ex=2026-06-29"
+    },
+    {
+      "id": "DATA_FIM_DE_SEMANA",
+      "severidade": "AVISO",
+      "resultado": "OK",
+      "campos": [],
+      "detalhe": "Data com/ex/pagamento em fim de semana.",
+      "esperado": null,
+      "observado": null
+    },
+    {
+      "id": "DATA_APROVACAO_FIM_DE_SEMANA",
+      "severidade": "INFO",
+      "resultado": "FALHA",
+      "campos": [
+        "data_aprovacao"
+      ],
+      "detalhe": "Aprovação em fim de semana (assembleias podem ocorrer).",
+      "esperado": null,
+      "observado": "2026-05-30"
+    },
+    {
+      "id": "DATAS_FORA_DA_FAIXA",
+      "severidade": "AVISO",
+      "resultado": "OK",
+      "campos": [],
+      "detalhe": "Datas a mais de 550 dias da aprovação sugerem erro de leitura (ex.: ano).",
+      "esperado": null,
+      "observado": null
+    },
+    {
+      "id": "PROP_INVALIDA",
+      "severidade": "ERRO",
+      "resultado": "OK",
+      "campos": [
+        "proporcao"
+      ],
+      "detalhe": "Proporção ilegível ou com termos não positivos.",
+      "esperado": null,
+      "observado": "10:1"
+    },
+    {
+      "id": "PROP_SENTIDO_INCOMPATIVEL",
+      "severidade": "ERRO",
+      "resultado": "OK",
+      "campos": [
+        "proporcao"
+      ],
+      "detalhe": "Grupamento reduz a quantidade de ações: termo existente > termo resultante.",
+      "esperado": "antes > depois",
+      "observado": "10:1 (EXISTENTES_PARA)"
+    },
+    {
+      "id": "IDENTIFICADOR_NAO_EXTRAIDO",
+      "severidade": "AVISO",
+      "resultado": "OK",
+      "campos": [],
+      "detalhe": "ISIN/ticker/CNPJ presente no texto e ausente da extração.",
+      "esperado": null,
+      "observado": null
+    },
+    {
+      "id": "INJECAO_SUSPEITA",
+      "severidade": "AVISO",
+      "resultado": "OK",
+      "campos": [],
+      "detalhe": "Texto do documento contém padrão típico de instrução dirigida a modelo.",
+      "esperado": null,
+      "observado": null
+    },
+    {
+      "id": "TEXTO_OCULTO",
+      "severidade": "AVISO",
+      "resultado": "OK",
+      "campos": [],
+      "detalhe": "Texto invisível (branco, minúsculo ou fora da página).",
+      "esperado": null,
+      "observado": null
+    },
+    {
+      "id": "CONTEUDO_ATIVO_PDF",
+      "severidade": "AVISO",
+      "resultado": "OK",
+      "campos": [],
+      "detalhe": "PDF contém ação/JavaScript/arquivo embutido; nada foi executado.",
+      "esperado": null,
+      "observado": null
+    }
+  ],
+  "fichas_conferencia": [],
+  "auditoria": {
+    "modo": "replay",
+    "iniciado_em": "2026-10-24T00:35:50+00:00",
+    "chamadas_de_tools": [
+      {
+        "tool": "consultar_golden",
+        "origem": "MODELO",
+        "aceita": true,
+        "argumentos": {
+          "isin": "BRPQLTACNOR8",
+          "ticker": "PQLT3",
+          "cnpj": "55.666.777/0001-08",
+          "emissor": "PETROQUÍMICA LITORAL S.A."
+        },
+        "resultado": {
+          "regras_ok": 4,
+          "regras_falha": []
+        }
+      },
+      {
+        "tool": "checar_datas",
+        "origem": "MODELO",
+        "aceita": true,
+        "argumentos": {
+          "tipo_evento": "GRUPAMENTO",
+          "data_aprovacao": "2026-05-30",
+          "data_com": "2026-06-26",
+          "data_ex": "2026-06-29"
+        },
+        "resultado": {
+          "regras_ok": 5,
+          "regras_falha": [
+            "DATA_APROVACAO_FIM_DE_SEMANA"
+          ]
+        }
+      },
+      {
+        "tool": "checar_proporcao",
+        "origem": "MODELO",
+        "aceita": true,
+        "argumentos": {
+          "tipo_evento": "GRUPAMENTO",
+          "termo_a": "10",
+          "termo_b": "1",
+          "forma": "EXISTENTES_PARA"
+        },
+        "resultado": {
+          "regras_ok": 2,
+          "regras_falha": []
+        }
+      }
+    ],
+    "validacao_pelo_modelo": {
+      "turnos_com_tools": 1,
+      "tools_pedidas": [
+        "consultar_golden",
+        "checar_datas",
+        "checar_proporcao"
+      ],
+      "pedidos_rejeitados": 0,
+      "encerramento": "end_turn",
+      "parecer_do_modelo": "Só uma regra falhou: DATA_APROVACAO_FIM_DE_SEMANA, com severidade INFO. A data de aprovação, 2026-05-30, cai em um fim de semana. Nenhuma outra regra de referência (golden), datas ou proporção falhou.",
+      "nota": "parecer informativo; o veredito de cada regra é o resultado da tool executada pelo código",
+      "avisos": []
+    },
+    "chamadas_llm": [
+      {
+        "etapa": "extracao",
+        "modelo": "claude-sonnet-5-5",
+        "origem": "CACHE",
+        "origem_fixture": "API"
+      },
+      {
+        "etapa": "validacao_tools",
+        "modelo": "claude-sonnet-5-5",
+        "origem": "CACHE",
+        "origem_fixture": "API"
+      }
+    ],
+    "chamadas_api": 0,
+    "chamadas_cache": 2,
+    "tokens_entrada": 0,
+    "tokens_saida": 0,
+    "reparos_de_contrato": 0,
+    "custo_estimado_usd": 0,
+    "custo_fonte": "preços públicos de lista (Anthropic), consulta em 2026-10-17; estimativa, sem descontos de cache/lote",
+    "concluido_em": "2026-10-24T00:35:51+00:00",
+    "tempo_total_ms": 917
+  }
+}

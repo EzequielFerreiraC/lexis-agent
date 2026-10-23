@@ -1,0 +1,938 @@
+{
+  "schema_version": "1.1",
+  "run_id": "4a942afc426b",
+  "documento": {
+    "arquivo": "05_aurora_saneamento_dividendo_datas.pdf",
+    "sha256": "925b6eb09fbcaecf81d3c1d125e041edd1460fed23d6a67bf10f8a6b170e9567",
+    "paginas": 1,
+    "fonte": "NATIVO",
+    "avisos_ingestao": []
+  },
+  "versoes": {
+    "pipeline": "1.0.0",
+    "regras": "1.0+7709e71789cb",
+    "prompt_sha": "14318d8cf7827097",
+    "modelo": "claude-sonnet-5-5",
+    "extrator": "replay",
+    "golden_sha": "6ce677a6849f",
+    "schema": "1.1"
+  },
+  "decisao": {
+    "estado": "REVISAO_HUMANA",
+    "resumo": "Há inconsistência, evidência insuficiente ou sinal de risco que exige conferência humana.",
+    "motivos": [
+      {
+        "codigo": "DATAS_PAGAMENTO_ANTES_DA_COM",
+        "mensagem": "Pagamento não pode anteceder a data com.",
+        "campo": "data_pagamento"
+      },
+      {
+        "codigo": "DATAS_PAGAMENTO_ANTES_DA_EX",
+        "mensagem": "Pagamento não pode anteceder a data ex.",
+        "campo": "data_pagamento"
+      }
+    ],
+    "linha_da_tabela": "L2: Alguma regra de severidade ERRO falhou (inclui golden, datas, valores, evidência)",
+    "para_aprovar": {
+      "passos": [
+        {
+          "codigo": "DATAS_PAGAMENTO_ANTES_DA_COM",
+          "campo": "data_pagamento",
+          "linha_que_aciona": "L2",
+          "condicao": "a regra passar",
+          "decisao_se_so_este_resolver": "REVISAO_HUMANA",
+          "linha_se_so_este_resolver": "L2"
+        },
+        {
+          "codigo": "DATAS_PAGAMENTO_ANTES_DA_EX",
+          "campo": "data_pagamento",
+          "linha_que_aciona": "L2",
+          "condicao": "a regra passar",
+          "decisao_se_so_este_resolver": "REVISAO_HUMANA",
+          "linha_se_so_este_resolver": "L2"
+        }
+      ],
+      "decisao_com_todos_resolvidos": "APROVADO_AUTO",
+      "linha_com_todos_resolvidos": "L7"
+    }
+  },
+  "evento": {
+    "tipo": "DIVIDENDO",
+    "rotulo": "Dividendo",
+    "classificacao": {
+      "tipo_final": "DIVIDENDO",
+      "tipo_modelo": "DIVIDENDO",
+      "por_zona": {
+        "titulo": "DIVIDENDO",
+        "campo": "DIVIDENDO",
+        "corpo": "DIVIDENDO"
+      },
+      "pontuacao": {
+        "DIVIDENDO": 21
+      },
+      "sinais": [
+        "titulo:dividendo_intercalar",
+        "titulo:dividendo",
+        "campo:dividendo",
+        "corpo:dividendo_intercalar",
+        "corpo:dividendo"
+      ],
+      "conflito_titulo_corpo": false
+    },
+    "tratamento_tributario": {
+      "descricao": "Sem retenção de IRRF por ação no valor divulgado; eventual retenção condicional (por beneficiário/limite) é reproduzida do aviso em observacao_tributaria e não gera valor líquido por ação.",
+      "fonte_da_descricao": "catálogo de regras v1.0",
+      "observacao_literal_do_aviso": null,
+      "aliquota_irrf_informada": null
+    }
+  },
+  "campos": {
+    "tipo_evento": {
+      "estado": "EXTRAIDO",
+      "valor": "DIVIDENDO",
+      "detalhe_valor": null,
+      "natureza": "DERIVADO",
+      "texto_literal": "Dividendo intercalar",
+      "evidencia": {
+        "pagina": 1,
+        "trecho": "Dividendo intercalar",
+        "bbox": null,
+        "fonte": "TEXTO_NATIVO"
+      },
+      "confianca": {
+        "nivel": "ALTA",
+        "motivos": [
+          "tipo inferido por sinais em cada zona do aviso (titulo=DIVIDENDO; campo=DIVIDENDO; corpo=DIVIDENDO)",
+          "modelo e sinais do documento concordam"
+        ],
+        "justificativa": "ALTA: tipo inferido por sinais em cada zona do aviso (titulo=DIVIDENDO; campo=DIVIDENDO; corpo=DIVIDENDO); modelo e sinais do documento concordam."
+      }
+    },
+    "emissor": {
+      "estado": "EXTRAIDO",
+      "valor": "AURORA SANEAMENTO S.A.",
+      "detalhe_valor": null,
+      "natureza": "LITERAL",
+      "texto_literal": "AURORA SANEAMENTO S.A.",
+      "evidencia": {
+        "pagina": 1,
+        "trecho": "AURORA SANEAMENTO S.A.",
+        "bbox": [
+          206.6,
+          59.7,
+          388.6,
+          72.7
+        ],
+        "fonte": "TEXTO_NATIVO"
+      },
+      "confianca": {
+        "nivel": "ALTA",
+        "motivos": [
+          "trecho literal verificado no texto-fonte (página 1)",
+          "valor normalizado pelo código a partir do trecho",
+          "confirmado pela base de referência"
+        ],
+        "justificativa": "ALTA: trecho literal verificado no texto-fonte (página 1); valor normalizado pelo código a partir do trecho; confirmado pela base de referência."
+      }
+    },
+    "cnpj": {
+      "estado": "EXTRAIDO",
+      "valor": "22.333.444/0001-77",
+      "detalhe_valor": null,
+      "natureza": "LITERAL",
+      "texto_literal": "22.333.444/0001-77",
+      "evidencia": {
+        "pagina": 1,
+        "trecho": "22.333.444/0001-77",
+        "bbox": [
+          279.1,
+          82.8,
+          355.2,
+          91.3
+        ],
+        "fonte": "TEXTO_NATIVO"
+      },
+      "confianca": {
+        "nivel": "ALTA",
+        "motivos": [
+          "trecho literal verificado no texto-fonte (página 1)",
+          "valor normalizado pelo código a partir do trecho",
+          "confirmado pela base de referência"
+        ],
+        "justificativa": "ALTA: trecho literal verificado no texto-fonte (página 1); valor normalizado pelo código a partir do trecho; confirmado pela base de referência."
+      }
+    },
+    "isin": {
+      "estado": "EXTRAIDO",
+      "valor": "BRAURSACNOR4",
+      "detalhe_valor": null,
+      "natureza": "LITERAL",
+      "texto_literal": "BRAURSACNOR4",
+      "evidencia": {
+        "pagina": 1,
+        "trecho": "BRAURSACNOR4",
+        "bbox": [
+          300.1,
+          402.1,
+          383.5,
+          412.1
+        ],
+        "fonte": "TEXTO_NATIVO"
+      },
+      "confianca": {
+        "nivel": "ALTA",
+        "motivos": [
+          "trecho literal verificado no texto-fonte (página 1)",
+          "valor normalizado pelo código a partir do trecho",
+          "confirmado pela base de referência"
+        ],
+        "justificativa": "ALTA: trecho literal verificado no texto-fonte (página 1); valor normalizado pelo código a partir do trecho; confirmado pela base de referência."
+      }
+    },
+    "ticker": {
+      "estado": "EXTRAIDO",
+      "valor": "AURS3",
+      "detalhe_valor": null,
+      "natureza": "LITERAL",
+      "texto_literal": "AURS3",
+      "evidencia": {
+        "pagina": 1,
+        "trecho": "AURS3",
+        "bbox": [
+          238.4,
+          402.1,
+          271.8,
+          412.1
+        ],
+        "fonte": "TEXTO_NATIVO"
+      },
+      "confianca": {
+        "nivel": "ALTA",
+        "motivos": [
+          "trecho literal verificado no texto-fonte (página 1)",
+          "valor normalizado pelo código a partir do trecho",
+          "confirmado pela base de referência"
+        ],
+        "justificativa": "ALTA: trecho literal verificado no texto-fonte (página 1); valor normalizado pelo código a partir do trecho; confirmado pela base de referência."
+      }
+    },
+    "classe_acao": {
+      "estado": "EXTRAIDO",
+      "valor": "ON",
+      "detalhe_valor": null,
+      "natureza": "LITERAL",
+      "texto_literal": "ON",
+      "evidencia": {
+        "pagina": 1,
+        "trecho": "ON",
+        "bbox": [
+          205.0,
+          133.3,
+          221.5,
+          144.3
+        ],
+        "fonte": "TEXTO_NATIVO"
+      },
+      "confianca": {
+        "nivel": "ALTA",
+        "motivos": [
+          "trecho literal verificado no texto-fonte (página 1)",
+          "valor normalizado pelo código a partir do trecho",
+          "confirmado pela base de referência"
+        ],
+        "justificativa": "ALTA: trecho literal verificado no texto-fonte (página 1); valor normalizado pelo código a partir do trecho; confirmado pela base de referência."
+      }
+    },
+    "data_aprovacao": {
+      "estado": "EXTRAIDO",
+      "valor": "2026-06-01",
+      "detalhe_valor": null,
+      "natureza": "LITERAL",
+      "texto_literal": "01/06/2026",
+      "evidencia": {
+        "pagina": 1,
+        "trecho": "01/06/2026",
+        "bbox": [
+          238.4,
+          318.1,
+          288.5,
+          328.1
+        ],
+        "fonte": "TEXTO_NATIVO"
+      },
+      "confianca": {
+        "nivel": "ALTA",
+        "motivos": [
+          "trecho literal verificado no texto-fonte (página 1)",
+          "valor normalizado pelo código a partir do trecho"
+        ],
+        "justificativa": "ALTA: trecho literal verificado no texto-fonte (página 1); valor normalizado pelo código a partir do trecho."
+      }
+    },
+    "data_com": {
+      "estado": "EXTRAIDO",
+      "valor": "2026-07-15",
+      "detalhe_valor": null,
+      "natureza": "LITERAL",
+      "texto_literal": "15/07/2026",
+      "evidencia": {
+        "pagina": 1,
+        "trecho": "15/07/2026",
+        "bbox": [
+          238.4,
+          339.1,
+          288.5,
+          349.1
+        ],
+        "fonte": "TEXTO_NATIVO"
+      },
+      "confianca": {
+        "nivel": "BAIXA",
+        "motivos": [
+          "trecho literal verificado no texto-fonte (página 1)",
+          "valor normalizado pelo código a partir do trecho",
+          "regra DATAS_EX_NAO_POSTERIOR_A_COM satisfeita",
+          "regra reprovada: DATAS_PAGAMENTO_ANTES_DA_COM"
+        ],
+        "justificativa": "BAIXA: trecho literal verificado no texto-fonte (página 1); valor normalizado pelo código a partir do trecho; regra DATAS_EX_NAO_POSTERIOR_A_COM satisfeita; regra reprovada: DATAS_PAGAMENTO_ANTES_DA_COM."
+      }
+    },
+    "data_ex": {
+      "estado": "EXTRAIDO",
+      "valor": "2026-07-16",
+      "detalhe_valor": null,
+      "natureza": "LITERAL",
+      "texto_literal": "16/07/2026",
+      "evidencia": {
+        "pagina": 1,
+        "trecho": "16/07/2026",
+        "bbox": [
+          238.4,
+          360.1,
+          288.5,
+          370.1
+        ],
+        "fonte": "TEXTO_NATIVO"
+      },
+      "confianca": {
+        "nivel": "BAIXA",
+        "motivos": [
+          "trecho literal verificado no texto-fonte (página 1)",
+          "valor normalizado pelo código a partir do trecho",
+          "regra DATAS_EX_NAO_POSTERIOR_A_COM satisfeita",
+          "regra reprovada: DATAS_PAGAMENTO_ANTES_DA_EX"
+        ],
+        "justificativa": "BAIXA: trecho literal verificado no texto-fonte (página 1); valor normalizado pelo código a partir do trecho; regra DATAS_EX_NAO_POSTERIOR_A_COM satisfeita; regra reprovada: DATAS_PAGAMENTO_ANTES_DA_EX."
+      }
+    },
+    "data_pagamento": {
+      "estado": "EXTRAIDO",
+      "valor": "2026-07-10",
+      "detalhe_valor": null,
+      "natureza": "LITERAL",
+      "texto_literal": "10/07/2026",
+      "evidencia": {
+        "pagina": 1,
+        "trecho": "10/07/2026",
+        "bbox": [
+          238.4,
+          381.1,
+          288.5,
+          391.1
+        ],
+        "fonte": "TEXTO_NATIVO"
+      },
+      "confianca": {
+        "nivel": "BAIXA",
+        "motivos": [
+          "trecho literal verificado no texto-fonte (página 1)",
+          "valor normalizado pelo código a partir do trecho",
+          "regra reprovada: DATAS_PAGAMENTO_ANTES_DA_COM, DATAS_PAGAMENTO_ANTES_DA_EX"
+        ],
+        "justificativa": "BAIXA: trecho literal verificado no texto-fonte (página 1); valor normalizado pelo código a partir do trecho; regra reprovada: DATAS_PAGAMENTO_ANTES_DA_COM, DATAS_PAGAMENTO_ANTES_DA_EX."
+      }
+    },
+    "data_credito_ativos": {
+      "estado": "NAO_APLICAVEL",
+      "valor": null,
+      "detalhe_valor": null,
+      "natureza": null,
+      "texto_literal": null,
+      "evidencia": null,
+      "confianca": {
+        "nivel": "ALTA",
+        "motivos": [
+          "não se aplica ao tipo de evento (matriz de aplicabilidade)"
+        ],
+        "justificativa": "ALTA: não se aplica ao tipo de evento (matriz de aplicabilidade)."
+      }
+    },
+    "valor_bruto": {
+      "estado": "EXTRAIDO",
+      "valor": "0.3100000000",
+      "detalhe_valor": {
+        "moeda_no_trecho": "BRL"
+      },
+      "natureza": "LITERAL",
+      "texto_literal": "R$ 0,3100000000",
+      "evidencia": {
+        "pagina": 1,
+        "trecho": "R$ 0,3100000000",
+        "bbox": [
+          238.4,
+          297.1,
+          317.9,
+          307.1
+        ],
+        "fonte": "TEXTO_NATIVO"
+      },
+      "confianca": {
+        "nivel": "ALTA",
+        "motivos": [
+          "trecho literal verificado no texto-fonte (página 1)",
+          "valor normalizado pelo código a partir do trecho"
+        ],
+        "justificativa": "ALTA: trecho literal verificado no texto-fonte (página 1); valor normalizado pelo código a partir do trecho."
+      }
+    },
+    "aliquota_irrf": {
+      "estado": "AUSENTE",
+      "valor": null,
+      "detalhe_valor": null,
+      "natureza": null,
+      "texto_literal": null,
+      "evidencia": null,
+      "confianca": {
+        "nivel": "MEDIA",
+        "motivos": [
+          "campo opcional não consta no aviso (ausência não é provável apenas pela leitura)"
+        ],
+        "justificativa": "MEDIA: campo opcional não consta no aviso (ausência não é provável apenas pela leitura)."
+      }
+    },
+    "valor_liquido": {
+      "estado": "AUSENTE",
+      "valor": null,
+      "detalhe_valor": null,
+      "natureza": null,
+      "texto_literal": null,
+      "evidencia": null,
+      "confianca": {
+        "nivel": "MEDIA",
+        "motivos": [
+          "campo opcional não consta no aviso (ausência não é provável apenas pela leitura)"
+        ],
+        "justificativa": "MEDIA: campo opcional não consta no aviso (ausência não é provável apenas pela leitura)."
+      }
+    },
+    "custo_atribuido": {
+      "estado": "NAO_APLICAVEL",
+      "valor": null,
+      "detalhe_valor": null,
+      "natureza": null,
+      "texto_literal": null,
+      "evidencia": null,
+      "confianca": {
+        "nivel": "ALTA",
+        "motivos": [
+          "não se aplica ao tipo de evento (matriz de aplicabilidade)"
+        ],
+        "justificativa": "ALTA: não se aplica ao tipo de evento (matriz de aplicabilidade)."
+      }
+    },
+    "moeda": {
+      "estado": "EXTRAIDO",
+      "valor": "BRL",
+      "detalhe_valor": null,
+      "natureza": "LITERAL",
+      "texto_literal": "R$",
+      "evidencia": {
+        "pagina": 1,
+        "trecho": "R$",
+        "bbox": [
+          238.4,
+          297.1,
+          251.2,
+          307.1
+        ],
+        "fonte": "TEXTO_NATIVO"
+      },
+      "confianca": {
+        "nivel": "ALTA",
+        "motivos": [
+          "trecho literal verificado no texto-fonte (página 1)",
+          "valor normalizado pelo código a partir do trecho"
+        ],
+        "justificativa": "ALTA: trecho literal verificado no texto-fonte (página 1); valor normalizado pelo código a partir do trecho."
+      }
+    },
+    "proporcao": {
+      "estado": "NAO_APLICAVEL",
+      "valor": null,
+      "detalhe_valor": null,
+      "natureza": null,
+      "texto_literal": null,
+      "evidencia": null,
+      "confianca": {
+        "nivel": "ALTA",
+        "motivos": [
+          "não se aplica ao tipo de evento (matriz de aplicabilidade)"
+        ],
+        "justificativa": "ALTA: não se aplica ao tipo de evento (matriz de aplicabilidade)."
+      }
+    },
+    "observacao_tributaria": {
+      "estado": "AUSENTE",
+      "valor": null,
+      "detalhe_valor": null,
+      "natureza": null,
+      "texto_literal": null,
+      "evidencia": null,
+      "confianca": {
+        "nivel": "MEDIA",
+        "motivos": [
+          "campo opcional não consta no aviso (ausência não é provável apenas pela leitura)"
+        ],
+        "justificativa": "MEDIA: campo opcional não consta no aviso (ausência não é provável apenas pela leitura)."
+      }
+    }
+  },
+  "validacao_golden": {
+    "status": "MATCH",
+    "registro_golden": {
+      "emissor": "Aurora Saneamento S.A.",
+      "cnpj": "22.333.444/0001-77",
+      "isin": "BRAURSACNOR4",
+      "ticker": "AURS3",
+      "classe": "ON",
+      "segmento_listagem": "Novo Mercado",
+      "status": "ativo"
+    },
+    "comparacoes": [
+      {
+        "campo": "isin",
+        "aviso": "BRAURSACNOR4",
+        "golden": "BRAURSACNOR4",
+        "resultado": "IGUAL"
+      },
+      {
+        "campo": "ticker",
+        "aviso": "AURS3",
+        "golden": "AURS3",
+        "resultado": "IGUAL"
+      },
+      {
+        "campo": "cnpj",
+        "aviso": "22.333.444/0001-77",
+        "golden": "22.333.444/0001-77",
+        "resultado": "IGUAL"
+      },
+      {
+        "campo": "emissor",
+        "aviso": "AURORA SANEAMENTO S.A.",
+        "golden": "Aurora Saneamento S.A.",
+        "resultado": "IGUAL"
+      },
+      {
+        "campo": "classe_acao",
+        "aviso": "ON",
+        "golden": "ON",
+        "resultado": "IGUAL"
+      },
+      {
+        "campo": "status",
+        "aviso": null,
+        "golden": "ativo",
+        "resultado": "ATIVO"
+      }
+    ],
+    "sugestao_por_nome": null
+  },
+  "regras": [
+    {
+      "id": "CLASSIFICACAO_DIVERGENTE",
+      "severidade": "ERRO",
+      "resultado": "OK",
+      "campos": [
+        "tipo_evento"
+      ],
+      "detalhe": "Classificação do modelo diverge da classificação por sinais do documento.",
+      "esperado": "sinais do documento: DIVIDENDO",
+      "observado": "modelo: DIVIDENDO"
+    },
+    {
+      "id": "TITULO_DIVERGE_CORPO",
+      "severidade": "AVISO",
+      "resultado": "OK",
+      "campos": [
+        "tipo_evento"
+      ],
+      "detalhe": "Título sugere um tipo e o corpo/natureza do provento indica outro; prevalece o corpo.",
+      "esperado": "tipo pelo corpo/natureza: DIVIDENDO",
+      "observado": "tipo pelo título: DIVIDENDO"
+    },
+    {
+      "id": "TIPO_NAO_SUPORTADO",
+      "severidade": "ERRO",
+      "resultado": "OK",
+      "campos": [
+        "tipo_evento"
+      ],
+      "detalhe": "Tipo de evento fora do escopo suportado.",
+      "esperado": null,
+      "observado": null
+    },
+    {
+      "id": "FORMATO_ISIN",
+      "severidade": "ERRO",
+      "resultado": "OK",
+      "campos": [
+        "isin"
+      ],
+      "detalhe": "ISIN fora do formato (2 letras + 9 alfanuméricos + 1 dígito).",
+      "esperado": null,
+      "observado": "BRAURSACNOR4"
+    },
+    {
+      "id": "FORMATO_TICKER",
+      "severidade": "ERRO",
+      "resultado": "OK",
+      "campos": [
+        "ticker"
+      ],
+      "detalhe": "Ticker fora do formato (4 letras + 1 ou 2 dígitos).",
+      "esperado": null,
+      "observado": "AURS3"
+    },
+    {
+      "id": "FORMATO_CNPJ",
+      "severidade": "ERRO",
+      "resultado": "OK",
+      "campos": [
+        "cnpj"
+      ],
+      "detalhe": "CNPJ fora do formato 00.000.000/0000-00. Dígitos verificadores não são validados (base sintética).",
+      "esperado": null,
+      "observado": "22.333.444/0001-77"
+    },
+    {
+      "id": "GOLDEN_NAO_ENCONTRADO",
+      "severidade": "ERRO",
+      "resultado": "OK",
+      "campos": [
+        "emissor",
+        "isin",
+        "ticker",
+        "cnpj"
+      ],
+      "detalhe": "Nenhum identificador do aviso consta na base de referência.",
+      "esperado": null,
+      "observado": null
+    },
+    {
+      "id": "GOLDEN_DIVERGENTE",
+      "severidade": "ERRO",
+      "resultado": "OK",
+      "campos": [
+        "emissor",
+        "isin",
+        "ticker",
+        "cnpj"
+      ],
+      "detalhe": "Identificadores casam com a base, mas algum campo diverge.",
+      "esperado": null,
+      "observado": null
+    },
+    {
+      "id": "GOLDEN_AMBIGUO",
+      "severidade": "ERRO",
+      "resultado": "OK",
+      "campos": [
+        "emissor",
+        "isin",
+        "ticker",
+        "cnpj"
+      ],
+      "detalhe": "Identificadores do aviso apontam para registros diferentes da base.",
+      "esperado": null,
+      "observado": null
+    },
+    {
+      "id": "GOLDEN_INATIVO",
+      "severidade": "ERRO",
+      "resultado": "OK",
+      "campos": [
+        "isin"
+      ],
+      "detalhe": "Registro da base não está com status ativo.",
+      "esperado": null,
+      "observado": "ativo"
+    },
+    {
+      "id": "DATAS_EX_NAO_POSTERIOR_A_COM",
+      "severidade": "ERRO",
+      "resultado": "OK",
+      "campos": [
+        "data_com",
+        "data_ex"
+      ],
+      "detalhe": "Data ex deve ser posterior à data com.",
+      "esperado": "data_ex > data_com",
+      "observado": "data_com=2026-07-15, data_ex=2026-07-16"
+    },
+    {
+      "id": "DATAS_PAGAMENTO_ANTES_DA_COM",
+      "severidade": "ERRO",
+      "resultado": "FALHA",
+      "campos": [
+        "data_pagamento",
+        "data_com"
+      ],
+      "detalhe": "Pagamento não pode anteceder a data com.",
+      "esperado": "data_pagamento >= data_com",
+      "observado": "data_pagamento=2026-07-10, data_com=2026-07-15"
+    },
+    {
+      "id": "DATAS_PAGAMENTO_ANTES_DA_EX",
+      "severidade": "ERRO",
+      "resultado": "FALHA",
+      "campos": [
+        "data_pagamento",
+        "data_ex"
+      ],
+      "detalhe": "Pagamento não pode anteceder a data ex.",
+      "esperado": "data_pagamento >= data_ex",
+      "observado": "data_pagamento=2026-07-10, data_ex=2026-07-16"
+    },
+    {
+      "id": "DATAS_APROVACAO_APOS_COM",
+      "severidade": "AVISO",
+      "resultado": "OK",
+      "campos": [
+        "data_aprovacao",
+        "data_com"
+      ],
+      "detalhe": "Aprovação costuma anteceder a data com.",
+      "esperado": "data_aprovacao <= data_com",
+      "observado": "data_aprovacao=2026-06-01, data_com=2026-07-15"
+    },
+    {
+      "id": "DATAS_EX_NAO_E_DIA_UTIL_SEGUINTE",
+      "severidade": "AVISO",
+      "resultado": "OK",
+      "campos": [
+        "data_com",
+        "data_ex"
+      ],
+      "detalhe": "Dia útil pelo calendário de feriados da B3 (fins de semana, feriados nacionais, Carnaval, Sexta-feira Santa, Corpus Christi, 24 e 31/12).",
+      "esperado": "data_ex=2026-07-16",
+      "observado": "data_ex=2026-07-16"
+    },
+    {
+      "id": "DATA_FIM_DE_SEMANA",
+      "severidade": "AVISO",
+      "resultado": "OK",
+      "campos": [],
+      "detalhe": "Data com/ex/pagamento em fim de semana.",
+      "esperado": null,
+      "observado": null
+    },
+    {
+      "id": "DATA_APROVACAO_FIM_DE_SEMANA",
+      "severidade": "INFO",
+      "resultado": "OK",
+      "campos": [
+        "data_aprovacao"
+      ],
+      "detalhe": "Aprovação em fim de semana (assembleias podem ocorrer).",
+      "esperado": null,
+      "observado": "2026-06-01"
+    },
+    {
+      "id": "DATAS_FORA_DA_FAIXA",
+      "severidade": "AVISO",
+      "resultado": "OK",
+      "campos": [],
+      "detalhe": "Datas a mais de 550 dias da aprovação sugerem erro de leitura (ex.: ano).",
+      "esperado": null,
+      "observado": null
+    },
+    {
+      "id": "VALOR_NAO_POSITIVO",
+      "severidade": "ERRO",
+      "resultado": "OK",
+      "campos": [
+        "valor_bruto"
+      ],
+      "detalhe": "Valor monetário deve ser maior que zero.",
+      "esperado": null,
+      "observado": null
+    },
+    {
+      "id": "IDENTIFICADOR_NAO_EXTRAIDO",
+      "severidade": "AVISO",
+      "resultado": "OK",
+      "campos": [],
+      "detalhe": "ISIN/ticker/CNPJ presente no texto e ausente da extração.",
+      "esperado": null,
+      "observado": null
+    },
+    {
+      "id": "INJECAO_SUSPEITA",
+      "severidade": "AVISO",
+      "resultado": "OK",
+      "campos": [],
+      "detalhe": "Texto do documento contém padrão típico de instrução dirigida a modelo.",
+      "esperado": null,
+      "observado": null
+    },
+    {
+      "id": "TEXTO_OCULTO",
+      "severidade": "AVISO",
+      "resultado": "OK",
+      "campos": [],
+      "detalhe": "Texto invisível (branco, minúsculo ou fora da página).",
+      "esperado": null,
+      "observado": null
+    },
+    {
+      "id": "CONTEUDO_ATIVO_PDF",
+      "severidade": "AVISO",
+      "resultado": "OK",
+      "campos": [],
+      "detalhe": "PDF contém ação/JavaScript/arquivo embutido; nada foi executado.",
+      "esperado": null,
+      "observado": null
+    }
+  ],
+  "fichas_conferencia": [
+    {
+      "campo": "data_pagamento",
+      "codigo": "DATAS_PAGAMENTO_ANTES_DA_COM",
+      "tipo_acao": "RESOLVER_INCONSISTENCIA",
+      "acao_sugerida": "Comparar os valores com o documento original e com o emissor; corrigir o dado errado ou solicitar retificação.",
+      "esperado": "data_pagamento >= data_com",
+      "observado": "data_pagamento=2026-07-10, data_com=2026-07-15",
+      "onde_conferir": {
+        "pagina": 1,
+        "trecho": "10/07/2026",
+        "bbox": [
+          238.4,
+          381.1,
+          288.5,
+          391.1
+        ],
+        "fonte": "TEXTO_NATIVO"
+      }
+    },
+    {
+      "campo": "data_pagamento",
+      "codigo": "DATAS_PAGAMENTO_ANTES_DA_EX",
+      "tipo_acao": "RESOLVER_INCONSISTENCIA",
+      "acao_sugerida": "Comparar os valores com o documento original e com o emissor; corrigir o dado errado ou solicitar retificação.",
+      "esperado": "data_pagamento >= data_ex",
+      "observado": "data_pagamento=2026-07-10, data_ex=2026-07-16",
+      "onde_conferir": {
+        "pagina": 1,
+        "trecho": "10/07/2026",
+        "bbox": [
+          238.4,
+          381.1,
+          288.5,
+          391.1
+        ],
+        "fonte": "TEXTO_NATIVO"
+      }
+    }
+  ],
+  "auditoria": {
+    "modo": "replay",
+    "iniciado_em": "2026-10-24T00:35:49+00:00",
+    "chamadas_de_tools": [
+      {
+        "tool": "consultar_golden",
+        "origem": "MODELO",
+        "aceita": true,
+        "argumentos": {
+          "isin": "BRAURSACNOR4",
+          "ticker": "AURS3",
+          "cnpj": "22.333.444/0001-77",
+          "emissor": "AURORA SANEAMENTO S.A.",
+          "classe_acao": "ON"
+        },
+        "resultado": {
+          "regras_ok": 4,
+          "regras_falha": []
+        }
+      },
+      {
+        "tool": "checar_datas",
+        "origem": "MODELO",
+        "aceita": true,
+        "argumentos": {
+          "tipo_evento": "DIVIDENDO",
+          "data_aprovacao": "2026-06-01",
+          "data_com": "2026-07-15",
+          "data_ex": "2026-07-16",
+          "data_pagamento": "2026-07-10"
+        },
+        "resultado": {
+          "regras_ok": 6,
+          "regras_falha": [
+            "DATAS_PAGAMENTO_ANTES_DA_COM",
+            "DATAS_PAGAMENTO_ANTES_DA_EX"
+          ]
+        }
+      },
+      {
+        "tool": "checar_tributacao",
+        "origem": "MODELO",
+        "aceita": true,
+        "argumentos": {
+          "tipo_evento": "DIVIDENDO",
+          "valor_bruto": "0.3100000000"
+        },
+        "resultado": {
+          "regras_ok": 1,
+          "regras_falha": []
+        }
+      }
+    ],
+    "validacao_pelo_modelo": {
+      "turnos_com_tools": 1,
+      "tools_pedidas": [
+        "consultar_golden",
+        "checar_datas",
+        "checar_tributacao"
+      ],
+      "pedidos_rejeitados": 0,
+      "encerramento": "end_turn",
+      "parecer_do_modelo": "Duas regras falharam: DATAS_PAGAMENTO_ANTES_DA_COM e DATAS_PAGAMENTO_ANTES_DA_EX. A data de pagamento (2026-07-10) é anterior à data-com (2026-07-15) e à data-ex (2026-07-16). A consulta à base de referência e a checagem de tributação não tiveram nenhuma falha.",
+      "nota": "parecer informativo; o veredito de cada regra é o resultado da tool executada pelo código",
+      "avisos": []
+    },
+    "chamadas_llm": [
+      {
+        "etapa": "extracao",
+        "modelo": "claude-sonnet-5-5",
+        "origem": "CACHE",
+        "origem_fixture": "API"
+      },
+      {
+        "etapa": "validacao_tools",
+        "modelo": "claude-sonnet-5-5",
+        "origem": "CACHE",
+        "origem_fixture": "API"
+      }
+    ],
+    "chamadas_api": 0,
+    "chamadas_cache": 2,
+    "tokens_entrada": 0,
+    "tokens_saida": 0,
+    "reparos_de_contrato": 0,
+    "custo_estimado_usd": 0,
+    "custo_fonte": "preços públicos de lista (Anthropic), consulta em 2026-10-17; estimativa, sem descontos de cache/lote",
+    "concluido_em": "2026-10-24T00:35:50+00:00",
+    "tempo_total_ms": 963
+  }
+}

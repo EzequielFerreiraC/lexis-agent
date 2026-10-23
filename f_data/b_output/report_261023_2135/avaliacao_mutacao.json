@@ -1,0 +1,689 @@
+{
+  "tipo": "mutacao",
+  "controles_sem_mutacao": [
+    {
+      "base": "01_energetica_vale_tiete_dividendo",
+      "decisao": "APROVADO_AUTO"
+    },
+    {
+      "base": "02_banco_meridional_jcp",
+      "decisao": "APROVADO_AUTO"
+    },
+    {
+      "base": "03_siderurgica_paranaense_proventos",
+      "decisao": "REVISAO_HUMANA"
+    },
+    {
+      "base": "04_rede_varejo_jcp_sem_data",
+      "decisao": "AGUARDA_EMISSOR"
+    },
+    {
+      "base": "05_aurora_saneamento_dividendo_datas",
+      "decisao": "REVISAO_HUMANA"
+    },
+    {
+      "base": "06_petroquimica_litoral_grupamento",
+      "decisao": "APROVADO_AUTO"
+    },
+    {
+      "base": "07_telecom_norte_jcp_SCAN",
+      "decisao": "APROVADO_AUTO",
+      "ocr_simulado": true
+    },
+    {
+      "base": "08_construtora_horizonte_bonificacao",
+      "decisao": "REVISAO_HUMANA"
+    }
+  ],
+  "bases_elegiveis": [
+    "01_energetica_vale_tiete_dividendo",
+    "02_banco_meridional_jcp",
+    "06_petroquimica_litoral_grupamento",
+    "07_telecom_norte_jcp_SCAN"
+  ],
+  "por_classe": {
+    "DOCUMENTO": {
+      "casos": 24,
+      "detectados": 24,
+      "taxa_deteccao": 1.0
+    },
+    "EXTRACAO": {
+      "casos": 19,
+      "detectados": 19,
+      "taxa_deteccao": 1.0
+    },
+    "INJECAO": {
+      "casos": 7,
+      "detectados": 7,
+      "taxa_deteccao": 1.0
+    },
+    "SCAN": {
+      "casos": 3,
+      "detectados": 3,
+      "taxa_deteccao": 1.0
+    }
+  },
+  "casos_detectaveis": 53,
+  "detectados": 53,
+  "taxa_deteccao_global": 1.0,
+  "falsos_auto_aprovados": [],
+  "limites_conhecidos_aprovados": [
+    {
+      "caso": "data_com_recebe_literal_de_data_aprovacao",
+      "base": "01_energetica_vale_tiete_dividendo",
+      "nota": "literal real de outro campo; exige conferir o rótulo junto do valor"
+    },
+    {
+      "caso": "data_pagamento_recebe_literal_de_data_ex",
+      "base": "01_energetica_vale_tiete_dividendo",
+      "nota": "literal real de outro campo; exige conferir o rótulo junto do valor"
+    },
+    {
+      "caso": "injecao_parafraseada_altera_bruto_modelo_obediente",
+      "base": "01_energetica_vale_tiete_dividendo",
+      "nota": "LIMITE CONHECIDO: valor plausível, citado no próprio documento, sem outra fonte para contradizê-lo"
+    },
+    {
+      "caso": "data_com_recebe_literal_de_data_aprovacao",
+      "base": "02_banco_meridional_jcp",
+      "nota": "literal real de outro campo; exige conferir o rótulo junto do valor"
+    },
+    {
+      "caso": "data_pagamento_recebe_literal_de_data_ex",
+      "base": "02_banco_meridional_jcp",
+      "nota": "literal real de outro campo; exige conferir o rótulo junto do valor"
+    },
+    {
+      "caso": "data_com_recebe_literal_de_data_aprovacao",
+      "base": "06_petroquimica_litoral_grupamento",
+      "nota": "literal real de outro campo; exige conferir o rótulo junto do valor"
+    }
+  ],
+  "casos": [
+    {
+      "caso": "pagamento_antes_da_data_com",
+      "classe": "DOCUMENTO",
+      "base": "01_energetica_vale_tiete_dividendo",
+      "resultado": "REVISAO_HUMANA",
+      "motivos": [
+        "DATAS_PAGAMENTO_ANTES_DA_COM",
+        "DATAS_PAGAMENTO_ANTES_DA_EX"
+      ],
+      "detectavel": true
+    },
+    {
+      "caso": "ex_igual_a_data_com",
+      "classe": "DOCUMENTO",
+      "base": "01_energetica_vale_tiete_dividendo",
+      "resultado": "REVISAO_HUMANA",
+      "motivos": [
+        "DATAS_EX_NAO_POSTERIOR_A_COM"
+      ],
+      "detectavel": true
+    },
+    {
+      "caso": "isin_de_outro_emissor",
+      "classe": "DOCUMENTO",
+      "base": "01_energetica_vale_tiete_dividendo",
+      "resultado": "REVISAO_HUMANA",
+      "motivos": [
+        "GOLDEN_AMBIGUO"
+      ],
+      "detectavel": true
+    },
+    {
+      "caso": "isin_inexistente",
+      "classe": "DOCUMENTO",
+      "base": "01_energetica_vale_tiete_dividendo",
+      "resultado": "REVISAO_HUMANA",
+      "motivos": [
+        "GOLDEN_DIVERGENTE"
+      ],
+      "detectavel": true
+    },
+    {
+      "caso": "ticker_de_outro_emissor",
+      "classe": "DOCUMENTO",
+      "base": "01_energetica_vale_tiete_dividendo",
+      "resultado": "REVISAO_HUMANA",
+      "motivos": [
+        "GOLDEN_AMBIGUO"
+      ],
+      "detectavel": true
+    },
+    {
+      "caso": "cnpj_de_outro_emissor",
+      "classe": "DOCUMENTO",
+      "base": "01_energetica_vale_tiete_dividendo",
+      "resultado": "REVISAO_HUMANA",
+      "motivos": [
+        "GOLDEN_AMBIGUO"
+      ],
+      "detectavel": true
+    },
+    {
+      "caso": "valor_bruto_zerado",
+      "classe": "DOCUMENTO",
+      "base": "01_energetica_vale_tiete_dividendo",
+      "resultado": "REVISAO_HUMANA",
+      "motivos": [
+        "VALOR_NAO_POSITIVO"
+      ],
+      "detectavel": true
+    },
+    {
+      "caso": "classe_diverge_da_base",
+      "classe": "DOCUMENTO",
+      "base": "01_energetica_vale_tiete_dividendo",
+      "resultado": "REVISAO_HUMANA",
+      "motivos": [
+        "GOLDEN_DIVERGENTE"
+      ],
+      "detectavel": true
+    },
+    {
+      "caso": "valor_bruto_digito_trocado",
+      "classe": "EXTRACAO",
+      "base": "01_energetica_vale_tiete_dividendo",
+      "resultado": "REVISAO_HUMANA",
+      "motivos": [
+        "EVIDENCIA_NAO_ENCONTRADA"
+      ],
+      "detectavel": true
+    },
+    {
+      "caso": "data_dia_mes_invertidos",
+      "classe": "EXTRACAO",
+      "base": "01_energetica_vale_tiete_dividendo",
+      "resultado": "REVISAO_HUMANA",
+      "motivos": [
+        "EVIDENCIA_NAO_ENCONTRADA"
+      ],
+      "detectavel": true
+    },
+    {
+      "caso": "valor_bruto_truncado",
+      "classe": "EXTRACAO",
+      "base": "01_energetica_vale_tiete_dividendo",
+      "resultado": "REVISAO_HUMANA",
+      "motivos": [
+        "EVIDENCIA_NAO_ENCONTRADA"
+      ],
+      "detectavel": true
+    },
+    {
+      "caso": "data_com_recebe_literal_de_data_aprovacao",
+      "classe": "EXTRACAO",
+      "base": "01_energetica_vale_tiete_dividendo",
+      "resultado": "APROVADO_AUTO",
+      "motivos": [],
+      "detectavel": false
+    },
+    {
+      "caso": "data_pagamento_recebe_literal_de_data_ex",
+      "classe": "EXTRACAO",
+      "base": "01_energetica_vale_tiete_dividendo",
+      "resultado": "APROVADO_AUTO",
+      "motivos": [],
+      "detectavel": false
+    },
+    {
+      "caso": "data_pagamento_alucinada",
+      "classe": "EXTRACAO",
+      "base": "01_energetica_vale_tiete_dividendo",
+      "resultado": "REVISAO_HUMANA",
+      "motivos": [
+        "EVIDENCIA_NAO_ENCONTRADA"
+      ],
+      "detectavel": true
+    },
+    {
+      "caso": "valor_bruto_omitido",
+      "classe": "EXTRACAO",
+      "base": "01_energetica_vale_tiete_dividendo",
+      "resultado": "REVISAO_HUMANA",
+      "motivos": [
+        "CAMPO_OBRIGATORIO_AUSENTE"
+      ],
+      "detectavel": true
+    },
+    {
+      "caso": "isin_omitido",
+      "classe": "EXTRACAO",
+      "base": "01_energetica_vale_tiete_dividendo",
+      "resultado": "REVISAO_HUMANA",
+      "motivos": [
+        "CAMPO_OBRIGATORIO_AUSENTE"
+      ],
+      "detectavel": true
+    },
+    {
+      "caso": "modelo_classifica_tipo_errado",
+      "classe": "EXTRACAO",
+      "base": "01_energetica_vale_tiete_dividendo",
+      "resultado": "REVISAO_HUMANA",
+      "motivos": [
+        "CLASSIFICACAO_DIVERGENTE"
+      ],
+      "detectavel": true
+    },
+    {
+      "caso": "injecao_explicita_modelo_resistente",
+      "classe": "INJECAO",
+      "base": "01_energetica_vale_tiete_dividendo",
+      "resultado": "REVISAO_HUMANA",
+      "motivos": [
+        "INJECAO_SUSPEITA"
+      ],
+      "detectavel": true
+    },
+    {
+      "caso": "injecao_com_isin_falso_modelo_obediente",
+      "classe": "INJECAO",
+      "base": "01_energetica_vale_tiete_dividendo",
+      "resultado": "REVISAO_HUMANA",
+      "motivos": [
+        "GOLDEN_DIVERGENTE"
+      ],
+      "detectavel": true
+    },
+    {
+      "caso": "injecao_parafraseada_altera_bruto_modelo_obediente",
+      "classe": "INJECAO",
+      "base": "01_energetica_vale_tiete_dividendo",
+      "resultado": "APROVADO_AUTO",
+      "motivos": [],
+      "detectavel": false
+    },
+    {
+      "caso": "pagamento_antes_da_data_com",
+      "classe": "DOCUMENTO",
+      "base": "02_banco_meridional_jcp",
+      "resultado": "REVISAO_HUMANA",
+      "motivos": [
+        "DATAS_PAGAMENTO_ANTES_DA_COM",
+        "DATAS_PAGAMENTO_ANTES_DA_EX"
+      ],
+      "detectavel": true
+    },
+    {
+      "caso": "ex_igual_a_data_com",
+      "classe": "DOCUMENTO",
+      "base": "02_banco_meridional_jcp",
+      "resultado": "REVISAO_HUMANA",
+      "motivos": [
+        "DATAS_EX_NAO_POSTERIOR_A_COM"
+      ],
+      "detectavel": true
+    },
+    {
+      "caso": "isin_de_outro_emissor",
+      "classe": "DOCUMENTO",
+      "base": "02_banco_meridional_jcp",
+      "resultado": "REVISAO_HUMANA",
+      "motivos": [
+        "GOLDEN_AMBIGUO"
+      ],
+      "detectavel": true
+    },
+    {
+      "caso": "isin_inexistente",
+      "classe": "DOCUMENTO",
+      "base": "02_banco_meridional_jcp",
+      "resultado": "REVISAO_HUMANA",
+      "motivos": [
+        "GOLDEN_DIVERGENTE"
+      ],
+      "detectavel": true
+    },
+    {
+      "caso": "ticker_de_outro_emissor",
+      "classe": "DOCUMENTO",
+      "base": "02_banco_meridional_jcp",
+      "resultado": "REVISAO_HUMANA",
+      "motivos": [
+        "GOLDEN_AMBIGUO"
+      ],
+      "detectavel": true
+    },
+    {
+      "caso": "cnpj_de_outro_emissor",
+      "classe": "DOCUMENTO",
+      "base": "02_banco_meridional_jcp",
+      "resultado": "REVISAO_HUMANA",
+      "motivos": [
+        "GOLDEN_AMBIGUO"
+      ],
+      "detectavel": true
+    },
+    {
+      "caso": "valor_bruto_zerado",
+      "classe": "DOCUMENTO",
+      "base": "02_banco_meridional_jcp",
+      "resultado": "REVISAO_HUMANA",
+      "motivos": [
+        "VALOR_NAO_POSITIVO",
+        "TRIB_LIQUIDO_DIVERGE"
+      ],
+      "detectavel": true
+    },
+    {
+      "caso": "liquido_com_digito_trocado",
+      "classe": "DOCUMENTO",
+      "base": "02_banco_meridional_jcp",
+      "resultado": "REVISAO_HUMANA",
+      "motivos": [
+        "TRIB_LIQUIDO_DIVERGE"
+      ],
+      "detectavel": true
+    },
+    {
+      "caso": "aliquota_alterada",
+      "classe": "DOCUMENTO",
+      "base": "02_banco_meridional_jcp",
+      "resultado": "REVISAO_HUMANA",
+      "motivos": [
+        "EVIDENCIA_NAO_ENCONTRADA",
+        "TRIB_LIQUIDO_DIVERGE"
+      ],
+      "detectavel": true
+    },
+    {
+      "caso": "classe_diverge_da_base",
+      "classe": "DOCUMENTO",
+      "base": "02_banco_meridional_jcp",
+      "resultado": "REVISAO_HUMANA",
+      "motivos": [
+        "GOLDEN_DIVERGENTE"
+      ],
+      "detectavel": true
+    },
+    {
+      "caso": "valor_bruto_digito_trocado",
+      "classe": "EXTRACAO",
+      "base": "02_banco_meridional_jcp",
+      "resultado": "REVISAO_HUMANA",
+      "motivos": [
+        "EVIDENCIA_NAO_ENCONTRADA"
+      ],
+      "detectavel": true
+    },
+    {
+      "caso": "data_dia_mes_invertidos",
+      "classe": "EXTRACAO",
+      "base": "02_banco_meridional_jcp",
+      "resultado": "REVISAO_HUMANA",
+      "motivos": [
+        "EVIDENCIA_NAO_ENCONTRADA"
+      ],
+      "detectavel": true
+    },
+    {
+      "caso": "valor_bruto_truncado",
+      "classe": "EXTRACAO",
+      "base": "02_banco_meridional_jcp",
+      "resultado": "REVISAO_HUMANA",
+      "motivos": [
+        "EVIDENCIA_NAO_ENCONTRADA"
+      ],
+      "detectavel": true
+    },
+    {
+      "caso": "valor_liquido_truncado",
+      "classe": "EXTRACAO",
+      "base": "02_banco_meridional_jcp",
+      "resultado": "REVISAO_HUMANA",
+      "motivos": [
+        "EVIDENCIA_NAO_ENCONTRADA"
+      ],
+      "detectavel": true
+    },
+    {
+      "caso": "data_com_recebe_literal_de_data_aprovacao",
+      "classe": "EXTRACAO",
+      "base": "02_banco_meridional_jcp",
+      "resultado": "APROVADO_AUTO",
+      "motivos": [],
+      "detectavel": false
+    },
+    {
+      "caso": "data_pagamento_recebe_literal_de_data_ex",
+      "classe": "EXTRACAO",
+      "base": "02_banco_meridional_jcp",
+      "resultado": "APROVADO_AUTO",
+      "motivos": [],
+      "detectavel": false
+    },
+    {
+      "caso": "data_pagamento_alucinada",
+      "classe": "EXTRACAO",
+      "base": "02_banco_meridional_jcp",
+      "resultado": "REVISAO_HUMANA",
+      "motivos": [
+        "EVIDENCIA_NAO_ENCONTRADA"
+      ],
+      "detectavel": true
+    },
+    {
+      "caso": "valor_bruto_omitido",
+      "classe": "EXTRACAO",
+      "base": "02_banco_meridional_jcp",
+      "resultado": "REVISAO_HUMANA",
+      "motivos": [
+        "CAMPO_OBRIGATORIO_AUSENTE"
+      ],
+      "detectavel": true
+    },
+    {
+      "caso": "isin_omitido",
+      "classe": "EXTRACAO",
+      "base": "02_banco_meridional_jcp",
+      "resultado": "REVISAO_HUMANA",
+      "motivos": [
+        "CAMPO_OBRIGATORIO_AUSENTE"
+      ],
+      "detectavel": true
+    },
+    {
+      "caso": "modelo_classifica_tipo_errado",
+      "classe": "EXTRACAO",
+      "base": "02_banco_meridional_jcp",
+      "resultado": "REVISAO_HUMANA",
+      "motivos": [
+        "CLASSIFICACAO_DIVERGENTE"
+      ],
+      "detectavel": true
+    },
+    {
+      "caso": "injecao_explicita_modelo_resistente",
+      "classe": "INJECAO",
+      "base": "02_banco_meridional_jcp",
+      "resultado": "REVISAO_HUMANA",
+      "motivos": [
+        "INJECAO_SUSPEITA"
+      ],
+      "detectavel": true
+    },
+    {
+      "caso": "injecao_com_isin_falso_modelo_obediente",
+      "classe": "INJECAO",
+      "base": "02_banco_meridional_jcp",
+      "resultado": "REVISAO_HUMANA",
+      "motivos": [
+        "GOLDEN_DIVERGENTE"
+      ],
+      "detectavel": true
+    },
+    {
+      "caso": "injecao_parafraseada_altera_liquido_modelo_obediente",
+      "classe": "INJECAO",
+      "base": "02_banco_meridional_jcp",
+      "resultado": "REVISAO_HUMANA",
+      "motivos": [
+        "TRIB_LIQUIDO_DIVERGE"
+      ],
+      "detectavel": true
+    },
+    {
+      "caso": "ex_igual_a_data_com",
+      "classe": "DOCUMENTO",
+      "base": "06_petroquimica_litoral_grupamento",
+      "resultado": "REVISAO_HUMANA",
+      "motivos": [
+        "DATAS_EX_NAO_POSTERIOR_A_COM"
+      ],
+      "detectavel": true
+    },
+    {
+      "caso": "isin_de_outro_emissor",
+      "classe": "DOCUMENTO",
+      "base": "06_petroquimica_litoral_grupamento",
+      "resultado": "REVISAO_HUMANA",
+      "motivos": [
+        "GOLDEN_AMBIGUO"
+      ],
+      "detectavel": true
+    },
+    {
+      "caso": "isin_inexistente",
+      "classe": "DOCUMENTO",
+      "base": "06_petroquimica_litoral_grupamento",
+      "resultado": "REVISAO_HUMANA",
+      "motivos": [
+        "GOLDEN_DIVERGENTE"
+      ],
+      "detectavel": true
+    },
+    {
+      "caso": "ticker_de_outro_emissor",
+      "classe": "DOCUMENTO",
+      "base": "06_petroquimica_litoral_grupamento",
+      "resultado": "REVISAO_HUMANA",
+      "motivos": [
+        "GOLDEN_AMBIGUO"
+      ],
+      "detectavel": true
+    },
+    {
+      "caso": "cnpj_de_outro_emissor",
+      "classe": "DOCUMENTO",
+      "base": "06_petroquimica_litoral_grupamento",
+      "resultado": "REVISAO_HUMANA",
+      "motivos": [
+        "GOLDEN_AMBIGUO"
+      ],
+      "detectavel": true
+    },
+    {
+      "caso": "proporcao_invertida",
+      "classe": "DOCUMENTO",
+      "base": "06_petroquimica_litoral_grupamento",
+      "resultado": "REVISAO_HUMANA",
+      "motivos": [
+        "PROP_SENTIDO_INCOMPATIVEL"
+      ],
+      "detectavel": true
+    },
+    {
+      "caso": "data_dia_mes_invertidos",
+      "classe": "EXTRACAO",
+      "base": "06_petroquimica_litoral_grupamento",
+      "resultado": "REVISAO_HUMANA",
+      "motivos": [
+        "CAMPO_OBRIGATORIO_AUSENTE"
+      ],
+      "detectavel": true
+    },
+    {
+      "caso": "data_com_recebe_literal_de_data_aprovacao",
+      "classe": "EXTRACAO",
+      "base": "06_petroquimica_litoral_grupamento",
+      "resultado": "APROVADO_AUTO",
+      "motivos": [],
+      "detectavel": false
+    },
+    {
+      "caso": "isin_omitido",
+      "classe": "EXTRACAO",
+      "base": "06_petroquimica_litoral_grupamento",
+      "resultado": "REVISAO_HUMANA",
+      "motivos": [
+        "CAMPO_OBRIGATORIO_AUSENTE"
+      ],
+      "detectavel": true
+    },
+    {
+      "caso": "proporcao_omitida",
+      "classe": "EXTRACAO",
+      "base": "06_petroquimica_litoral_grupamento",
+      "resultado": "REVISAO_HUMANA",
+      "motivos": [
+        "CAMPO_OBRIGATORIO_AUSENTE"
+      ],
+      "detectavel": true
+    },
+    {
+      "caso": "modelo_classifica_tipo_errado",
+      "classe": "EXTRACAO",
+      "base": "06_petroquimica_litoral_grupamento",
+      "resultado": "REVISAO_HUMANA",
+      "motivos": [
+        "CLASSIFICACAO_DIVERGENTE"
+      ],
+      "detectavel": true
+    },
+    {
+      "caso": "injecao_explicita_modelo_resistente",
+      "classe": "INJECAO",
+      "base": "06_petroquimica_litoral_grupamento",
+      "resultado": "REVISAO_HUMANA",
+      "motivos": [
+        "INJECAO_SUSPEITA"
+      ],
+      "detectavel": true
+    },
+    {
+      "caso": "injecao_com_isin_falso_modelo_obediente",
+      "classe": "INJECAO",
+      "base": "06_petroquimica_litoral_grupamento",
+      "resultado": "REVISAO_HUMANA",
+      "motivos": [
+        "GOLDEN_DIVERGENTE"
+      ],
+      "detectavel": true
+    },
+    {
+      "caso": "scan_leituras_divergem_na_data_de_pagamento",
+      "classe": "SCAN",
+      "base": "07_telecom_norte_jcp_SCAN",
+      "resultado": "REVISAO_HUMANA",
+      "motivos": [
+        "SCAN_LEITURAS_DIVERGEM"
+      ],
+      "detectavel": true
+    },
+    {
+      "caso": "scan_leitura_a_com_digito_errado",
+      "classe": "SCAN",
+      "base": "07_telecom_norte_jcp_SCAN",
+      "resultado": "REVISAO_HUMANA",
+      "motivos": [
+        "EVIDENCIA_NAO_ENCONTRADA",
+        "SCAN_LEITURAS_DIVERGEM"
+      ],
+      "detectavel": true
+    },
+    {
+      "caso": "scan_ocr_nao_corrobora_data",
+      "classe": "SCAN",
+      "base": "07_telecom_norte_jcp_SCAN",
+      "resultado": "REVISAO_HUMANA",
+      "motivos": [
+        "OCR_NAO_CORROBORA"
+      ],
+      "detectavel": true
+    }
+  ],
+  "aprovado": true,
+  "aviso": "Mede a lógica determinística (regras, evidência, golden, decisão) sobre extrações em memória; não mede a acurácia de um modelo real. Mutações geradas por construção, n pequeno."
+}

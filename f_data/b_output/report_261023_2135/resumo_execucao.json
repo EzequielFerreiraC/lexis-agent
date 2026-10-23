@@ -1,0 +1,109 @@
+{
+  "run_id": "4a942afc426b",
+  "contagem": {
+    "APROVADO_AUTO": 4,
+    "AGUARDA_EMISSOR": 1,
+    "REVISAO_HUMANA": 3,
+    "FALHA_PROCESSAMENTO": 0
+  },
+  "extracoes_simuladas": false,
+  "documentos": [
+    {
+      "arquivo": "01_energetica_vale_tiete_dividendo.pdf",
+      "disposicao": "PROCESSADO",
+      "estado": "APROVADO_AUTO",
+      "tipo": "DIVIDENDO",
+      "confianca_minima_campo_extraido": "ALTA",
+      "golden": "MATCH",
+      "tokens": 0,
+      "custo_estimado_usd": 0,
+      "tempo_ms": 1335
+    },
+    {
+      "arquivo": "02_banco_meridional_jcp.pdf",
+      "disposicao": "PROCESSADO",
+      "estado": "APROVADO_AUTO",
+      "tipo": "JCP",
+      "confianca_minima_campo_extraido": "ALTA",
+      "golden": "MATCH",
+      "tokens": 0,
+      "custo_estimado_usd": 0,
+      "tempo_ms": 2046
+    },
+    {
+      "arquivo": "03_siderurgica_paranaense_proventos.pdf",
+      "disposicao": "PROCESSADO",
+      "estado": "REVISAO_HUMANA",
+      "tipo": "JCP",
+      "confianca_minima_campo_extraido": "MEDIA",
+      "golden": "MATCH",
+      "tokens": 0,
+      "custo_estimado_usd": 0,
+      "tempo_ms": 1705
+    },
+    {
+      "arquivo": "04_rede_varejo_jcp_sem_data.pdf",
+      "disposicao": "PROCESSADO",
+      "estado": "AGUARDA_EMISSOR",
+      "tipo": "JCP",
+      "confianca_minima_campo_extraido": "ALTA",
+      "golden": "MATCH",
+      "tokens": 0,
+      "custo_estimado_usd": 0,
+      "tempo_ms": 1210
+    },
+    {
+      "arquivo": "05_aurora_saneamento_dividendo_datas.pdf",
+      "disposicao": "PROCESSADO",
+      "estado": "REVISAO_HUMANA",
+      "tipo": "DIVIDENDO",
+      "confianca_minima_campo_extraido": "BAIXA",
+      "golden": "MATCH",
+      "tokens": 0,
+      "custo_estimado_usd": 0,
+      "tempo_ms": 963
+    },
+    {
+      "arquivo": "06_petroquimica_litoral_grupamento.pdf",
+      "disposicao": "PROCESSADO",
+      "estado": "APROVADO_AUTO",
+      "tipo": "GRUPAMENTO",
+      "confianca_minima_campo_extraido": "ALTA",
+      "golden": "MATCH",
+      "tokens": 0,
+      "custo_estimado_usd": 0,
+      "tempo_ms": 917
+    },
+    {
+      "arquivo": "07_telecom_norte_jcp_SCAN.pdf",
+      "disposicao": "PROCESSADO",
+      "estado": "APROVADO_AUTO",
+      "tipo": "JCP",
+      "confianca_minima_campo_extraido": "MEDIA",
+      "golden": "MATCH",
+      "tokens": 0,
+      "custo_estimado_usd": 0,
+      "tempo_ms": 651
+    },
+    {
+      "arquivo": "08_construtora_horizonte_bonificacao.pdf",
+      "disposicao": "PROCESSADO",
+      "estado": "REVISAO_HUMANA",
+      "tipo": "BONIFICACAO",
+      "confianca_minima_campo_extraido": "MEDIA",
+      "golden": "NOT_FOUND",
+      "tokens": 0,
+      "custo_estimado_usd": 0,
+      "tempo_ms": 805
+    }
+  ],
+  "versoes": {
+    "pipeline": "1.0.0",
+    "regras": "1.0+7709e71789cb",
+    "prompt_sha": "14318d8cf7827097",
+    "modelo": "claude-sonnet-5-5",
+    "extrator": "replay",
+    "golden_sha": "6ce677a6849f",
+    "schema": "1.1"
+  }
+}

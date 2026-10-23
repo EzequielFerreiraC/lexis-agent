@@ -1,0 +1,908 @@
+{
+  "schema_version": "1.1",
+  "run_id": "4a942afc426b",
+  "documento": {
+    "arquivo": "07_telecom_norte_jcp_SCAN.pdf",
+    "sha256": "cf4af08dd23f507ae72b852d86827bbee6c3fe2d0e31f96e70bc74ea4238c45f",
+    "paginas": 1,
+    "fonte": "SCAN",
+    "avisos_ingestao": []
+  },
+  "versoes": {
+    "pipeline": "1.0.0",
+    "regras": "1.0+7709e71789cb",
+    "prompt_sha": "14318d8cf7827097",
+    "modelo": "claude-sonnet-5-5",
+    "extrator": "replay",
+    "golden_sha": "6ce677a6849f",
+    "schema": "1.1"
+  },
+  "decisao": {
+    "estado": "APROVADO_AUTO",
+    "resumo": "Todas as regras passaram, a identidade foi confirmada na base e os campos críticos têm confiança suficiente.",
+    "motivos": [],
+    "linha_da_tabela": "L7: Nenhuma das anteriores",
+    "para_aprovar": null
+  },
+  "evento": {
+    "tipo": "JCP",
+    "rotulo": "Juros sobre o Capital Próprio",
+    "classificacao": {
+      "tipo_final": "JCP",
+      "tipo_modelo": "JCP",
+      "por_zona": {
+        "titulo": "JCP",
+        "campo": "JCP",
+        "corpo": "JCP"
+      },
+      "pontuacao": {
+        "JCP": 40
+      },
+      "sinais": [
+        "titulo:juros_sobre_capital_proprio",
+        "titulo:sigla_jcp",
+        "titulo:capital_proprio",
+        "campo:juros_sobre_capital_proprio",
+        "campo:sigla_jcp",
+        "campo:capital_proprio",
+        "corpo:sigla_jcp",
+        "corpo:art9_lei_9249"
+      ],
+      "conflito_titulo_corpo": false
+    },
+    "tratamento_tributario": {
+      "descricao": "IRRF retido na fonte sobre o valor bruto, com a alíquota informada no aviso (ressalvados imunes/isentos); líquido por ação = bruto × (1 − alíquota). Descritivo, não é parecer tributário.",
+      "fonte_da_descricao": "catálogo de regras v1.0",
+      "observacao_literal_do_aviso": "com retenção de Imposto de Renda na Fonte (IRRF) à alíquota de 17,5% sobre o valor bruto",
+      "aliquota_irrf_informada": "17.500%"
+    }
+  },
+  "campos": {
+    "tipo_evento": {
+      "estado": "EXTRAIDO",
+      "valor": "JCP",
+      "detalhe_valor": null,
+      "natureza": "DERIVADO",
+      "texto_literal": "Juros sobre o Capital Próprio (JCP)",
+      "evidencia": {
+        "pagina": 1,
+        "trecho": "Juros sobre o Capital Próprio (JCP)",
+        "bbox": null,
+        "fonte": "TRANSCRICAO_VISAO"
+      },
+      "confianca": {
+        "nivel": "MEDIA",
+        "motivos": [
+          "tipo inferido por sinais em cada zona do aviso (titulo=JCP; campo=JCP; corpo=JCP)",
+          "modelo e sinais do documento concordam",
+          "fonte é imagem (scan): confiança limitada ao teto da política"
+        ],
+        "justificativa": "MEDIA: tipo inferido por sinais em cada zona do aviso (titulo=JCP; campo=JCP; corpo=JCP); modelo e sinais do documento concordam; fonte é imagem (scan): confiança limitada ao teto da política."
+      }
+    },
+    "emissor": {
+      "estado": "EXTRAIDO",
+      "valor": "TELECOM NORTE PARTICIPAÇÕES S.A.",
+      "detalhe_valor": null,
+      "natureza": "LITERAL",
+      "texto_literal": "TELECOM NORTE PARTICIPAÇÕES S.A.",
+      "evidencia": {
+        "pagina": 1,
+        "trecho": "TELECOM NORTE PARTICIPAÇÕES S.A.",
+        "bbox": null,
+        "fonte": "TRANSCRICAO_VISAO"
+      },
+      "confianca": {
+        "nivel": "MEDIA",
+        "motivos": [
+          "trecho literal verificado no texto-fonte (página 1)",
+          "valor normalizado pelo código a partir do trecho",
+          "confirmado pela base de referência",
+          "fonte é imagem (scan): leitura por modelo de visão, confiança limitada ao teto da política",
+          "duas leituras por métodos diferentes concordam",
+          "OCR local corrobora o valor"
+        ],
+        "justificativa": "MEDIA: trecho literal verificado no texto-fonte (página 1); valor normalizado pelo código a partir do trecho; confirmado pela base de referência; fonte é imagem (scan): leitura por modelo de visão, confiança limitada ao teto da política; duas leituras por métodos diferentes concordam; OCR local corrobora o valor."
+      }
+    },
+    "cnpj": {
+      "estado": "EXTRAIDO",
+      "valor": "33.222.111/0001-44",
+      "detalhe_valor": null,
+      "natureza": "LITERAL",
+      "texto_literal": "33.222.111/0001-44",
+      "evidencia": {
+        "pagina": 1,
+        "trecho": "33.222.111/0001-44",
+        "bbox": null,
+        "fonte": "TRANSCRICAO_VISAO"
+      },
+      "confianca": {
+        "nivel": "MEDIA",
+        "motivos": [
+          "trecho literal verificado no texto-fonte (página 1)",
+          "valor normalizado pelo código a partir do trecho",
+          "confirmado pela base de referência",
+          "fonte é imagem (scan): leitura por modelo de visão, confiança limitada ao teto da política",
+          "duas leituras por métodos diferentes concordam",
+          "OCR local corrobora o valor"
+        ],
+        "justificativa": "MEDIA: trecho literal verificado no texto-fonte (página 1); valor normalizado pelo código a partir do trecho; confirmado pela base de referência; fonte é imagem (scan): leitura por modelo de visão, confiança limitada ao teto da política; duas leituras por métodos diferentes concordam; OCR local corrobora o valor."
+      }
+    },
+    "isin": {
+      "estado": "EXTRAIDO",
+      "valor": "BRTLNRACNPR2",
+      "detalhe_valor": null,
+      "natureza": "LITERAL",
+      "texto_literal": "BRTLNRACNPR2",
+      "evidencia": {
+        "pagina": 1,
+        "trecho": "BRTLNRACNPR2",
+        "bbox": null,
+        "fonte": "TRANSCRICAO_VISAO"
+      },
+      "confianca": {
+        "nivel": "MEDIA",
+        "motivos": [
+          "trecho literal verificado no texto-fonte (página 1)",
+          "valor normalizado pelo código a partir do trecho",
+          "confirmado pela base de referência",
+          "fonte é imagem (scan): leitura por modelo de visão, confiança limitada ao teto da política",
+          "duas leituras por métodos diferentes concordam",
+          "OCR local corrobora o valor"
+        ],
+        "justificativa": "MEDIA: trecho literal verificado no texto-fonte (página 1); valor normalizado pelo código a partir do trecho; confirmado pela base de referência; fonte é imagem (scan): leitura por modelo de visão, confiança limitada ao teto da política; duas leituras por métodos diferentes concordam; OCR local corrobora o valor."
+      }
+    },
+    "ticker": {
+      "estado": "EXTRAIDO",
+      "valor": "TLNR4",
+      "detalhe_valor": null,
+      "natureza": "LITERAL",
+      "texto_literal": "TLNR4",
+      "evidencia": {
+        "pagina": 1,
+        "trecho": "TLNR4",
+        "bbox": null,
+        "fonte": "TRANSCRICAO_VISAO"
+      },
+      "confianca": {
+        "nivel": "MEDIA",
+        "motivos": [
+          "trecho literal verificado no texto-fonte (página 1)",
+          "valor normalizado pelo código a partir do trecho",
+          "confirmado pela base de referência",
+          "fonte é imagem (scan): leitura por modelo de visão, confiança limitada ao teto da política",
+          "duas leituras por métodos diferentes concordam",
+          "OCR local corrobora o valor"
+        ],
+        "justificativa": "MEDIA: trecho literal verificado no texto-fonte (página 1); valor normalizado pelo código a partir do trecho; confirmado pela base de referência; fonte é imagem (scan): leitura por modelo de visão, confiança limitada ao teto da política; duas leituras por métodos diferentes concordam; OCR local corrobora o valor."
+      }
+    },
+    "classe_acao": {
+      "estado": "EXTRAIDO",
+      "valor": "PN",
+      "detalhe_valor": null,
+      "natureza": "LITERAL",
+      "texto_literal": "PN",
+      "evidencia": {
+        "pagina": 1,
+        "trecho": "PN",
+        "bbox": null,
+        "fonte": "TRANSCRICAO_VISAO"
+      },
+      "confianca": {
+        "nivel": "MEDIA",
+        "motivos": [
+          "trecho literal verificado no texto-fonte (página 1)",
+          "valor normalizado pelo código a partir do trecho",
+          "confirmado pela base de referência",
+          "fonte é imagem (scan): leitura por modelo de visão, confiança limitada ao teto da política",
+          "duas leituras por métodos diferentes concordam"
+        ],
+        "justificativa": "MEDIA: trecho literal verificado no texto-fonte (página 1); valor normalizado pelo código a partir do trecho; confirmado pela base de referência; fonte é imagem (scan): leitura por modelo de visão, confiança limitada ao teto da política; duas leituras por métodos diferentes concordam."
+      }
+    },
+    "data_aprovacao": {
+      "estado": "EXTRAIDO",
+      "valor": "2026-06-06",
+      "detalhe_valor": null,
+      "natureza": "LITERAL",
+      "texto_literal": "06 de junho de 2026",
+      "evidencia": {
+        "pagina": 1,
+        "trecho": "06 de junho de 2026",
+        "bbox": null,
+        "fonte": "TRANSCRICAO_VISAO"
+      },
+      "confianca": {
+        "nivel": "MEDIA",
+        "motivos": [
+          "trecho literal verificado no texto-fonte (página 1)",
+          "valor normalizado pelo código a partir do trecho",
+          "fonte é imagem (scan): leitura por modelo de visão, confiança limitada ao teto da política",
+          "duas leituras por métodos diferentes concordam",
+          "OCR local corrobora o valor"
+        ],
+        "justificativa": "MEDIA: trecho literal verificado no texto-fonte (página 1); valor normalizado pelo código a partir do trecho; fonte é imagem (scan): leitura por modelo de visão, confiança limitada ao teto da política; duas leituras por métodos diferentes concordam; OCR local corrobora o valor."
+      }
+    },
+    "data_com": {
+      "estado": "EXTRAIDO",
+      "valor": "2026-06-22",
+      "detalhe_valor": null,
+      "natureza": "LITERAL",
+      "texto_literal": "22/06/2026",
+      "evidencia": {
+        "pagina": 1,
+        "trecho": "22/06/2026",
+        "bbox": null,
+        "fonte": "TRANSCRICAO_VISAO"
+      },
+      "confianca": {
+        "nivel": "MEDIA",
+        "motivos": [
+          "trecho literal verificado no texto-fonte (página 1)",
+          "valor normalizado pelo código a partir do trecho",
+          "regra DATAS_EX_NAO_POSTERIOR_A_COM satisfeita",
+          "regra DATAS_PAGAMENTO_ANTES_DA_COM satisfeita",
+          "fonte é imagem (scan): leitura por modelo de visão, confiança limitada ao teto da política",
+          "duas leituras por métodos diferentes concordam",
+          "OCR local corrobora o valor"
+        ],
+        "justificativa": "MEDIA: trecho literal verificado no texto-fonte (página 1); valor normalizado pelo código a partir do trecho; regra DATAS_EX_NAO_POSTERIOR_A_COM satisfeita; regra DATAS_PAGAMENTO_ANTES_DA_COM satisfeita; fonte é imagem (scan): leitura por modelo de visão, confiança limitada ao teto da política; duas leituras por métodos diferentes concordam; OCR local corrobora o valor."
+      }
+    },
+    "data_ex": {
+      "estado": "EXTRAIDO",
+      "valor": "2026-06-23",
+      "detalhe_valor": null,
+      "natureza": "LITERAL",
+      "texto_literal": "23/06/2026",
+      "evidencia": {
+        "pagina": 1,
+        "trecho": "23/06/2026",
+        "bbox": null,
+        "fonte": "TRANSCRICAO_VISAO"
+      },
+      "confianca": {
+        "nivel": "MEDIA",
+        "motivos": [
+          "trecho literal verificado no texto-fonte (página 1)",
+          "valor normalizado pelo código a partir do trecho",
+          "regra DATAS_EX_NAO_POSTERIOR_A_COM satisfeita",
+          "regra DATAS_PAGAMENTO_ANTES_DA_EX satisfeita",
+          "fonte é imagem (scan): leitura por modelo de visão, confiança limitada ao teto da política",
+          "duas leituras por métodos diferentes concordam",
+          "OCR local corrobora o valor"
+        ],
+        "justificativa": "MEDIA: trecho literal verificado no texto-fonte (página 1); valor normalizado pelo código a partir do trecho; regra DATAS_EX_NAO_POSTERIOR_A_COM satisfeita; regra DATAS_PAGAMENTO_ANTES_DA_EX satisfeita; fonte é imagem (scan): leitura por modelo de visão, confiança limitada ao teto da política; duas leituras por métodos diferentes concordam; OCR local corrobora o valor."
+      }
+    },
+    "data_pagamento": {
+      "estado": "EXTRAIDO",
+      "valor": "2026-08-21",
+      "detalhe_valor": null,
+      "natureza": "LITERAL",
+      "texto_literal": "21/08/2026",
+      "evidencia": {
+        "pagina": 1,
+        "trecho": "21/08/2026",
+        "bbox": null,
+        "fonte": "TRANSCRICAO_VISAO"
+      },
+      "confianca": {
+        "nivel": "MEDIA",
+        "motivos": [
+          "trecho literal verificado no texto-fonte (página 1)",
+          "valor normalizado pelo código a partir do trecho",
+          "regra DATAS_PAGAMENTO_ANTES_DA_COM satisfeita",
+          "regra DATAS_PAGAMENTO_ANTES_DA_EX satisfeita",
+          "fonte é imagem (scan): leitura por modelo de visão, confiança limitada ao teto da política",
+          "duas leituras por métodos diferentes concordam",
+          "OCR local corrobora o valor"
+        ],
+        "justificativa": "MEDIA: trecho literal verificado no texto-fonte (página 1); valor normalizado pelo código a partir do trecho; regra DATAS_PAGAMENTO_ANTES_DA_COM satisfeita; regra DATAS_PAGAMENTO_ANTES_DA_EX satisfeita; fonte é imagem (scan): leitura por modelo de visão, confiança limitada ao teto da política; duas leituras por métodos diferentes concordam; OCR local corrobora o valor."
+      }
+    },
+    "data_credito_ativos": {
+      "estado": "NAO_APLICAVEL",
+      "valor": null,
+      "detalhe_valor": null,
+      "natureza": null,
+      "texto_literal": null,
+      "evidencia": null,
+      "confianca": {
+        "nivel": "ALTA",
+        "motivos": [
+          "não se aplica ao tipo de evento (matriz de aplicabilidade)"
+        ],
+        "justificativa": "ALTA: não se aplica ao tipo de evento (matriz de aplicabilidade)."
+      }
+    },
+    "valor_bruto": {
+      "estado": "EXTRAIDO",
+      "valor": "0.1124300000",
+      "detalhe_valor": {
+        "moeda_no_trecho": "BRL"
+      },
+      "natureza": "LITERAL",
+      "texto_literal": "R$ 0,1124300000",
+      "evidencia": {
+        "pagina": 1,
+        "trecho": "R$ 0,1124300000",
+        "bbox": null,
+        "fonte": "TRANSCRICAO_VISAO"
+      },
+      "confianca": {
+        "nivel": "MEDIA",
+        "motivos": [
+          "trecho literal verificado no texto-fonte (página 1)",
+          "valor normalizado pelo código a partir do trecho",
+          "regra TRIB_LIQUIDO_DIVERGE satisfeita",
+          "fonte é imagem (scan): leitura por modelo de visão, confiança limitada ao teto da política",
+          "duas leituras por métodos diferentes concordam",
+          "OCR local corrobora o valor"
+        ],
+        "justificativa": "MEDIA: trecho literal verificado no texto-fonte (página 1); valor normalizado pelo código a partir do trecho; regra TRIB_LIQUIDO_DIVERGE satisfeita; fonte é imagem (scan): leitura por modelo de visão, confiança limitada ao teto da política; duas leituras por métodos diferentes concordam; OCR local corrobora o valor."
+      }
+    },
+    "aliquota_irrf": {
+      "estado": "EXTRAIDO",
+      "valor": "0.175",
+      "detalhe_valor": {
+        "percentual": "17.500%"
+      },
+      "natureza": "LITERAL",
+      "texto_literal": "17,5%",
+      "evidencia": {
+        "pagina": 1,
+        "trecho": "17,5%",
+        "bbox": null,
+        "fonte": "TRANSCRICAO_VISAO"
+      },
+      "confianca": {
+        "nivel": "MEDIA",
+        "motivos": [
+          "trecho literal verificado no texto-fonte (página 1)",
+          "valor normalizado pelo código a partir do trecho",
+          "regra TRIB_LIQUIDO_DIVERGE satisfeita",
+          "fonte é imagem (scan): leitura por modelo de visão, confiança limitada ao teto da política",
+          "duas leituras por métodos diferentes concordam",
+          "OCR local corrobora o valor"
+        ],
+        "justificativa": "MEDIA: trecho literal verificado no texto-fonte (página 1); valor normalizado pelo código a partir do trecho; regra TRIB_LIQUIDO_DIVERGE satisfeita; fonte é imagem (scan): leitura por modelo de visão, confiança limitada ao teto da política; duas leituras por métodos diferentes concordam; OCR local corrobora o valor."
+      }
+    },
+    "valor_liquido": {
+      "estado": "EXTRAIDO",
+      "valor": "0.0927547500",
+      "detalhe_valor": {
+        "moeda_no_trecho": "BRL"
+      },
+      "natureza": "LITERAL",
+      "texto_literal": "R$ 0,0927547500",
+      "evidencia": {
+        "pagina": 1,
+        "trecho": "R$ 0,0927547500",
+        "bbox": null,
+        "fonte": "TRANSCRICAO_VISAO"
+      },
+      "confianca": {
+        "nivel": "MEDIA",
+        "motivos": [
+          "trecho literal verificado no texto-fonte (página 1)",
+          "valor normalizado pelo código a partir do trecho",
+          "regra TRIB_LIQUIDO_DIVERGE satisfeita",
+          "fonte é imagem (scan): leitura por modelo de visão, confiança limitada ao teto da política",
+          "duas leituras por métodos diferentes concordam",
+          "OCR local corrobora o valor"
+        ],
+        "justificativa": "MEDIA: trecho literal verificado no texto-fonte (página 1); valor normalizado pelo código a partir do trecho; regra TRIB_LIQUIDO_DIVERGE satisfeita; fonte é imagem (scan): leitura por modelo de visão, confiança limitada ao teto da política; duas leituras por métodos diferentes concordam; OCR local corrobora o valor."
+      }
+    },
+    "custo_atribuido": {
+      "estado": "NAO_APLICAVEL",
+      "valor": null,
+      "detalhe_valor": null,
+      "natureza": null,
+      "texto_literal": null,
+      "evidencia": null,
+      "confianca": {
+        "nivel": "ALTA",
+        "motivos": [
+          "não se aplica ao tipo de evento (matriz de aplicabilidade)"
+        ],
+        "justificativa": "ALTA: não se aplica ao tipo de evento (matriz de aplicabilidade)."
+      }
+    },
+    "moeda": {
+      "estado": "EXTRAIDO",
+      "valor": "BRL",
+      "detalhe_valor": null,
+      "natureza": "LITERAL",
+      "texto_literal": "R$",
+      "evidencia": {
+        "pagina": 1,
+        "trecho": "R$",
+        "bbox": null,
+        "fonte": "TRANSCRICAO_VISAO"
+      },
+      "confianca": {
+        "nivel": "MEDIA",
+        "motivos": [
+          "trecho literal verificado no texto-fonte (página 1)",
+          "valor normalizado pelo código a partir do trecho",
+          "fonte é imagem (scan): leitura por modelo de visão, confiança limitada ao teto da política",
+          "duas leituras por métodos diferentes concordam"
+        ],
+        "justificativa": "MEDIA: trecho literal verificado no texto-fonte (página 1); valor normalizado pelo código a partir do trecho; fonte é imagem (scan): leitura por modelo de visão, confiança limitada ao teto da política; duas leituras por métodos diferentes concordam."
+      }
+    },
+    "proporcao": {
+      "estado": "NAO_APLICAVEL",
+      "valor": null,
+      "detalhe_valor": null,
+      "natureza": null,
+      "texto_literal": null,
+      "evidencia": null,
+      "confianca": {
+        "nivel": "ALTA",
+        "motivos": [
+          "não se aplica ao tipo de evento (matriz de aplicabilidade)"
+        ],
+        "justificativa": "ALTA: não se aplica ao tipo de evento (matriz de aplicabilidade)."
+      }
+    },
+    "observacao_tributaria": {
+      "estado": "EXTRAIDO",
+      "valor": "com retenção de Imposto de Renda na Fonte (IRRF) à alíquota de 17,5% sobre o valor bruto",
+      "detalhe_valor": null,
+      "natureza": "LITERAL",
+      "texto_literal": "com retenção de Imposto de Renda na Fonte (IRRF) à alíquota de 17,5% sobre o valor bruto",
+      "evidencia": {
+        "pagina": 1,
+        "trecho": "com retenção de Imposto de Renda na Fonte (IRRF) à alíquota de 17,5% sobre o valor bruto",
+        "bbox": null,
+        "fonte": "TRANSCRICAO_VISAO"
+      },
+      "confianca": {
+        "nivel": "MEDIA",
+        "motivos": [
+          "trecho literal verificado no texto-fonte (página 1)",
+          "valor normalizado pelo código a partir do trecho",
+          "fonte é imagem (scan): leitura por modelo de visão, confiança limitada ao teto da política",
+          "duas leituras por métodos diferentes concordam"
+        ],
+        "justificativa": "MEDIA: trecho literal verificado no texto-fonte (página 1); valor normalizado pelo código a partir do trecho; fonte é imagem (scan): leitura por modelo de visão, confiança limitada ao teto da política; duas leituras por métodos diferentes concordam."
+      }
+    }
+  },
+  "validacao_golden": {
+    "status": "MATCH",
+    "registro_golden": {
+      "emissor": "Telecom Norte Participações S.A.",
+      "cnpj": "33.222.111/0001-44",
+      "isin": "BRTLNRACNPR2",
+      "ticker": "TLNR4",
+      "classe": "PN",
+      "segmento_listagem": "Tradicional",
+      "status": "ativo"
+    },
+    "comparacoes": [
+      {
+        "campo": "isin",
+        "aviso": "BRTLNRACNPR2",
+        "golden": "BRTLNRACNPR2",
+        "resultado": "IGUAL"
+      },
+      {
+        "campo": "ticker",
+        "aviso": "TLNR4",
+        "golden": "TLNR4",
+        "resultado": "IGUAL"
+      },
+      {
+        "campo": "cnpj",
+        "aviso": "33.222.111/0001-44",
+        "golden": "33.222.111/0001-44",
+        "resultado": "IGUAL"
+      },
+      {
+        "campo": "emissor",
+        "aviso": "TELECOM NORTE PARTICIPAÇÕES S.A.",
+        "golden": "Telecom Norte Participações S.A.",
+        "resultado": "IGUAL"
+      },
+      {
+        "campo": "classe_acao",
+        "aviso": "PN",
+        "golden": "PN",
+        "resultado": "IGUAL"
+      },
+      {
+        "campo": "status",
+        "aviso": null,
+        "golden": "ativo",
+        "resultado": "ATIVO"
+      }
+    ],
+    "sugestao_por_nome": null
+  },
+  "regras": [
+    {
+      "id": "CLASSIFICACAO_DIVERGENTE",
+      "severidade": "ERRO",
+      "resultado": "OK",
+      "campos": [
+        "tipo_evento"
+      ],
+      "detalhe": "Classificação do modelo diverge da classificação por sinais do documento.",
+      "esperado": "sinais do documento: JCP",
+      "observado": "modelo: JCP"
+    },
+    {
+      "id": "TITULO_DIVERGE_CORPO",
+      "severidade": "AVISO",
+      "resultado": "OK",
+      "campos": [
+        "tipo_evento"
+      ],
+      "detalhe": "Título sugere um tipo e o corpo/natureza do provento indica outro; prevalece o corpo.",
+      "esperado": "tipo pelo corpo/natureza: JCP",
+      "observado": "tipo pelo título: JCP"
+    },
+    {
+      "id": "TIPO_NAO_SUPORTADO",
+      "severidade": "ERRO",
+      "resultado": "OK",
+      "campos": [
+        "tipo_evento"
+      ],
+      "detalhe": "Tipo de evento fora do escopo suportado.",
+      "esperado": null,
+      "observado": null
+    },
+    {
+      "id": "FORMATO_ISIN",
+      "severidade": "ERRO",
+      "resultado": "OK",
+      "campos": [
+        "isin"
+      ],
+      "detalhe": "ISIN fora do formato (2 letras + 9 alfanuméricos + 1 dígito).",
+      "esperado": null,
+      "observado": "BRTLNRACNPR2"
+    },
+    {
+      "id": "FORMATO_TICKER",
+      "severidade": "ERRO",
+      "resultado": "OK",
+      "campos": [
+        "ticker"
+      ],
+      "detalhe": "Ticker fora do formato (4 letras + 1 ou 2 dígitos).",
+      "esperado": null,
+      "observado": "TLNR4"
+    },
+    {
+      "id": "FORMATO_CNPJ",
+      "severidade": "ERRO",
+      "resultado": "OK",
+      "campos": [
+        "cnpj"
+      ],
+      "detalhe": "CNPJ fora do formato 00.000.000/0000-00. Dígitos verificadores não são validados (base sintética).",
+      "esperado": null,
+      "observado": "33.222.111/0001-44"
+    },
+    {
+      "id": "GOLDEN_NAO_ENCONTRADO",
+      "severidade": "ERRO",
+      "resultado": "OK",
+      "campos": [
+        "emissor",
+        "isin",
+        "ticker",
+        "cnpj"
+      ],
+      "detalhe": "Nenhum identificador do aviso consta na base de referência.",
+      "esperado": null,
+      "observado": null
+    },
+    {
+      "id": "GOLDEN_DIVERGENTE",
+      "severidade": "ERRO",
+      "resultado": "OK",
+      "campos": [
+        "emissor",
+        "isin",
+        "ticker",
+        "cnpj"
+      ],
+      "detalhe": "Identificadores casam com a base, mas algum campo diverge.",
+      "esperado": null,
+      "observado": null
+    },
+    {
+      "id": "GOLDEN_AMBIGUO",
+      "severidade": "ERRO",
+      "resultado": "OK",
+      "campos": [
+        "emissor",
+        "isin",
+        "ticker",
+        "cnpj"
+      ],
+      "detalhe": "Identificadores do aviso apontam para registros diferentes da base.",
+      "esperado": null,
+      "observado": null
+    },
+    {
+      "id": "GOLDEN_INATIVO",
+      "severidade": "ERRO",
+      "resultado": "OK",
+      "campos": [
+        "isin"
+      ],
+      "detalhe": "Registro da base não está com status ativo.",
+      "esperado": null,
+      "observado": "ativo"
+    },
+    {
+      "id": "DATAS_EX_NAO_POSTERIOR_A_COM",
+      "severidade": "ERRO",
+      "resultado": "OK",
+      "campos": [
+        "data_com",
+        "data_ex"
+      ],
+      "detalhe": "Data ex deve ser posterior à data com.",
+      "esperado": "data_ex > data_com",
+      "observado": "data_com=2026-06-22, data_ex=2026-06-23"
+    },
+    {
+      "id": "DATAS_PAGAMENTO_ANTES_DA_COM",
+      "severidade": "ERRO",
+      "resultado": "OK",
+      "campos": [
+        "data_pagamento",
+        "data_com"
+      ],
+      "detalhe": "Pagamento não pode anteceder a data com.",
+      "esperado": "data_pagamento >= data_com",
+      "observado": "data_pagamento=2026-08-21, data_com=2026-06-22"
+    },
+    {
+      "id": "DATAS_PAGAMENTO_ANTES_DA_EX",
+      "severidade": "ERRO",
+      "resultado": "OK",
+      "campos": [
+        "data_pagamento",
+        "data_ex"
+      ],
+      "detalhe": "Pagamento não pode anteceder a data ex.",
+      "esperado": "data_pagamento >= data_ex",
+      "observado": "data_pagamento=2026-08-21, data_ex=2026-06-23"
+    },
+    {
+      "id": "DATAS_APROVACAO_APOS_COM",
+      "severidade": "AVISO",
+      "resultado": "OK",
+      "campos": [
+        "data_aprovacao",
+        "data_com"
+      ],
+      "detalhe": "Aprovação costuma anteceder a data com.",
+      "esperado": "data_aprovacao <= data_com",
+      "observado": "data_aprovacao=2026-06-06, data_com=2026-06-22"
+    },
+    {
+      "id": "DATAS_EX_NAO_E_DIA_UTIL_SEGUINTE",
+      "severidade": "AVISO",
+      "resultado": "OK",
+      "campos": [
+        "data_com",
+        "data_ex"
+      ],
+      "detalhe": "Dia útil pelo calendário de feriados da B3 (fins de semana, feriados nacionais, Carnaval, Sexta-feira Santa, Corpus Christi, 24 e 31/12).",
+      "esperado": "data_ex=2026-06-23",
+      "observado": "data_ex=2026-06-23"
+    },
+    {
+      "id": "DATA_FIM_DE_SEMANA",
+      "severidade": "AVISO",
+      "resultado": "OK",
+      "campos": [],
+      "detalhe": "Data com/ex/pagamento em fim de semana.",
+      "esperado": null,
+      "observado": null
+    },
+    {
+      "id": "DATA_APROVACAO_FIM_DE_SEMANA",
+      "severidade": "INFO",
+      "resultado": "FALHA",
+      "campos": [
+        "data_aprovacao"
+      ],
+      "detalhe": "Aprovação em fim de semana (assembleias podem ocorrer).",
+      "esperado": null,
+      "observado": "2026-06-06"
+    },
+    {
+      "id": "DATAS_FORA_DA_FAIXA",
+      "severidade": "AVISO",
+      "resultado": "OK",
+      "campos": [],
+      "detalhe": "Datas a mais de 550 dias da aprovação sugerem erro de leitura (ex.: ano).",
+      "esperado": null,
+      "observado": null
+    },
+    {
+      "id": "VALOR_NAO_POSITIVO",
+      "severidade": "ERRO",
+      "resultado": "OK",
+      "campos": [
+        "valor_bruto",
+        "valor_liquido"
+      ],
+      "detalhe": "Valor monetário deve ser maior que zero.",
+      "esperado": null,
+      "observado": null
+    },
+    {
+      "id": "TRIB_LIQUIDO_DIVERGE",
+      "severidade": "ERRO",
+      "resultado": "OK",
+      "campos": [
+        "valor_bruto",
+        "aliquota_irrf",
+        "valor_liquido"
+      ],
+      "detalhe": "Líquido esperado = bruto × (1 − alíquota informada no aviso); tolerância de 0,5 unidade da última casa do líquido (arredondamento).",
+      "esperado": "0.0927547500000",
+      "observado": "0.0927547500"
+    },
+    {
+      "id": "IDENTIFICADOR_NAO_EXTRAIDO",
+      "severidade": "AVISO",
+      "resultado": "OK",
+      "campos": [],
+      "detalhe": "ISIN/ticker/CNPJ presente no texto e ausente da extração.",
+      "esperado": null,
+      "observado": null
+    },
+    {
+      "id": "INJECAO_SUSPEITA",
+      "severidade": "AVISO",
+      "resultado": "OK",
+      "campos": [],
+      "detalhe": "Texto do documento contém padrão típico de instrução dirigida a modelo.",
+      "esperado": null,
+      "observado": null
+    },
+    {
+      "id": "TEXTO_OCULTO",
+      "severidade": "AVISO",
+      "resultado": "OK",
+      "campos": [],
+      "detalhe": "Texto invisível (branco, minúsculo ou fora da página).",
+      "esperado": null,
+      "observado": null
+    },
+    {
+      "id": "CONTEUDO_ATIVO_PDF",
+      "severidade": "AVISO",
+      "resultado": "OK",
+      "campos": [],
+      "detalhe": "PDF contém ação/JavaScript/arquivo embutido; nada foi executado.",
+      "esperado": null,
+      "observado": null
+    }
+  ],
+  "fichas_conferencia": [],
+  "auditoria": {
+    "modo": "replay",
+    "iniciado_em": "2026-10-24T00:35:51+00:00",
+    "chamadas_de_tools": [
+      {
+        "tool": "consultar_golden",
+        "origem": "MODELO",
+        "aceita": true,
+        "argumentos": {
+          "isin": "BRTLNRACNPR2",
+          "ticker": "TLNR4",
+          "cnpj": "33.222.111/0001-44",
+          "emissor": "TELECOM NORTE PARTICIPAÇÕES S.A.",
+          "classe_acao": "PN"
+        },
+        "resultado": {
+          "regras_ok": 4,
+          "regras_falha": []
+        }
+      },
+      {
+        "tool": "checar_datas",
+        "origem": "MODELO",
+        "aceita": true,
+        "argumentos": {
+          "tipo_evento": "JCP",
+          "data_aprovacao": "2026-06-06",
+          "data_com": "2026-06-22",
+          "data_ex": "2026-06-23",
+          "data_pagamento": "2026-08-21"
+        },
+        "resultado": {
+          "regras_ok": 7,
+          "regras_falha": [
+            "DATA_APROVACAO_FIM_DE_SEMANA"
+          ]
+        }
+      },
+      {
+        "tool": "checar_tributacao",
+        "origem": "MODELO",
+        "aceita": true,
+        "argumentos": {
+          "tipo_evento": "JCP",
+          "valor_bruto": "0.1124300000",
+          "aliquota_irrf": "0.175",
+          "valor_liquido": "0.0927547500"
+        },
+        "resultado": {
+          "regras_ok": 2,
+          "regras_falha": []
+        }
+      }
+    ],
+    "validacao_pelo_modelo": {
+      "turnos_com_tools": 1,
+      "tools_pedidas": [
+        "consultar_golden",
+        "checar_datas",
+        "checar_tributacao"
+      ],
+      "pedidos_rejeitados": 0,
+      "encerramento": "end_turn",
+      "parecer_do_modelo": "Apenas uma regra falhou: DATA_APROVACAO_FIM_DE_SEMANA, de severidade INFO. A data de aprovação, 2026-06-06, cai em fim de semana. As demais regras de referência, datas e tributação deram OK.",
+      "nota": "parecer informativo; o veredito de cada regra é o resultado da tool executada pelo código",
+      "avisos": []
+    },
+    "chamadas_llm": [
+      {
+        "etapa": "transcricao",
+        "modelo": "claude-sonnet-5-5",
+        "origem": "CACHE",
+        "origem_fixture": "API"
+      },
+      {
+        "etapa": "extracao_transcricao",
+        "modelo": "claude-sonnet-5-5",
+        "origem": "CACHE",
+        "origem_fixture": "API"
+      },
+      {
+        "etapa": "extracao_direta",
+        "modelo": "claude-sonnet-5-5",
+        "origem": "CACHE",
+        "origem_fixture": "API"
+      },
+      {
+        "etapa": "validacao_tools",
+        "modelo": "claude-sonnet-5-5",
+        "origem": "CACHE",
+        "origem_fixture": "API"
+      }
+    ],
+    "chamadas_api": 0,
+    "chamadas_cache": 4,
+    "tokens_entrada": 0,
+    "tokens_saida": 0,
+    "reparos_de_contrato": 0,
+    "custo_estimado_usd": 0,
+    "custo_fonte": "preços públicos de lista (Anthropic), consulta em 2026-10-17; estimativa, sem descontos de cache/lote",
+    "concluido_em": "2026-10-24T00:35:51+00:00",
+    "tempo_total_ms": 651
+  }
+}

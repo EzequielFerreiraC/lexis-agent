@@ -1,0 +1,924 @@
+{
+  "schema_version": "1.1",
+  "run_id": "4a942afc426b",
+  "documento": {
+    "arquivo": "02_banco_meridional_jcp.pdf",
+    "sha256": "64e0787afd32c0d99e5407a5fbc6f5048245ba70826563d0b14205074b970668",
+    "paginas": 1,
+    "fonte": "NATIVO",
+    "avisos_ingestao": []
+  },
+  "versoes": {
+    "pipeline": "1.0.0",
+    "regras": "1.0+7709e71789cb",
+    "prompt_sha": "14318d8cf7827097",
+    "modelo": "claude-sonnet-5-5",
+    "extrator": "replay",
+    "golden_sha": "6ce677a6849f",
+    "schema": "1.1"
+  },
+  "decisao": {
+    "estado": "APROVADO_AUTO",
+    "resumo": "Todas as regras passaram, a identidade foi confirmada na base e os campos críticos têm confiança suficiente.",
+    "motivos": [],
+    "linha_da_tabela": "L7: Nenhuma das anteriores",
+    "para_aprovar": null
+  },
+  "evento": {
+    "tipo": "JCP",
+    "rotulo": "Juros sobre o Capital Próprio",
+    "classificacao": {
+      "tipo_final": "JCP",
+      "tipo_modelo": "JCP",
+      "por_zona": {
+        "titulo": "JCP",
+        "campo": "JCP",
+        "corpo": "JCP"
+      },
+      "pontuacao": {
+        "JCP": 40
+      },
+      "sinais": [
+        "titulo:juros_sobre_capital_proprio",
+        "titulo:sigla_jcp",
+        "titulo:capital_proprio",
+        "campo:juros_sobre_capital_proprio",
+        "campo:sigla_jcp",
+        "campo:capital_proprio",
+        "corpo:sigla_jcp",
+        "corpo:art9_lei_9249"
+      ],
+      "conflito_titulo_corpo": false
+    },
+    "tratamento_tributario": {
+      "descricao": "IRRF retido na fonte sobre o valor bruto, com a alíquota informada no aviso (ressalvados imunes/isentos); líquido por ação = bruto × (1 − alíquota). Descritivo, não é parecer tributário.",
+      "fonte_da_descricao": "catálogo de regras v1.0",
+      "observacao_literal_do_aviso": "Sobre o valor bruto incidirá\nImposto de Renda Retido na Fonte (IRRF) à alíquota de 17,5%, conforme legislação vigente a partir de 1º\nde janeiro de 2026, ressalvados os acionistas comprovadamente imunes ou isentos.",
+      "aliquota_irrf_informada": "17.500%"
+    }
+  },
+  "campos": {
+    "tipo_evento": {
+      "estado": "EXTRAIDO",
+      "valor": "JCP",
+      "detalhe_valor": null,
+      "natureza": "DERIVADO",
+      "texto_literal": "Juros sobre o Capital Próprio (JCP)",
+      "evidencia": {
+        "pagina": 1,
+        "trecho": "Juros sobre o Capital Próprio (JCP)",
+        "bbox": null,
+        "fonte": "TEXTO_NATIVO"
+      },
+      "confianca": {
+        "nivel": "ALTA",
+        "motivos": [
+          "tipo inferido por sinais em cada zona do aviso (titulo=JCP; campo=JCP; corpo=JCP)",
+          "modelo e sinais do documento concordam"
+        ],
+        "justificativa": "ALTA: tipo inferido por sinais em cada zona do aviso (titulo=JCP; campo=JCP; corpo=JCP); modelo e sinais do documento concordam."
+      }
+    },
+    "emissor": {
+      "estado": "EXTRAIDO",
+      "valor": "BANCO MERIDIONAL DO BRASIL S.A.",
+      "detalhe_valor": null,
+      "natureza": "LITERAL",
+      "texto_literal": "BANCO MERIDIONAL DO BRASIL S.A.",
+      "evidencia": {
+        "pagina": 1,
+        "trecho": "BANCO MERIDIONAL DO BRASIL S.A.",
+        "bbox": [
+          178.8,
+          59.7,
+          416.4,
+          72.7
+        ],
+        "fonte": "TEXTO_NATIVO"
+      },
+      "confianca": {
+        "nivel": "ALTA",
+        "motivos": [
+          "trecho literal verificado no texto-fonte (página 1)",
+          "valor normalizado pelo código a partir do trecho",
+          "confirmado pela base de referência"
+        ],
+        "justificativa": "ALTA: trecho literal verificado no texto-fonte (página 1); valor normalizado pelo código a partir do trecho; confirmado pela base de referência."
+      }
+    },
+    "cnpj": {
+      "estado": "EXTRAIDO",
+      "valor": "60.111.222/0001-55",
+      "detalhe_valor": null,
+      "natureza": "LITERAL",
+      "texto_literal": "60.111.222/0001-55",
+      "evidencia": {
+        "pagina": 1,
+        "trecho": "60.111.222/0001-55",
+        "bbox": [
+          279.1,
+          82.8,
+          355.2,
+          91.3
+        ],
+        "fonte": "TEXTO_NATIVO"
+      },
+      "confianca": {
+        "nivel": "ALTA",
+        "motivos": [
+          "trecho literal verificado no texto-fonte (página 1)",
+          "valor normalizado pelo código a partir do trecho",
+          "confirmado pela base de referência"
+        ],
+        "justificativa": "ALTA: trecho literal verificado no texto-fonte (página 1); valor normalizado pelo código a partir do trecho; confirmado pela base de referência."
+      }
+    },
+    "isin": {
+      "estado": "EXTRAIDO",
+      "valor": "BRBMRDACNPR7",
+      "detalhe_valor": null,
+      "natureza": "LITERAL",
+      "texto_literal": "BRBMRDACNPR7",
+      "evidencia": {
+        "pagina": 1,
+        "trecho": "BRBMRDACNPR7",
+        "bbox": [
+          301.8,
+          483.1,
+          385.7,
+          493.1
+        ],
+        "fonte": "TEXTO_NATIVO"
+      },
+      "confianca": {
+        "nivel": "ALTA",
+        "motivos": [
+          "trecho literal verificado no texto-fonte (página 1)",
+          "valor normalizado pelo código a partir do trecho",
+          "confirmado pela base de referência"
+        ],
+        "justificativa": "ALTA: trecho literal verificado no texto-fonte (página 1); valor normalizado pelo código a partir do trecho; confirmado pela base de referência."
+      }
+    },
+    "ticker": {
+      "estado": "EXTRAIDO",
+      "valor": "BMRD4",
+      "detalhe_valor": null,
+      "natureza": "LITERAL",
+      "texto_literal": "BMRD4",
+      "evidencia": {
+        "pagina": 1,
+        "trecho": "BMRD4",
+        "bbox": [
+          238.4,
+          483.1,
+          273.4,
+          493.1
+        ],
+        "fonte": "TEXTO_NATIVO"
+      },
+      "confianca": {
+        "nivel": "ALTA",
+        "motivos": [
+          "trecho literal verificado no texto-fonte (página 1)",
+          "valor normalizado pelo código a partir do trecho",
+          "confirmado pela base de referência"
+        ],
+        "justificativa": "ALTA: trecho literal verificado no texto-fonte (página 1); valor normalizado pelo código a partir do trecho; confirmado pela base de referência."
+      }
+    },
+    "classe_acao": {
+      "estado": "EXTRAIDO",
+      "valor": "PN",
+      "detalhe_valor": null,
+      "natureza": "LITERAL",
+      "texto_literal": "preferencial",
+      "evidencia": {
+        "pagina": 1,
+        "trecho": "preferencial",
+        "bbox": [
+          169.8,
+          342.1,
+          226.4,
+          352.1
+        ],
+        "fonte": "TEXTO_NATIVO"
+      },
+      "confianca": {
+        "nivel": "ALTA",
+        "motivos": [
+          "trecho literal verificado no texto-fonte (página 1)",
+          "valor normalizado pelo código a partir do trecho",
+          "confirmado pela base de referência"
+        ],
+        "justificativa": "ALTA: trecho literal verificado no texto-fonte (página 1); valor normalizado pelo código a partir do trecho; confirmado pela base de referência."
+      }
+    },
+    "data_aprovacao": {
+      "estado": "EXTRAIDO",
+      "valor": "2026-06-02",
+      "detalhe_valor": null,
+      "natureza": "LITERAL",
+      "texto_literal": "02 de junho de 2026",
+      "evidencia": {
+        "pagina": 1,
+        "trecho": "02 de junho de 2026",
+        "bbox": [
+          245.3,
+          170.1,
+          337.2,
+          180.1
+        ],
+        "fonte": "TEXTO_NATIVO"
+      },
+      "confianca": {
+        "nivel": "ALTA",
+        "motivos": [
+          "trecho literal verificado no texto-fonte (página 1)",
+          "valor normalizado pelo código a partir do trecho"
+        ],
+        "justificativa": "ALTA: trecho literal verificado no texto-fonte (página 1); valor normalizado pelo código a partir do trecho."
+      }
+    },
+    "data_com": {
+      "estado": "EXTRAIDO",
+      "valor": "2026-06-16",
+      "detalhe_valor": null,
+      "natureza": "LITERAL",
+      "texto_literal": "16/06/2026",
+      "evidencia": {
+        "pagina": 1,
+        "trecho": "16/06/2026",
+        "bbox": [
+          238.4,
+          420.1,
+          288.5,
+          430.1
+        ],
+        "fonte": "TEXTO_NATIVO"
+      },
+      "confianca": {
+        "nivel": "ALTA",
+        "motivos": [
+          "trecho literal verificado no texto-fonte (página 1)",
+          "valor normalizado pelo código a partir do trecho",
+          "regra DATAS_EX_NAO_POSTERIOR_A_COM satisfeita",
+          "regra DATAS_PAGAMENTO_ANTES_DA_COM satisfeita"
+        ],
+        "justificativa": "ALTA: trecho literal verificado no texto-fonte (página 1); valor normalizado pelo código a partir do trecho; regra DATAS_EX_NAO_POSTERIOR_A_COM satisfeita; regra DATAS_PAGAMENTO_ANTES_DA_COM satisfeita."
+      }
+    },
+    "data_ex": {
+      "estado": "EXTRAIDO",
+      "valor": "2026-06-17",
+      "detalhe_valor": null,
+      "natureza": "LITERAL",
+      "texto_literal": "17/06/2026",
+      "evidencia": {
+        "pagina": 1,
+        "trecho": "17/06/2026",
+        "bbox": [
+          238.4,
+          441.1,
+          288.5,
+          451.1
+        ],
+        "fonte": "TEXTO_NATIVO"
+      },
+      "confianca": {
+        "nivel": "ALTA",
+        "motivos": [
+          "trecho literal verificado no texto-fonte (página 1)",
+          "valor normalizado pelo código a partir do trecho",
+          "regra DATAS_EX_NAO_POSTERIOR_A_COM satisfeita",
+          "regra DATAS_PAGAMENTO_ANTES_DA_EX satisfeita"
+        ],
+        "justificativa": "ALTA: trecho literal verificado no texto-fonte (página 1); valor normalizado pelo código a partir do trecho; regra DATAS_EX_NAO_POSTERIOR_A_COM satisfeita; regra DATAS_PAGAMENTO_ANTES_DA_EX satisfeita."
+      }
+    },
+    "data_pagamento": {
+      "estado": "EXTRAIDO",
+      "valor": "2026-08-14",
+      "detalhe_valor": null,
+      "natureza": "LITERAL",
+      "texto_literal": "14/08/2026",
+      "evidencia": {
+        "pagina": 1,
+        "trecho": "14/08/2026",
+        "bbox": [
+          238.4,
+          462.1,
+          288.5,
+          472.1
+        ],
+        "fonte": "TEXTO_NATIVO"
+      },
+      "confianca": {
+        "nivel": "ALTA",
+        "motivos": [
+          "trecho literal verificado no texto-fonte (página 1)",
+          "valor normalizado pelo código a partir do trecho",
+          "regra DATAS_PAGAMENTO_ANTES_DA_COM satisfeita",
+          "regra DATAS_PAGAMENTO_ANTES_DA_EX satisfeita"
+        ],
+        "justificativa": "ALTA: trecho literal verificado no texto-fonte (página 1); valor normalizado pelo código a partir do trecho; regra DATAS_PAGAMENTO_ANTES_DA_COM satisfeita; regra DATAS_PAGAMENTO_ANTES_DA_EX satisfeita."
+      }
+    },
+    "data_credito_ativos": {
+      "estado": "NAO_APLICAVEL",
+      "valor": null,
+      "detalhe_valor": null,
+      "natureza": null,
+      "texto_literal": null,
+      "evidencia": null,
+      "confianca": {
+        "nivel": "ALTA",
+        "motivos": [
+          "não se aplica ao tipo de evento (matriz de aplicabilidade)"
+        ],
+        "justificativa": "ALTA: não se aplica ao tipo de evento (matriz de aplicabilidade)."
+      }
+    },
+    "valor_bruto": {
+      "estado": "EXTRAIDO",
+      "valor": "0.1738420000",
+      "detalhe_valor": {
+        "moeda_no_trecho": "BRL"
+      },
+      "natureza": "LITERAL",
+      "texto_literal": "R$ 0,1738420000",
+      "evidencia": {
+        "pagina": 1,
+        "trecho": "R$ 0,1738420000",
+        "bbox": [
+          238.4,
+          342.1,
+          317.9,
+          352.1
+        ],
+        "fonte": "TEXTO_NATIVO"
+      },
+      "confianca": {
+        "nivel": "ALTA",
+        "motivos": [
+          "trecho literal verificado no texto-fonte (página 1)",
+          "valor normalizado pelo código a partir do trecho",
+          "regra TRIB_LIQUIDO_DIVERGE satisfeita"
+        ],
+        "justificativa": "ALTA: trecho literal verificado no texto-fonte (página 1); valor normalizado pelo código a partir do trecho; regra TRIB_LIQUIDO_DIVERGE satisfeita."
+      }
+    },
+    "aliquota_irrf": {
+      "estado": "EXTRAIDO",
+      "valor": "0.175",
+      "detalhe_valor": {
+        "percentual": "17.500%"
+      },
+      "natureza": "LITERAL",
+      "texto_literal": "17,5%",
+      "evidencia": {
+        "pagina": 1,
+        "trecho": "17,5%",
+        "bbox": [
+          314.8,
+          238.1,
+          343.1,
+          248.1
+        ],
+        "fonte": "TEXTO_NATIVO"
+      },
+      "confianca": {
+        "nivel": "ALTA",
+        "motivos": [
+          "trecho literal verificado no texto-fonte (página 1)",
+          "valor normalizado pelo código a partir do trecho",
+          "regra TRIB_LIQUIDO_DIVERGE satisfeita"
+        ],
+        "justificativa": "ALTA: trecho literal verificado no texto-fonte (página 1); valor normalizado pelo código a partir do trecho; regra TRIB_LIQUIDO_DIVERGE satisfeita."
+      }
+    },
+    "valor_liquido": {
+      "estado": "EXTRAIDO",
+      "valor": "0.1434196500",
+      "detalhe_valor": {
+        "moeda_no_trecho": "BRL"
+      },
+      "natureza": "LITERAL",
+      "texto_literal": "R$ 0,1434196500",
+      "evidencia": {
+        "pagina": 1,
+        "trecho": "R$ 0,1434196500",
+        "bbox": [
+          238.4,
+          399.1,
+          317.9,
+          409.1
+        ],
+        "fonte": "TEXTO_NATIVO"
+      },
+      "confianca": {
+        "nivel": "ALTA",
+        "motivos": [
+          "trecho literal verificado no texto-fonte (página 1)",
+          "valor normalizado pelo código a partir do trecho",
+          "regra TRIB_LIQUIDO_DIVERGE satisfeita"
+        ],
+        "justificativa": "ALTA: trecho literal verificado no texto-fonte (página 1); valor normalizado pelo código a partir do trecho; regra TRIB_LIQUIDO_DIVERGE satisfeita."
+      }
+    },
+    "custo_atribuido": {
+      "estado": "NAO_APLICAVEL",
+      "valor": null,
+      "detalhe_valor": null,
+      "natureza": null,
+      "texto_literal": null,
+      "evidencia": null,
+      "confianca": {
+        "nivel": "ALTA",
+        "motivos": [
+          "não se aplica ao tipo de evento (matriz de aplicabilidade)"
+        ],
+        "justificativa": "ALTA: não se aplica ao tipo de evento (matriz de aplicabilidade)."
+      }
+    },
+    "moeda": {
+      "estado": "EXTRAIDO",
+      "valor": "BRL",
+      "detalhe_valor": null,
+      "natureza": "LITERAL",
+      "texto_literal": "R$",
+      "evidencia": {
+        "pagina": 1,
+        "trecho": "R$",
+        "bbox": [
+          238.4,
+          342.1,
+          251.2,
+          352.1
+        ],
+        "fonte": "TEXTO_NATIVO"
+      },
+      "confianca": {
+        "nivel": "ALTA",
+        "motivos": [
+          "trecho literal verificado no texto-fonte (página 1)",
+          "valor normalizado pelo código a partir do trecho"
+        ],
+        "justificativa": "ALTA: trecho literal verificado no texto-fonte (página 1); valor normalizado pelo código a partir do trecho."
+      }
+    },
+    "proporcao": {
+      "estado": "NAO_APLICAVEL",
+      "valor": null,
+      "detalhe_valor": null,
+      "natureza": null,
+      "texto_literal": null,
+      "evidencia": null,
+      "confianca": {
+        "nivel": "ALTA",
+        "motivos": [
+          "não se aplica ao tipo de evento (matriz de aplicabilidade)"
+        ],
+        "justificativa": "ALTA: não se aplica ao tipo de evento (matriz de aplicabilidade)."
+      }
+    },
+    "observacao_tributaria": {
+      "estado": "EXTRAIDO",
+      "valor": "Sobre o valor bruto incidirá\nImposto de Renda Retido na Fonte (IRRF) à alíquota de 17,5%, conforme legislação vigente a partir de 1º\nde janeiro de 2026, ressalvados os acionistas comprovadamente imunes ou isentos.",
+      "detalhe_valor": null,
+      "natureza": "LITERAL",
+      "texto_literal": "Sobre o valor bruto incidirá\nImposto de Renda Retido na Fonte (IRRF) à alíquota de 17,5%, conforme legislação vigente a partir de 1º\nde janeiro de 2026, ressalvados os acionistas comprovadamente imunes ou isentos.",
+      "evidencia": {
+        "pagina": 1,
+        "trecho": "Sobre o valor bruto incidirá\nImposto de Renda Retido na Fonte (IRRF) à alíquota de 17,5%, conforme legislação vigente a partir de 1º\nde janeiro de 2026, ressalvados os acionistas comprovadamente imunes ou isentos.",
+        "bbox": [
+          62.7,
+          223.1,
+          532.6,
+          263.1
+        ],
+        "fonte": "TEXTO_NATIVO"
+      },
+      "confianca": {
+        "nivel": "ALTA",
+        "motivos": [
+          "trecho literal verificado no texto-fonte (página 1)",
+          "valor normalizado pelo código a partir do trecho"
+        ],
+        "justificativa": "ALTA: trecho literal verificado no texto-fonte (página 1); valor normalizado pelo código a partir do trecho."
+      }
+    }
+  },
+  "validacao_golden": {
+    "status": "MATCH",
+    "registro_golden": {
+      "emissor": "Banco Meridional do Brasil S.A.",
+      "cnpj": "60.111.222/0001-55",
+      "isin": "BRBMRDACNPR7",
+      "ticker": "BMRD4",
+      "classe": "PN",
+      "segmento_listagem": "Nível 1",
+      "status": "ativo"
+    },
+    "comparacoes": [
+      {
+        "campo": "isin",
+        "aviso": "BRBMRDACNPR7",
+        "golden": "BRBMRDACNPR7",
+        "resultado": "IGUAL"
+      },
+      {
+        "campo": "ticker",
+        "aviso": "BMRD4",
+        "golden": "BMRD4",
+        "resultado": "IGUAL"
+      },
+      {
+        "campo": "cnpj",
+        "aviso": "60.111.222/0001-55",
+        "golden": "60.111.222/0001-55",
+        "resultado": "IGUAL"
+      },
+      {
+        "campo": "emissor",
+        "aviso": "BANCO MERIDIONAL DO BRASIL S.A.",
+        "golden": "Banco Meridional do Brasil S.A.",
+        "resultado": "IGUAL"
+      },
+      {
+        "campo": "classe_acao",
+        "aviso": "PN",
+        "golden": "PN",
+        "resultado": "IGUAL"
+      },
+      {
+        "campo": "status",
+        "aviso": null,
+        "golden": "ativo",
+        "resultado": "ATIVO"
+      }
+    ],
+    "sugestao_por_nome": null
+  },
+  "regras": [
+    {
+      "id": "CLASSIFICACAO_DIVERGENTE",
+      "severidade": "ERRO",
+      "resultado": "OK",
+      "campos": [
+        "tipo_evento"
+      ],
+      "detalhe": "Classificação do modelo diverge da classificação por sinais do documento.",
+      "esperado": "sinais do documento: JCP",
+      "observado": "modelo: JCP"
+    },
+    {
+      "id": "TITULO_DIVERGE_CORPO",
+      "severidade": "AVISO",
+      "resultado": "OK",
+      "campos": [
+        "tipo_evento"
+      ],
+      "detalhe": "Título sugere um tipo e o corpo/natureza do provento indica outro; prevalece o corpo.",
+      "esperado": "tipo pelo corpo/natureza: JCP",
+      "observado": "tipo pelo título: JCP"
+    },
+    {
+      "id": "TIPO_NAO_SUPORTADO",
+      "severidade": "ERRO",
+      "resultado": "OK",
+      "campos": [
+        "tipo_evento"
+      ],
+      "detalhe": "Tipo de evento fora do escopo suportado.",
+      "esperado": null,
+      "observado": null
+    },
+    {
+      "id": "FORMATO_ISIN",
+      "severidade": "ERRO",
+      "resultado": "OK",
+      "campos": [
+        "isin"
+      ],
+      "detalhe": "ISIN fora do formato (2 letras + 9 alfanuméricos + 1 dígito).",
+      "esperado": null,
+      "observado": "BRBMRDACNPR7"
+    },
+    {
+      "id": "FORMATO_TICKER",
+      "severidade": "ERRO",
+      "resultado": "OK",
+      "campos": [
+        "ticker"
+      ],
+      "detalhe": "Ticker fora do formato (4 letras + 1 ou 2 dígitos).",
+      "esperado": null,
+      "observado": "BMRD4"
+    },
+    {
+      "id": "FORMATO_CNPJ",
+      "severidade": "ERRO",
+      "resultado": "OK",
+      "campos": [
+        "cnpj"
+      ],
+      "detalhe": "CNPJ fora do formato 00.000.000/0000-00. Dígitos verificadores não são validados (base sintética).",
+      "esperado": null,
+      "observado": "60.111.222/0001-55"
+    },
+    {
+      "id": "GOLDEN_NAO_ENCONTRADO",
+      "severidade": "ERRO",
+      "resultado": "OK",
+      "campos": [
+        "emissor",
+        "isin",
+        "ticker",
+        "cnpj"
+      ],
+      "detalhe": "Nenhum identificador do aviso consta na base de referência.",
+      "esperado": null,
+      "observado": null
+    },
+    {
+      "id": "GOLDEN_DIVERGENTE",
+      "severidade": "ERRO",
+      "resultado": "OK",
+      "campos": [
+        "emissor",
+        "isin",
+        "ticker",
+        "cnpj"
+      ],
+      "detalhe": "Identificadores casam com a base, mas algum campo diverge.",
+      "esperado": null,
+      "observado": null
+    },
+    {
+      "id": "GOLDEN_AMBIGUO",
+      "severidade": "ERRO",
+      "resultado": "OK",
+      "campos": [
+        "emissor",
+        "isin",
+        "ticker",
+        "cnpj"
+      ],
+      "detalhe": "Identificadores do aviso apontam para registros diferentes da base.",
+      "esperado": null,
+      "observado": null
+    },
+    {
+      "id": "GOLDEN_INATIVO",
+      "severidade": "ERRO",
+      "resultado": "OK",
+      "campos": [
+        "isin"
+      ],
+      "detalhe": "Registro da base não está com status ativo.",
+      "esperado": null,
+      "observado": "ativo"
+    },
+    {
+      "id": "DATAS_EX_NAO_POSTERIOR_A_COM",
+      "severidade": "ERRO",
+      "resultado": "OK",
+      "campos": [
+        "data_com",
+        "data_ex"
+      ],
+      "detalhe": "Data ex deve ser posterior à data com.",
+      "esperado": "data_ex > data_com",
+      "observado": "data_com=2026-06-16, data_ex=2026-06-17"
+    },
+    {
+      "id": "DATAS_PAGAMENTO_ANTES_DA_COM",
+      "severidade": "ERRO",
+      "resultado": "OK",
+      "campos": [
+        "data_pagamento",
+        "data_com"
+      ],
+      "detalhe": "Pagamento não pode anteceder a data com.",
+      "esperado": "data_pagamento >= data_com",
+      "observado": "data_pagamento=2026-08-14, data_com=2026-06-16"
+    },
+    {
+      "id": "DATAS_PAGAMENTO_ANTES_DA_EX",
+      "severidade": "ERRO",
+      "resultado": "OK",
+      "campos": [
+        "data_pagamento",
+        "data_ex"
+      ],
+      "detalhe": "Pagamento não pode anteceder a data ex.",
+      "esperado": "data_pagamento >= data_ex",
+      "observado": "data_pagamento=2026-08-14, data_ex=2026-06-17"
+    },
+    {
+      "id": "DATAS_APROVACAO_APOS_COM",
+      "severidade": "AVISO",
+      "resultado": "OK",
+      "campos": [
+        "data_aprovacao",
+        "data_com"
+      ],
+      "detalhe": "Aprovação costuma anteceder a data com.",
+      "esperado": "data_aprovacao <= data_com",
+      "observado": "data_aprovacao=2026-06-02, data_com=2026-06-16"
+    },
+    {
+      "id": "DATAS_EX_NAO_E_DIA_UTIL_SEGUINTE",
+      "severidade": "AVISO",
+      "resultado": "OK",
+      "campos": [
+        "data_com",
+        "data_ex"
+      ],
+      "detalhe": "Dia útil pelo calendário de feriados da B3 (fins de semana, feriados nacionais, Carnaval, Sexta-feira Santa, Corpus Christi, 24 e 31/12).",
+      "esperado": "data_ex=2026-06-17",
+      "observado": "data_ex=2026-06-17"
+    },
+    {
+      "id": "DATA_FIM_DE_SEMANA",
+      "severidade": "AVISO",
+      "resultado": "OK",
+      "campos": [],
+      "detalhe": "Data com/ex/pagamento em fim de semana.",
+      "esperado": null,
+      "observado": null
+    },
+    {
+      "id": "DATA_APROVACAO_FIM_DE_SEMANA",
+      "severidade": "INFO",
+      "resultado": "OK",
+      "campos": [
+        "data_aprovacao"
+      ],
+      "detalhe": "Aprovação em fim de semana (assembleias podem ocorrer).",
+      "esperado": null,
+      "observado": "2026-06-02"
+    },
+    {
+      "id": "DATAS_FORA_DA_FAIXA",
+      "severidade": "AVISO",
+      "resultado": "OK",
+      "campos": [],
+      "detalhe": "Datas a mais de 550 dias da aprovação sugerem erro de leitura (ex.: ano).",
+      "esperado": null,
+      "observado": null
+    },
+    {
+      "id": "VALOR_NAO_POSITIVO",
+      "severidade": "ERRO",
+      "resultado": "OK",
+      "campos": [
+        "valor_bruto",
+        "valor_liquido"
+      ],
+      "detalhe": "Valor monetário deve ser maior que zero.",
+      "esperado": null,
+      "observado": null
+    },
+    {
+      "id": "TRIB_LIQUIDO_DIVERGE",
+      "severidade": "ERRO",
+      "resultado": "OK",
+      "campos": [
+        "valor_bruto",
+        "aliquota_irrf",
+        "valor_liquido"
+      ],
+      "detalhe": "Líquido esperado = bruto × (1 − alíquota informada no aviso); tolerância de 0,5 unidade da última casa do líquido (arredondamento).",
+      "esperado": "0.1434196500000",
+      "observado": "0.1434196500"
+    },
+    {
+      "id": "IDENTIFICADOR_NAO_EXTRAIDO",
+      "severidade": "AVISO",
+      "resultado": "OK",
+      "campos": [],
+      "detalhe": "ISIN/ticker/CNPJ presente no texto e ausente da extração.",
+      "esperado": null,
+      "observado": null
+    },
+    {
+      "id": "INJECAO_SUSPEITA",
+      "severidade": "AVISO",
+      "resultado": "OK",
+      "campos": [],
+      "detalhe": "Texto do documento contém padrão típico de instrução dirigida a modelo.",
+      "esperado": null,
+      "observado": null
+    },
+    {
+      "id": "TEXTO_OCULTO",
+      "severidade": "AVISO",
+      "resultado": "OK",
+      "campos": [],
+      "detalhe": "Texto invisível (branco, minúsculo ou fora da página).",
+      "esperado": null,
+      "observado": null
+    },
+    {
+      "id": "CONTEUDO_ATIVO_PDF",
+      "severidade": "AVISO",
+      "resultado": "OK",
+      "campos": [],
+      "detalhe": "PDF contém ação/JavaScript/arquivo embutido; nada foi executado.",
+      "esperado": null,
+      "observado": null
+    }
+  ],
+  "fichas_conferencia": [],
+  "auditoria": {
+    "modo": "replay",
+    "iniciado_em": "2026-10-24T00:35:44+00:00",
+    "chamadas_de_tools": [
+      {
+        "tool": "consultar_golden",
+        "origem": "MODELO",
+        "aceita": true,
+        "argumentos": {
+          "isin": "BRBMRDACNPR7",
+          "ticker": "BMRD4",
+          "cnpj": "60.111.222/0001-55",
+          "emissor": "BANCO MERIDIONAL DO BRASIL S.A.",
+          "classe_acao": "PN"
+        },
+        "resultado": {
+          "regras_ok": 4,
+          "regras_falha": []
+        }
+      },
+      {
+        "tool": "checar_datas",
+        "origem": "MODELO",
+        "aceita": true,
+        "argumentos": {
+          "tipo_evento": "JCP",
+          "data_aprovacao": "2026-06-02",
+          "data_com": "2026-06-16",
+          "data_ex": "2026-06-17",
+          "data_pagamento": "2026-08-14"
+        },
+        "resultado": {
+          "regras_ok": 8,
+          "regras_falha": []
+        }
+      },
+      {
+        "tool": "checar_tributacao",
+        "origem": "MODELO",
+        "aceita": true,
+        "argumentos": {
+          "tipo_evento": "JCP",
+          "valor_bruto": "0.1738420000",
+          "aliquota_irrf": "0.175",
+          "valor_liquido": "0.1434196500"
+        },
+        "resultado": {
+          "regras_ok": 2,
+          "regras_falha": []
+        }
+      }
+    ],
+    "validacao_pelo_modelo": {
+      "turnos_com_tools": 1,
+      "tools_pedidas": [
+        "consultar_golden",
+        "checar_datas",
+        "checar_tributacao"
+      ],
+      "pedidos_rejeitados": 0,
+      "encerramento": "end_turn",
+      "parecer_do_modelo": "Nenhuma regra falhou. A consulta à base de referência deu MATCH, as datas estão coerentes e a relação bruto × (1 − alíquota) = líquido confere.",
+      "nota": "parecer informativo; o veredito de cada regra é o resultado da tool executada pelo código",
+      "avisos": []
+    },
+    "chamadas_llm": [
+      {
+        "etapa": "extracao",
+        "modelo": "claude-sonnet-5-5",
+        "origem": "CACHE",
+        "origem_fixture": "API"
+      },
+      {
+        "etapa": "validacao_tools",
+        "modelo": "claude-sonnet-5-5",
+        "origem": "CACHE",
+        "origem_fixture": "API"
+      }
+    ],
+    "chamadas_api": 0,
+    "chamadas_cache": 2,
+    "tokens_entrada": 0,
+    "tokens_saida": 0,
+    "reparos_de_contrato": 0,
+    "custo_estimado_usd": 0,
+    "custo_fonte": "preços públicos de lista (Anthropic), consulta em 2026-10-17; estimativa, sem descontos de cache/lote",
+    "concluido_em": "2026-10-24T00:35:46+00:00",
+    "tempo_total_ms": 2046
+  }
+}
