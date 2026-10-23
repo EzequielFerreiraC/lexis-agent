@@ -1,0 +1,105 @@
+# Lexis em containers: console web (`console`) e CLI (`cli`, sob demanda). Ver "Como rodar" no README.
+#
+#   docker compose up --build -d                       # console; o endereço com o token sai em `docker compose logs console`
+#   docker compose run --rm cli run                    # lote em replay -> f_data/b_output/report_yymmdd_hhmm
+#   docker compose run --rm cli avaliar                # avaliação por mutação
+#   docker compose down
+#
+# Atalhos: d_scripts/a_start.sh (sobe e imprime o endereço) · b_stop.sh (para) · c_destroy.sh (remove)
+#
+# Segurança: a porta só é publicada em 127.0.0.1 do host (o console continua local); token por subida e checagem do
+# cabeçalho Host valem como fora do container. Usuário sem root, sistema de arquivos só leitura, sem capabilities.
+# Chave de API (opcional, só para Ao vivo/Automático): no .env, que nunca entra na imagem (.dockerignore).
+# Banco: MySQL 8.4 só na rede interna do compose (sem porta publicada). Senhas no .env (LEXIS_DB_SENHA,
+# LEXIS_DB_SENHA_ROOT); d_scripts/a_start.sh as gera se faltarem. Com o banco, o console exige login e a conta é
+# criada na própria tela (LEXIS_DOMINIOS_EMAIL restringe os domínios) ou por aqui:
+#   docker compose run --rm cli usuario criar <email> --nome "<Apelido>"   # pede a senha sem eco
+# Dados do banco no volume `mysql_dados` (o `down` não o remove; `down -v` sim).
+
+name: lexis
+
+x-base: &base
+  build:
+    context: .
+    args:
+      LEXIS_UID: ${LEXIS_UID:-1000}
+      LEXIS_GID: ${LEXIS_GID:-1000}
+  image: lexis:local
+  env_file:
+    - path: .env
+      required: false
+  read_only: true
+  tmpfs:
+    - /tmp
+  # Sem `no-new-privileges`: com o AppArmor do Ubuntu ele bloqueia o exec do Python ("operation not permitted").
+  # Usuário sem root + nenhuma capability já impedem um binário setuid de ganhar privilégio.
+  cap_drop: [ALL]
+
+x-db: &db
+  LEXIS_DB_URL: mysql+pymysql://lexis:${LEXIS_DB_SENHA:?defina LEXIS_DB_SENHA no .env (d_scripts/a_start.sh gera)}@mysql:3306/lexis?charset=utf8mb4
+
+services:
+  mysql:
+    image: mysql:8.4
+    environment:
+      MYSQL_DATABASE: lexis
+      MYSQL_USER: lexis              # privilégios só no banco `lexis`, não globais
+      MYSQL_PASSWORD: ${LEXIS_DB_SENHA:?defina LEXIS_DB_SENHA no .env}
+      MYSQL_ROOT_PASSWORD: ${LEXIS_DB_SENHA_ROOT:?defina LEXIS_DB_SENHA_ROOT no .env}
+      TZ: UTC
+    command: ["--character-set-server=utf8mb4", "--collation-server=utf8mb4_0900_ai_ci"]
+    volumes:
+      - mysql_dados:/var/lib/mysql
+    healthcheck:
+      # ping sem credencial: responde "alive" mesmo sem login, então nenhuma senha vai para a linha de comando
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "--silent"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 20s
+    restart: unless-stopped
+
+  console:
+    <<: *base
+    command: ["serve", "--container", "--porta", "${LEXIS_PORTA:-8000}"]
+    environment:
+      <<: *db
+      LEXIS_TOKEN: ${LEXIS_TOKEN:-}   # vazio = token aleatório a cada subida
+    depends_on:
+      mysql:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:${LEXIS_PORTA:-8000}:${LEXIS_PORTA:-8000}"
+    volumes:
+      - ./f_data/b_output:/app/f_data/b_output
+      # a tela grava as respostas do modelo na pasta da própria execução; as gravações versionadas só são lidas
+      - ./c_replay:/app/c_replay:ro
+      - ./f_data/a_input:/app/f_data/a_input:ro
+      - ./f_data/c_golden_records:/app/f_data/c_golden_records:ro
+    healthcheck:
+      # "/" serve o front sem token; o Host 127.0.0.1 passa na checagem anti DNS rebinding
+      test: ["CMD", "python", "-c",
+             "import urllib.request; urllib.request.urlopen('http://127.0.0.1:${LEXIS_PORTA:-8000}/', timeout=3)"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    restart: unless-stopped
+
+  cli:
+    <<: *base
+    profiles: [cli]
+    environment:
+      <<: *db
+    depends_on:
+      mysql:
+        condition: service_healthy
+    volumes:
+      - ./f_data/b_output:/app/f_data/b_output
+      # gravável: `run --modo live --forcar` regrava c_replay/ (skill lexis-live-recording)
+      - ./c_replay:/app/c_replay
+      - ./f_data/a_input:/app/f_data/a_input:ro
+      - ./f_data/c_golden_records:/app/f_data/c_golden_records:ro
+
+volumes:
+  mysql_dados:

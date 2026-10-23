@@ -1,0 +1,31 @@
+# Só o necessário entra no contexto do build (ver Dockerfile). Segredos e estado local nunca.
+.env
+.git
+.github
+.venv
+.run
+.vscode
+**/__pycache__
+**/*.pyc
+.pytest_cache
+.mypy_cache
+.ruff_cache
+.coverage
+htmlcov
+*.egg-info
+
+# Front: dependências e build são refeitos dentro da imagem
+a_src/a_frontend/node_modules
+a_src/a_frontend/dist
+a_src/a_frontend/coverage
+a_src/a_frontend/playwright-report
+a_src/a_frontend/test-results
+
+# Saídas geradas (o compose monta f_data/b_output do host)
+f_data/b_output
+
+# Documentação, anotações e material de estudo
+e_docs
+z_tmp
+e_exemplos
+g_test_results
