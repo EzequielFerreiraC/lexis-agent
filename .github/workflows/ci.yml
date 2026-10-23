@@ -1,0 +1,110 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  qualidade:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Instalar dependências (lockfile com hashes)
+        run: |
+          python -m pip install --upgrade pip
+          pip install --require-hashes -r requirements-dev.txt
+          pip install --no-deps -e .
+      - name: Lint
+        run: ruff check a_src/b_backend b_tests
+      - name: Tipos (mypy strict)
+        run: mypy
+      - name: Testes (sem rede e sem chave de API; inclui contrato do schema e adaptador AWS com cliente falso)
+        run: pytest -q
+      - name: Avaliação por mutação (falha se houver falso auto-aprovado detectável)
+        run: python -m lexis avaliar --saida /tmp/avaliacao
+      - name: Integridade do lote entregue (trilha encadeada, registros e decisões são os gravados)
+        run: python -m lexis auditar "$(ls -d f_data/b_output/report_* | sort | tail -1)"
+      - name: Vulnerabilidades em dependências
+        run: pip-audit -r requirements.txt --require-hashes
+      - name: Segredos no repositório
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  frontend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: a_src/a_frontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: a_src/a_frontend/package-lock.json
+      - run: npm ci
+      - name: Formatação
+        run: npx prettier --check .
+      - name: Lint (typescript-eslint strict + jsx-a11y)
+        run: npm run lint
+      - name: Tipos
+        run: npm run typecheck
+      - name: Tipos da API em dia com o contrato (OpenAPI gerado pelo backend)
+        run: |
+          npm run gen:api
+          git diff --exit-code -- src/api/schema.d.ts
+      - name: Testes (Vitest + Testing Library + axe)
+        run: npm test
+      - name: Build
+        run: npm run build
+      - name: Vulnerabilidades em dependências (produção)
+        run: npm audit --omit=dev --audit-level=high
+
+  docker:
+    runs-on: ubuntu-latest
+    env:  # o compose exige as senhas do banco; no CI, descartáveis
+      LEXIS_DB_SENHA: ci-${{ github.run_id }}-app
+      LEXIS_DB_SENHA_ROOT: ci-${{ github.run_id }}-root
+    steps:
+      - uses: actions/checkout@v4
+      - name: Imagem (front compilado + backend, dependências do lockfile com hashes)
+        run: docker compose build
+      - name: Avaliação por mutação dentro do container (mesmo resultado que fora dele)
+        run: docker compose run --rm cli avaliar --saida /tmp/avaliacao
+
+  e2e:
+    runs-on: ubuntu-latest
+    needs: [qualidade, frontend]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: a_src/a_frontend/package-lock.json
+      - name: Instalar o backend
+        run: |
+          python -m pip install --upgrade pip
+          pip install --require-hashes -r requirements.txt
+          pip install --no-deps -e .
+      - name: Compilar o front e instalar o navegador
+        working-directory: a_src/a_frontend
+        run: |
+          npm ci
+          npm run build
+          npx playwright install --with-deps chromium
+      - name: Fluxo completo no navegador (servidor real em replay, axe com contraste, CSP sem violações)
+        working-directory: a_src/a_frontend
+        run: npm run test:e2e
